@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.bus.dao.LnAppProcessMapper" >
+  <parameterMap type="com.hm.bus.module.LnAppProcess" id="lnAppProcess"></parameterMap>
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnAppProcess" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="AUDIT_FD_TIME" property="auditFdTime" jdbcType="TIMESTAMP" />
+    <result column="AUDIT_ID" property="auditId" jdbcType="BIGINT" />
+    <result column="AUDIT_BEGIN_TIME" property="auditBeginTime" jdbcType="TIMESTAMP" />
+    <result column="AUTID_END_TIME" property="autidEndTime" jdbcType="TIMESTAMP" />
+    <result column="AUDIT_SUGGEST" property="auditSuggest" jdbcType="VARCHAR" />
+    <result column="SPE_AUDIT_BEGIN_TIME" property="speAuditBeginTime" jdbcType="TIMESTAMP" />
+    <result column="SPE_AUDIT_END_TIME" property="speAuditEndTime" jdbcType="TIMESTAMP" />
+    <result column="SPE_AUDIT_ID" property="speAuditId" jdbcType="BIGINT" />
+    <result column="SPE_AUDIT_RESULT" property="speAuditResult" jdbcType="VARCHAR" />
+    <result column="SPE_AUDIT_SUGGEST" property="speAuditSuggest" jdbcType="VARCHAR" />
+    <result column="FIRST_GRADE_TIME" property="firstGradeTime" jdbcType="TIMESTAMP" />
+    <result column="FIRST_GRADE_RESULT" property="firstGradeResult" jdbcType="VARCHAR" />
+    <result column="FIRST_GRADE_LEVEL" property="firstGradeLevel" jdbcType="VARCHAR" />
+    <result column="SEC_GRADE_TIME" property="secGradeTime" jdbcType="TIMESTAMP" />
+    <result column="SEC_GRADE_RESULT" property="secGradeResult" jdbcType="CHAR" />
+    <result column="SEC_GRADE_LEVEL" property="secGradeLevel" jdbcType="VARCHAR" />
+    <result column="LAST_AUDIT_RESULT" property="lastAuditResult" jdbcType="CHAR" />
+    <result column="CONT_AUDIT_ID" property="contAuditId" jdbcType="BIGINT" />
+    <result column="CONT_AUDIT_RESULT" property="contAuditResult" jdbcType="CHAR" />
+    <result column="CONT_AUDIT_BACK_REASON" property="contAuditBackReason" jdbcType="VARCHAR" />
+    <result column="CONT_AUDIT_BACK_TIME" property="contAuditBackTime" jdbcType="TIMESTAMP" />
+    <result column="CONT_AUDIT_FD_TIME" property="contAuditFdTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="FIRST_GRADES" property="firstGrades" jdbcType="DECIMAL" />
+    <result column="RISK_GRADES" property="riskGrades" jdbcType="DECIMAL" />
+    <result column="AUDIT_FIN_TIME" property="auditFinTime" jdbcType="BIGINT" />
+    <result column="CONTRACT_EXAMINER_HOST_ID" property="contractExaminerHostId" jdbcType="BIGINT" />
+    <result column="CONTRACT_EXAMINER_NAME" property="contractExaminerName" jdbcType="VARCHAR" />
+    <result column="CONTRACT_EXAMINE_SUGGESTION" property="contractExamineSuggestion" jdbcType="VARCHAR" />
+    <result column="CONTRACT_EXAMINE_STATUS_NAME" property="contractExamineStatusName" jdbcType="VARCHAR" />
+    <result column="CONTRACT_EXAMINE_STATUS" property="contractExamineStatus" jdbcType="VARCHAR" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="END_REASON" property="endReason" jdbcType="VARCHAR" />
+    <result column="END_STATUS_TYPE" property="endStatusType" jdbcType="VARCHAR" />
+    <result column="FLOW_TYPE" property="flowType" jdbcType="VARCHAR" />
+    <result column="BACK_CAUSE" property="backCause" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, AUDIT_FD_TIME, AUDIT_ID, AUDIT_BEGIN_TIME, AUTID_END_TIME, AUDIT_SUGGEST, 
+    SPE_AUDIT_BEGIN_TIME, SPE_AUDIT_END_TIME, SPE_AUDIT_ID, SPE_AUDIT_RESULT, SPE_AUDIT_SUGGEST, 
+    FIRST_GRADE_TIME, FIRST_GRADE_RESULT, FIRST_GRADE_LEVEL, SEC_GRADE_TIME, SEC_GRADE_RESULT, 
+    SEC_GRADE_LEVEL, LAST_AUDIT_RESULT, CONT_AUDIT_ID, CONT_AUDIT_RESULT, CONT_AUDIT_BACK_REASON, 
+    CONT_AUDIT_BACK_TIME, CONT_AUDIT_FD_TIME, LAST_UPDATE_TIME, FIRST_GRADES, RISK_GRADES, 
+    AUDIT_FIN_TIME, CONTRACT_EXAMINER_HOST_ID, CONTRACT_EXAMINER_NAME, CONTRACT_EXAMINE_SUGGESTION, 
+    CONTRACT_EXAMINE_STATUS_NAME, CONTRACT_EXAMINE_STATUS, CREATEDBY, CREATEDON, MODIFIEDBY, 
+    MODIFIEDON, VERSION, END_REASON, END_STATUS_TYPE, FLOW_TYPE, BACK_CAUSE
+  </sql>
+  <select id="list" resultMap="BaseResultMap" parameterMap="lnAppProcess">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_process
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+   	<if test="id != null">
+		AND ID = #{id,jdbcType=BIGINT}
+	</if>
+   	<if test="appId != null">
+		 AND APP_ID = #{appId,jdbcType=BIGINT}
+	</if>
+	</trim>
+  </select>
+  
+  <select id="selectContractExamineStatusByLnAppId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_process
+    where APP_ID = #{appId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from ln_app_process
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hm.bus.module.LnAppProcess" >
+    insert into ln_app_process (ID, APP_ID, AUDIT_FD_TIME, 
+      AUDIT_ID, AUDIT_BEGIN_TIME, AUTID_END_TIME, 
+      AUDIT_SUGGEST, SPE_AUDIT_BEGIN_TIME, SPE_AUDIT_END_TIME, 
+      SPE_AUDIT_ID, SPE_AUDIT_RESULT, SPE_AUDIT_SUGGEST, 
+      FIRST_GRADE_TIME, FIRST_GRADE_RESULT, FIRST_GRADE_LEVEL, 
+      SEC_GRADE_TIME, SEC_GRADE_RESULT, SEC_GRADE_LEVEL, 
+      LAST_AUDIT_RESULT, CONT_AUDIT_ID, CONT_AUDIT_RESULT, 
+      CONT_AUDIT_BACK_REASON, CONT_AUDIT_BACK_TIME, 
+      CONT_AUDIT_FD_TIME, LAST_UPDATE_TIME, FIRST_GRADES, 
+      RISK_GRADES, AUDIT_FIN_TIME, CONTRACT_EXAMINER_HOST_ID, 
+      CONTRACT_EXAMINER_NAME, CONTRACT_EXAMINE_SUGGESTION, 
+      CONTRACT_EXAMINE_STATUS_NAME, CONTRACT_EXAMINE_STATUS, 
+      CREATEDBY, CREATEDON, MODIFIEDBY, 
+      MODIFIEDON, VERSION, END_REASON, 
+      END_STATUS_TYPE, FLOW_TYPE, BACK_CAUSE
+      )
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{auditFdTime,jdbcType=TIMESTAMP}, 
+      #{auditId,jdbcType=BIGINT}, #{auditBeginTime,jdbcType=TIMESTAMP}, #{autidEndTime,jdbcType=TIMESTAMP}, 
+      #{auditSuggest,jdbcType=VARCHAR}, #{speAuditBeginTime,jdbcType=TIMESTAMP}, #{speAuditEndTime,jdbcType=TIMESTAMP}, 
+      #{speAuditId,jdbcType=BIGINT}, #{speAuditResult,jdbcType=VARCHAR}, #{speAuditSuggest,jdbcType=VARCHAR}, 
+      #{firstGradeTime,jdbcType=TIMESTAMP}, #{firstGradeResult,jdbcType=VARCHAR}, #{firstGradeLevel,jdbcType=VARCHAR}, 
+      #{secGradeTime,jdbcType=TIMESTAMP}, #{secGradeResult,jdbcType=CHAR}, #{secGradeLevel,jdbcType=VARCHAR}, 
+      #{lastAuditResult,jdbcType=CHAR}, #{contAuditId,jdbcType=BIGINT}, #{contAuditResult,jdbcType=CHAR}, 
+      #{contAuditBackReason,jdbcType=VARCHAR}, #{contAuditBackTime,jdbcType=TIMESTAMP}, 
+      #{contAuditFdTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{firstGrades,jdbcType=DECIMAL}, 
+      #{riskGrades,jdbcType=DECIMAL}, #{auditFinTime,jdbcType=BIGINT}, #{contractExaminerHostId,jdbcType=BIGINT}, 
+      #{contractExaminerName,jdbcType=VARCHAR}, #{contractExamineSuggestion,jdbcType=VARCHAR}, 
+      #{contractExamineStatusName,jdbcType=VARCHAR}, #{contractExamineStatus,jdbcType=VARCHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=VARCHAR}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{endReason,jdbcType=VARCHAR}, 
+      #{endStatusType,jdbcType=VARCHAR}, #{flowType,jdbcType=VARCHAR}, #{backCause,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="update" parameterType="com.hm.bus.module.LnAppProcess" >
+    update ln_app_process
+    <set >
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="auditFdTime != null" >
+        AUDIT_FD_TIME = #{auditFdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditId != null" >
+        AUDIT_ID = #{auditId,jdbcType=BIGINT},
+      </if>
+      <if test="auditBeginTime != null" >
+        AUDIT_BEGIN_TIME = #{auditBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autidEndTime != null" >
+        AUTID_END_TIME = #{autidEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditSuggest != null" >
+        AUDIT_SUGGEST = #{auditSuggest,jdbcType=VARCHAR},
+      </if>
+      <if test="speAuditBeginTime != null" >
+        SPE_AUDIT_BEGIN_TIME = #{speAuditBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speAuditEndTime != null" >
+        SPE_AUDIT_END_TIME = #{speAuditEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speAuditId != null" >
+        SPE_AUDIT_ID = #{speAuditId,jdbcType=BIGINT},
+      </if>
+      <if test="speAuditResult != null" >
+        SPE_AUDIT_RESULT = #{speAuditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="speAuditSuggest != null" >
+        SPE_AUDIT_SUGGEST = #{speAuditSuggest,jdbcType=VARCHAR},
+      </if>
+      <if test="firstGradeTime != null" >
+        FIRST_GRADE_TIME = #{firstGradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstGradeResult != null" >
+        FIRST_GRADE_RESULT = #{firstGradeResult,jdbcType=VARCHAR},
+      </if>
+      <if test="firstGradeLevel != null" >
+        FIRST_GRADE_LEVEL = #{firstGradeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="secGradeTime != null" >
+        SEC_GRADE_TIME = #{secGradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secGradeResult != null" >
+        SEC_GRADE_RESULT = #{secGradeResult,jdbcType=CHAR},
+      </if>
+      <if test="secGradeLevel != null" >
+        SEC_GRADE_LEVEL = #{secGradeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="lastAuditResult != null" >
+        LAST_AUDIT_RESULT = #{lastAuditResult,jdbcType=CHAR},
+      </if>
+      <if test="contAuditId != null" >
+        CONT_AUDIT_ID = #{contAuditId,jdbcType=BIGINT},
+      </if>
+      <if test="contAuditResult != null" >
+        CONT_AUDIT_RESULT = #{contAuditResult,jdbcType=CHAR},
+      </if>
+      <if test="contAuditBackReason != null" >
+        CONT_AUDIT_BACK_REASON = #{contAuditBackReason,jdbcType=VARCHAR},
+      </if>
+      <if test="contAuditBackTime != null" >
+        CONT_AUDIT_BACK_TIME = #{contAuditBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contAuditFdTime != null" >
+        CONT_AUDIT_FD_TIME = #{contAuditFdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstGrades != null" >
+        FIRST_GRADES = #{firstGrades,jdbcType=DECIMAL},
+      </if>
+      <if test="riskGrades != null" >
+        RISK_GRADES = #{riskGrades,jdbcType=DECIMAL},
+      </if>
+      <if test="auditFinTime != null" >
+        AUDIT_FIN_TIME = #{auditFinTime,jdbcType=BIGINT},
+      </if>
+      <if test="contractExaminerHostId != null" >
+        CONTRACT_EXAMINER_HOST_ID = #{contractExaminerHostId,jdbcType=BIGINT},
+      </if>
+      <if test="contractExaminerName != null" >
+        CONTRACT_EXAMINER_NAME = #{contractExaminerName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractExamineSuggestion != null" >
+        CONTRACT_EXAMINE_SUGGESTION = #{contractExamineSuggestion,jdbcType=VARCHAR},
+      </if>
+      <if test="contractExamineStatusName != null" >
+        CONTRACT_EXAMINE_STATUS_NAME = #{contractExamineStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractExamineStatus != null" >
+        CONTRACT_EXAMINE_STATUS = #{contractExamineStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="endReason != null" >
+        END_REASON = #{endReason,jdbcType=VARCHAR},
+      </if>
+      <if test="endStatusType != null" >
+        END_STATUS_TYPE = #{endStatusType,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        FLOW_TYPE = #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="backCause != null" >
+        BACK_CAUSE = #{backCause,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByAppId" parameterType="com.hm.bus.module.LnAppProcess" >
+    update ln_app_process
+    <set >
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="auditFdTime != null" >
+        AUDIT_FD_TIME = #{auditFdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditId != null" >
+        AUDIT_ID = #{auditId,jdbcType=BIGINT},
+      </if>
+      <if test="auditBeginTime != null" >
+        AUDIT_BEGIN_TIME = #{auditBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autidEndTime != null" >
+        AUTID_END_TIME = #{autidEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditSuggest != null" >
+        AUDIT_SUGGEST = #{auditSuggest,jdbcType=VARCHAR},
+      </if>
+      <if test="speAuditBeginTime != null" >
+        SPE_AUDIT_BEGIN_TIME = #{speAuditBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speAuditEndTime != null" >
+        SPE_AUDIT_END_TIME = #{speAuditEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speAuditId != null" >
+        SPE_AUDIT_ID = #{speAuditId,jdbcType=BIGINT},
+      </if>
+      <if test="speAuditResult != null" >
+        SPE_AUDIT_RESULT = #{speAuditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="speAuditSuggest != null" >
+        SPE_AUDIT_SUGGEST = #{speAuditSuggest,jdbcType=VARCHAR},
+      </if>
+      <if test="firstGradeTime != null" >
+        FIRST_GRADE_TIME = #{firstGradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstGradeResult != null" >
+        FIRST_GRADE_RESULT = #{firstGradeResult,jdbcType=VARCHAR},
+      </if>
+      <if test="firstGradeLevel != null" >
+        FIRST_GRADE_LEVEL = #{firstGradeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="secGradeTime != null" >
+        SEC_GRADE_TIME = #{secGradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="secGradeResult != null" >
+        SEC_GRADE_RESULT = #{secGradeResult,jdbcType=CHAR},
+      </if>
+      <if test="secGradeLevel != null" >
+        SEC_GRADE_LEVEL = #{secGradeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="lastAuditResult != null" >
+        LAST_AUDIT_RESULT = #{lastAuditResult,jdbcType=CHAR},
+      </if>
+      <if test="contAuditId != null" >
+        CONT_AUDIT_ID = #{contAuditId,jdbcType=BIGINT},
+      </if>
+      <if test="contAuditResult != null" >
+        CONT_AUDIT_RESULT = #{contAuditResult,jdbcType=CHAR},
+      </if>
+      <if test="contAuditBackReason != null" >
+        CONT_AUDIT_BACK_REASON = #{contAuditBackReason,jdbcType=VARCHAR},
+      </if>
+      <if test="contAuditBackTime != null" >
+        CONT_AUDIT_BACK_TIME = #{contAuditBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contAuditFdTime != null" >
+        CONT_AUDIT_FD_TIME = #{contAuditFdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstGrades != null" >
+        FIRST_GRADES = #{firstGrades,jdbcType=DECIMAL},
+      </if>
+      <if test="riskGrades != null" >
+        RISK_GRADES = #{riskGrades,jdbcType=DECIMAL},
+      </if>
+      <if test="auditFinTime != null" >
+        AUDIT_FIN_TIME = #{auditFinTime,jdbcType=BIGINT},
+      </if>
+      <if test="contractExaminerHostId != null" >
+        CONTRACT_EXAMINER_HOST_ID = #{contractExaminerHostId,jdbcType=BIGINT},
+      </if>
+      <if test="contractExaminerName != null" >
+        CONTRACT_EXAMINER_NAME = #{contractExaminerName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractExamineSuggestion != null" >
+        CONTRACT_EXAMINE_SUGGESTION = #{contractExamineSuggestion,jdbcType=VARCHAR},
+      </if>
+      <if test="contractExamineStatusName != null" >
+        CONTRACT_EXAMINE_STATUS_NAME = #{contractExamineStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractExamineStatus != null" >
+        CONTRACT_EXAMINE_STATUS = #{contractExamineStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="endReason != null" >
+        END_REASON = #{endReason,jdbcType=VARCHAR},
+      </if>
+      <if test="endStatusType != null" >
+        END_STATUS_TYPE = #{endStatusType,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        FLOW_TYPE = #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="backCause != null" >
+        BACK_CAUSE = #{backCause,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where 1=1
+    <choose>
+    	<when test="appId != null">
+    		AND APP_ID = #{appId,jdbcType=BIGINT}
+    	</when>
+    	<otherwise>
+    		AND 1 != 1
+    	</otherwise>
+    </choose>
+  </update>
+  
+  <!-- 通过工单ID查询 工单处理流程信息 -->
+   <select id="selectByAppId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_process
+    where APP_ID = #{appId,jdbcType=BIGINT}
+  </select>
+  
+</mapper>

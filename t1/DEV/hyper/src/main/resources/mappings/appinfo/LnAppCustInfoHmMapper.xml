@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.LnAppCustInfoHmMapper" >
+
+  <parameterMap id="lnAppCustInfo" type="com.hm.appinfo.model.LnAppCustInfo" />
+  
+  <resultMap id="BaseResultMap" type="com.hm.appinfo.model.LnAppCustInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_SEX" property="customerSex" jdbcType="VARCHAR" />
+    <result column="SOCIAL_NUMBER" property="socialNumber" jdbcType="VARCHAR" />
+    <result column="DEGREE" property="degree" jdbcType="VARCHAR" />
+    <result column="MARRY" property="marry" jdbcType="VARCHAR" />
+    <result column="EMAILL" property="emaill" jdbcType="VARCHAR" />
+    <result column="FIRST_WORKTIME" property="firstWorktime" jdbcType="VARCHAR" />
+    <result column="CHILDREN_NUMBER" property="childrenNumber" jdbcType="INTEGER" />
+    <result column="ADDRE_REGIST" property="addreRegist" jdbcType="VARCHAR" />
+    <result column="LIVEPHONE" property="livephone" jdbcType="VARCHAR" />
+    <result column="LIVE_CONDITION" property="liveCondition" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_PROV" property="householdProv" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_CITY" property="householdCity" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_TOWN" property="householdTown" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_STR" property="householdStr" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_RIDGE" property="householdRidge" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_HOME" property="householdHome" jdbcType="VARCHAR" />
+    <result column="LIVE_PROV" property="liveProv" jdbcType="VARCHAR" />
+    <result column="LIVE_CITY" property="liveCity" jdbcType="VARCHAR" />
+    <result column="LIVE_TOWN" property="liveTown" jdbcType="VARCHAR" />
+    <result column="LIVE_STR" property="liveStr" jdbcType="VARCHAR" />
+    <result column="LIVE_RIDGE" property="liveRidge" jdbcType="VARCHAR" />
+    <result column="LIVE_HOME" property="liveHome" jdbcType="VARCHAR" />
+    <result column="MONTHLY_INCOME" property="monthlyIncome" jdbcType="INTEGER" />
+    <result column="OTHER_INCOME" property="otherIncome" jdbcType="INTEGER" />
+    <result column="FAMILY_INCOME" property="familyIncome" jdbcType="INTEGER" />
+    <result column="MONTHLY_SPENDING" property="monthlySpending" jdbcType="INTEGER" />
+    <result column="UNITNAME" property="unitname" jdbcType="VARCHAR" />
+    <result column="INDUSTRY" property="industry" jdbcType="VARCHAR" />
+    <result column="UNITTYPE" property="unittype" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="DUTY" property="duty" jdbcType="VARCHAR" />
+    <result column="ENTRY_DATE" property="entryDate" jdbcType="TIMESTAMP" />
+    <result column="IS_SOCIAL_SEC" property="isSocialSec" jdbcType="VARCHAR" />
+    <result column="UNIT_ADDRE" property="unitAddre" jdbcType="VARCHAR" />
+    <result column="UNIT_TOWN" property="unitTown" jdbcType="VARCHAR" />
+    <result column="UNIT_STR" property="unitStr" jdbcType="VARCHAR" />
+    <result column="UNIT_RIDGE" property="unitRidge" jdbcType="VARCHAR" />
+    <result column="UNIT_HOME" property="unitHome" jdbcType="VARCHAR" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="OSS_ID" property="ossId" jdbcType="VARCHAR" />
+    <result column="NCIIC_AUDIT_RESULT" property="nciicAuditResult" jdbcType="CHAR" />
+    <result column="IDENTITY_CARD_VALIDITY_PERIOD" property="identityCardValidityPeriod" jdbcType="DATE" />
+    <result column="ISSUING_ORGAN" property="issuingOrgan" jdbcType="VARCHAR" />
+    <result column="QUARTERS_PHONE_REGISTRANT" property="quartersPhoneRegistrant" jdbcType="VARCHAR" />
+    <result column="QQ_CODE" property="qqCode" jdbcType="VARCHAR" />
+    <result column="WEIXIN_CODE" property="weixinCode" jdbcType="VARCHAR" />
+    <result column="YIXIN" property="yixin" jdbcType="VARCHAR" />
+    <result column="MATE_ADDRESS" property="mateAddress" jdbcType="VARCHAR" />
+    <result column="MATE_ID_CODE" property="mateIdCode" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_POSTCODE" property="householdPostcode" jdbcType="VARCHAR" />
+    <result column="LIVE_POSTCODE" property="livePostcode" jdbcType="VARCHAR" />
+    <result column="UNIT_PHONE" property="unitPhone" jdbcType="VARCHAR" />
+    <result column="UNIT_EXT_PHONE" property="unitExtPhone" jdbcType="VARCHAR" />
+    <result column="POST_PROV" property="postProv" jdbcType="VARCHAR" />
+    <result column="POST_TOWN" property="postTown" jdbcType="VARCHAR" />
+    <result column="POST_CITY" property="postCity" jdbcType="VARCHAR" />
+    <result column="POST_STR" property="postStr" jdbcType="VARCHAR" />
+    <result column="POST_RIDGE" property="postRidge" jdbcType="VARCHAR" />
+    <result column="POST_HOME" property="postHome" jdbcType="VARCHAR" />
+    <result column="UNIT_CITY" property="unitCity" jdbcType="CHAR" />
+    <result column="WORKEXPERIENCE" property="workexperience" jdbcType="INTEGER" />
+    <result column="CAREER" property="career" jdbcType="VARCHAR" />
+    <result column="PARTER_NAME" property="parterName" jdbcType="VARCHAR" />
+    <result column="UNIT_WORKTIME" property="unitWorktime" jdbcType="INTEGER" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="UNIT_POSTCODE" property="unitPostcode" jdbcType="VARCHAR" />
+    <result column="MATE_MOBEL" property="mateMobel" jdbcType="VARCHAR" />
+    <result column="MATE_UNIT" property="mateUnit" jdbcType="VARCHAR" />
+    <result column="POST_STATE" property="postState" jdbcType="VARCHAR" />
+    <result column="HOUSEHOLD_ZHEN" property="householdZhen" jdbcType="VARCHAR" />
+    <result column="LIVE_ZHEN" property="liveZhen" jdbcType="VARCHAR" />
+    <result column="UNIT_ZHEN" property="unitZhen" jdbcType="VARCHAR" />
+    <result column="EMAIL_SIGN" property="emailSign" jdbcType="CHAR" />
+    <result column="CAREER_TYPE" property="careerType" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+    <result column="EXPECT_GRADUATE_YEAR" property="expectGraduateYear" jdbcType="VARCHAR" />
+    <result column="UNITN_WEIXIN" property="unitnWeixin" jdbcType="VARCHAR" />
+    <result column="PARTE_WEIXIN" property="parteWeixin" jdbcType="VARCHAR" />
+    <result column="PARTE_QQ" property="parteQq" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, CUSTOMER_NAME, CUSTOMER_SEX, SOCIAL_NUMBER, DEGREE, MARRY, EMAILL, FIRST_WORKTIME, 
+    CHILDREN_NUMBER, ADDRE_REGIST, LIVEPHONE, LIVE_CONDITION, HOUSEHOLD_PROV, HOUSEHOLD_CITY, 
+    HOUSEHOLD_TOWN, HOUSEHOLD_STR, HOUSEHOLD_RIDGE, HOUSEHOLD_HOME, LIVE_PROV, LIVE_CITY, 
+    LIVE_TOWN, LIVE_STR, LIVE_RIDGE, LIVE_HOME, MONTHLY_INCOME, OTHER_INCOME, FAMILY_INCOME, 
+    MONTHLY_SPENDING, UNITNAME, INDUSTRY, UNITTYPE, DEPARTMENT, DUTY, ENTRY_DATE, IS_SOCIAL_SEC, 
+    UNIT_ADDRE, UNIT_TOWN, UNIT_STR, UNIT_RIDGE, UNIT_HOME, CREATEDBY, CREATEDON, MODIFIEDBY, 
+    MODIFIEDON, VERSION, OSS_ID, NCIIC_AUDIT_RESULT, IDENTITY_CARD_VALIDITY_PERIOD, ISSUING_ORGAN, 
+    QUARTERS_PHONE_REGISTRANT, QQ_CODE, WEIXIN_CODE, YIXIN, MATE_ADDRESS, MATE_ID_CODE, 
+    HOUSEHOLD_POSTCODE, LIVE_POSTCODE, UNIT_PHONE, UNIT_EXT_PHONE, POST_PROV, POST_TOWN, 
+    POST_CITY, POST_STR, POST_RIDGE, POST_HOME, UNIT_CITY, WORKEXPERIENCE, CAREER, PARTER_NAME, 
+    UNIT_WORKTIME, POST_CODE, UNIT_POSTCODE, MATE_MOBEL, MATE_UNIT, POST_STATE, HOUSEHOLD_ZHEN, 
+    LIVE_ZHEN, UNIT_ZHEN, EMAIL_SIGN,CAREER_TYPE,INDUSTRY_TYPE,EXPECT_GRADUATE_YEAR,UNITN_WEIXIN,PARTE_WEIXIN,PARTE_QQ
+  </sql>
+  
+   <sql id="Base_Column_Left_JjCode" >
+    cust.DEGREE,
+	cust.MARRY,
+	cust.ADDRE_REGIST,
+	cust.LIVE_CONDITION,
+	cust.INDUSTRY,
+	cust.UNITTYPE,
+	cust.IS_SOCIAL_SEC,
+	cust.DUTY,
+	cust.ID,
+	cust.APP_ID,
+	cust.CUSTOMER_NAME,
+	cust.CUSTOMER_SEX,
+	cust.SOCIAL_NUMBER,
+	cust.EMAILL,
+	cust.FIRST_WORKTIME,
+	cust.CHILDREN_NUMBER,
+	cust.LIVEPHONE,
+	cust.HOUSEHOLD_PROV,
+	cust.HOUSEHOLD_CITY,
+	dis.districtId HOUSEHOLD_TOWN,
+	cust.HOUSEHOLD_STR,
+	cust.HOUSEHOLD_RIDGE,
+	cust.HOUSEHOLD_HOME,
+	cust.LIVE_PROV,
+	cust.LIVE_CITY,
+	dis2.districtId LIVE_TOWN,
+	cust.LIVE_STR,
+	cust.LIVE_RIDGE,
+	cust.LIVE_HOME,
+	cust.MONTHLY_INCOME,
+	cust.OTHER_INCOME,
+	cust.FAMILY_INCOME,
+	cust.MONTHLY_SPENDING,
+	cust.UNITNAME,
+	cust.DEPARTMENT,
+	cust.ENTRY_DATE,
+	cust.UNIT_ADDRE,
+	dis3.districtId UNIT_TOWN,
+	cust.UNIT_STR,
+	cust.UNIT_RIDGE,
+	cust.UNIT_HOME,
+	cust.CREATEDBY,
+	cust.CREATEDON,
+	cust.MODIFIEDBY,
+	cust.MODIFIEDON,
+	cust.VERSION,
+	cust.OSS_ID,
+	cust.NCIIC_AUDIT_RESULT,
+	cust.IDENTITY_CARD_VALIDITY_PERIOD,
+	cust.ISSUING_ORGAN,
+	cust.QUARTERS_PHONE_REGISTRANT,
+	cust.QQ_CODE,
+	cust.WEIXIN_CODE,
+	cust.YIXIN,
+	cust.MATE_ADDRESS,
+	cust.MATE_ID_CODE,
+	cust.HOUSEHOLD_POSTCODE,
+	cust.LIVE_POSTCODE,
+	cust.UNIT_PHONE,
+	cust.UNIT_EXT_PHONE,
+	cust.POST_PROV,
+	cust.POST_TOWN,
+	cust.POST_CITY,
+	cust.POST_STR,
+	cust.POST_RIDGE,
+	cust.POST_HOME,
+	cust.UNIT_CITY,
+	cust.WORKEXPERIENCE,
+	cust.CAREER,
+	cust.PARTER_NAME,
+	cust.UNIT_WORKTIME,
+	cust.POST_CODE,
+	cust.UNIT_POSTCODE,
+	cust.MATE_MOBEL,
+	cust.MATE_UNIT,
+	cust.POST_STATE,
+	cust.HOUSEHOLD_ZHEN,
+	cust.LIVE_ZHEN,
+	cust.UNIT_ZHEN,
+	cust.EMAIL_SIGN,
+	cust.CAREER_TYPE,
+	cust.INDUSTRY_TYPE,
+	cust.EXPECT_GRADUATE_YEAR,
+	cust.UNITN_WEIXIN,
+	cust.PARTE_WEIXIN,
+	cust.PARTE_QQ
+  </sql>
+  
+  <select id="list" resultMap="BaseResultMap" parameterMap="lnAppCustInfo"  >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_cust_info
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+   	<if test="id != null">
+		AND ID = #{id,jdbcType=BIGINT}
+	</if>
+   	<if test="appId != null">
+		 AND APP_ID = #{appId,jdbcType=BIGINT}
+	</if>
+	</trim>
+  </select>
+  
+   <select id="listUnionJjCode" resultMap="BaseResultMap" parameterMap="lnAppCustInfo"  >
+    select 
+    <include refid="Base_Column_Left_JjCode" />
+	FROM
+		ln_app_cust_info cust
+	LEFT JOIN sm_district dis ON dis.districtId = cust.HOUSEHOLD_TOWN
+	LEFT JOIN sm_district dis2 ON dis2.districtId = cust.LIVE_TOWN
+	LEFT JOIN sm_district dis3 ON dis3.districtId = cust.UNIT_TOWN
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+   	<if test="id != null">
+		AND cust.ID = #{id,jdbcType=BIGINT}
+	</if>
+   	<if test="appId != null">
+		 AND cust.APP_ID = #{appId,jdbcType=BIGINT}
+	</if>
+	</trim>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from ln_app_cust_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterMap="lnAppCustInfo" >
+    insert into ln_app_cust_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="customerName != null" >
+        CUSTOMER_NAME,
+      </if>
+      <if test="customerSex != null" >
+        CUSTOMER_SEX,
+      </if>
+      <if test="socialNumber != null" >
+        SOCIAL_NUMBER,
+      </if>
+      <if test="degree != null" >
+        DEGREE,
+      </if>
+      <if test="marry != null" >
+        MARRY,
+      </if>
+      <if test="emaill != null" >
+        EMAILL,
+      </if>
+      <if test="firstWorktime != null" >
+        FIRST_WORKTIME,
+      </if>
+      <if test="childrenNumber != null" >
+        CHILDREN_NUMBER,
+      </if>
+      <if test="addreRegist != null" >
+        ADDRE_REGIST,
+      </if>
+      <if test="livephone != null" >
+        LIVEPHONE,
+      </if>
+      <if test="liveCondition != null" >
+        LIVE_CONDITION,
+      </if>
+      <if test="householdProv != null" >
+        HOUSEHOLD_PROV,
+      </if>
+      <if test="householdCity != null" >
+        HOUSEHOLD_CITY,
+      </if>
+      <if test="householdTown != null" >
+        HOUSEHOLD_TOWN,
+      </if>
+      <if test="householdStr != null" >
+        HOUSEHOLD_STR,
+      </if>
+      <if test="householdRidge != null" >
+        HOUSEHOLD_RIDGE,
+      </if>
+      <if test="householdHome != null" >
+        HOUSEHOLD_HOME,
+      </if>
+      <if test="liveProv != null" >
+        LIVE_PROV,
+      </if>
+      <if test="liveCity != null" >
+        LIVE_CITY,
+      </if>
+      <if test="liveTown != null" >
+        LIVE_TOWN,
+      </if>
+      <if test="liveStr != null" >
+        LIVE_STR,
+      </if>
+      <if test="liveRidge != null" >
+        LIVE_RIDGE,
+      </if>
+      <if test="liveHome != null" >
+        LIVE_HOME,
+      </if>
+      <if test="monthlyIncome != null" >
+        MONTHLY_INCOME,
+      </if>
+      <if test="otherIncome != null" >
+        OTHER_INCOME,
+      </if>
+      <if test="familyIncome != null" >
+        FAMILY_INCOME,
+      </if>
+      <if test="monthlySpending != null" >
+        MONTHLY_SPENDING,
+      </if>
+      <if test="unitname != null" >
+        UNITNAME,
+      </if>
+      <if test="industry != null" >
+        INDUSTRY,
+      </if>
+      <if test="unittype != null" >
+        UNITTYPE,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="duty != null" >
+        DUTY,
+      </if>
+      <if test="entryDate != null" >
+        ENTRY_DATE,
+      </if>
+      <if test="isSocialSec != null" >
+        IS_SOCIAL_SEC,
+      </if>
+      <if test="unitAddre != null" >
+        UNIT_ADDRE,
+      </if>
+      <if test="unitTown != null" >
+        UNIT_TOWN,
+      </if>
+      <if test="unitStr != null" >
+        UNIT_STR,
+      </if>
+      <if test="unitRidge != null" >
+        UNIT_RIDGE,
+      </if>
+      <if test="unitHome != null" >
+        UNIT_HOME,
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY,
+      </if>
+      <if test="createdon != null" >
+        CREATEDON,
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY,
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="ossId != null" >
+        OSS_ID,
+      </if>
+      <if test="nciicAuditResult != null" >
+        NCIIC_AUDIT_RESULT,
+      </if>
+      <if test="identityCardValidityPeriod != null" >
+        IDENTITY_CARD_VALIDITY_PERIOD,
+      </if>
+      <if test="issuingOrgan != null" >
+        ISSUING_ORGAN,
+      </if>
+      <if test="quartersPhoneRegistrant != null" >
+        QUARTERS_PHONE_REGISTRANT,
+      </if>
+      <if test="qqCode != null" >
+        QQ_CODE,
+      </if>
+      <if test="weixinCode != null" >
+        WEIXIN_CODE,
+      </if>
+      <if test="yixin != null" >
+        YIXIN,
+      </if>
+      <if test="mateAddress != null" >
+        MATE_ADDRESS,
+      </if>
+      <if test="mateIdCode != null" >
+        MATE_ID_CODE,
+      </if>
+      <if test="householdPostcode != null" >
+        HOUSEHOLD_POSTCODE,
+      </if>
+      <if test="livePostcode != null" >
+        LIVE_POSTCODE,
+      </if>
+      <if test="unitPhone != null" >
+        UNIT_PHONE,
+      </if>
+      <if test="unitExtPhone != null" >
+        UNIT_EXT_PHONE,
+      </if>
+      <if test="postProv != null" >
+        POST_PROV,
+      </if>
+      <if test="postTown != null" >
+        POST_TOWN,
+      </if>
+      <if test="postCity != null" >
+        POST_CITY,
+      </if>
+      <if test="postStr != null" >
+        POST_STR,
+      </if>
+      <if test="postRidge != null" >
+        POST_RIDGE,
+      </if>
+      <if test="postHome != null" >
+        POST_HOME,
+      </if>
+      <if test="unitCity != null" >
+        UNIT_CITY,
+      </if>
+      <if test="workexperience != null" >
+        WORKEXPERIENCE,
+      </if>
+      <if test="career != null" >
+        CAREER,
+      </if>
+      <if test="parterName != null" >
+        PARTER_NAME,
+      </if>
+      <if test="unitWorktime != null" >
+        UNIT_WORKTIME,
+      </if>
+      <if test="postCode != null" >
+        POST_CODE,
+      </if>
+      <if test="unitPostcode != null" >
+        UNIT_POSTCODE,
+      </if>
+      <if test="mateMobel != null" >
+        MATE_MOBEL,
+      </if>
+      <if test="mateUnit != null" >
+        MATE_UNIT,
+      </if>
+      <if test="postState != null" >
+        POST_STATE,
+      </if>
+      <if test="householdZhen != null" >
+        HOUSEHOLD_ZHEN,
+      </if>
+      <if test="liveZhen != null" >
+        LIVE_ZHEN,
+      </if>
+      <if test="unitZhen != null" >
+        UNIT_ZHEN,
+      </if>
+      <if test="emailSign != null" >
+        EMAIL_SIGN,
+      </if>
+      <if test="careerType != null" >
+        CAREER_TYPE,
+      </if>
+      <if test="industryType != null" >
+        INDUSTRY_TYPE,
+      </if>
+      <if test="expectGraduateYear != null" >
+        EXPECT_GRADUATE_YEAR,
+      </if>
+      <if test="unitnWeixin != null" >
+        UNITN_WEIXIN,
+      </if>
+      <if test="parteWeixin != null" >
+        PARTE_WEIXIN,
+      </if>
+      <if test="parteQq != null" >
+        PARTE_QQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSex != null" >
+        #{customerSex,jdbcType=VARCHAR},
+      </if>
+      <if test="socialNumber != null" >
+        #{socialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="emaill != null" >
+        #{emaill,jdbcType=VARCHAR},
+      </if>
+      <if test="firstWorktime != null" >
+        #{firstWorktime,jdbcType=VARCHAR},
+      </if>
+      <if test="childrenNumber != null" >
+        #{childrenNumber,jdbcType=INTEGER},
+      </if>
+      <if test="addreRegist != null" >
+        #{addreRegist,jdbcType=VARCHAR},
+      </if>
+      <if test="livephone != null" >
+        #{livephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCondition != null" >
+        #{liveCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="householdProv != null" >
+        #{householdProv,jdbcType=VARCHAR},
+      </if>
+      <if test="householdCity != null" >
+        #{householdCity,jdbcType=VARCHAR},
+      </if>
+      <if test="householdTown != null" >
+        #{householdTown,jdbcType=VARCHAR},
+      </if>
+      <if test="householdStr != null" >
+        #{householdStr,jdbcType=VARCHAR},
+      </if>
+      <if test="householdRidge != null" >
+        #{householdRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="householdHome != null" >
+        #{householdHome,jdbcType=VARCHAR},
+      </if>
+      <if test="liveProv != null" >
+        #{liveProv,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null" >
+        #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveTown != null" >
+        #{liveTown,jdbcType=VARCHAR},
+      </if>
+      <if test="liveStr != null" >
+        #{liveStr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveRidge != null" >
+        #{liveRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="liveHome != null" >
+        #{liveHome,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyIncome != null" >
+        #{monthlyIncome,jdbcType=INTEGER},
+      </if>
+      <if test="otherIncome != null" >
+        #{otherIncome,jdbcType=INTEGER},
+      </if>
+      <if test="familyIncome != null" >
+        #{familyIncome,jdbcType=INTEGER},
+      </if>
+      <if test="monthlySpending != null" >
+        #{monthlySpending,jdbcType=INTEGER},
+      </if>
+      <if test="unitname != null" >
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="unittype != null" >
+        #{unittype,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null" >
+        #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSocialSec != null" >
+        #{isSocialSec,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddre != null" >
+        #{unitAddre,jdbcType=VARCHAR},
+      </if>
+      <if test="unitTown != null" >
+        #{unitTown,jdbcType=VARCHAR},
+      </if>
+      <if test="unitStr != null" >
+        #{unitStr,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRidge != null" >
+        #{unitRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="unitHome != null" >
+        #{unitHome,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="ossId != null" >
+        #{ossId,jdbcType=VARCHAR},
+      </if>
+      <if test="nciicAuditResult != null" >
+        #{nciicAuditResult,jdbcType=CHAR},
+      </if>
+      <if test="identityCardValidityPeriod != null" >
+        #{identityCardValidityPeriod,jdbcType=DATE},
+      </if>
+      <if test="issuingOrgan != null" >
+        #{issuingOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="quartersPhoneRegistrant != null" >
+        #{quartersPhoneRegistrant,jdbcType=VARCHAR},
+      </if>
+      <if test="qqCode != null" >
+        #{qqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinCode != null" >
+        #{weixinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yixin != null" >
+        #{yixin,jdbcType=VARCHAR},
+      </if>
+      <if test="mateAddress != null" >
+        #{mateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mateIdCode != null" >
+        #{mateIdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdPostcode != null" >
+        #{householdPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="livePostcode != null" >
+        #{livePostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null" >
+        #{unitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="unitExtPhone != null" >
+        #{unitExtPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="postProv != null" >
+        #{postProv,jdbcType=VARCHAR},
+      </if>
+      <if test="postTown != null" >
+        #{postTown,jdbcType=VARCHAR},
+      </if>
+      <if test="postCity != null" >
+        #{postCity,jdbcType=VARCHAR},
+      </if>
+      <if test="postStr != null" >
+        #{postStr,jdbcType=VARCHAR},
+      </if>
+      <if test="postRidge != null" >
+        #{postRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="postHome != null" >
+        #{postHome,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCity != null" >
+        #{unitCity,jdbcType=CHAR},
+      </if>
+      <if test="workexperience != null" >
+        #{workexperience,jdbcType=INTEGER},
+      </if>
+      <if test="career != null" >
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="parterName != null" >
+        #{parterName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWorktime != null" >
+        #{unitWorktime,jdbcType=INTEGER},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPostcode != null" >
+        #{unitPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mateMobel != null" >
+        #{mateMobel,jdbcType=VARCHAR},
+      </if>
+      <if test="mateUnit != null" >
+        #{mateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="postState != null" >
+        #{postState,jdbcType=VARCHAR},
+      </if>
+      <if test="householdZhen != null" >
+        #{householdZhen,jdbcType=VARCHAR},
+      </if>
+      <if test="liveZhen != null" >
+        #{liveZhen,jdbcType=VARCHAR},
+      </if>
+      <if test="unitZhen != null" >
+        #{unitZhen,jdbcType=VARCHAR},
+      </if>
+      <if test="emailSign != null" >
+        #{emailSign,jdbcType=CHAR},
+      </if>
+      <if test="careerType != null" >
+        #{careerType,jdbcType=VARCHAR},
+      </if>
+      <if test="industryType != null" >
+        #{industryType,jdbcType=VARCHAR},
+      </if>
+      <if test="expectGraduateYear != null" >
+     	#{expectGraduateYear,jdbcType=VARCHAR},
+      </if>
+      <if test="unitnWeixin != null" >
+        #{unitnWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="parteWeixin != null" >
+        #{parteWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="parteQq != null" >
+        #{parteQq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterMap="lnAppCustInfo" >
+    update ln_app_cust_info
+    <set >
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null" >
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSex != null" >
+        CUSTOMER_SEX = #{customerSex,jdbcType=VARCHAR},
+      </if>
+       
+        SOCIAL_NUMBER = #{socialNumber,jdbcType=VARCHAR},
+       
+      <if test="degree != null" >
+        DEGREE = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="marry != null" >
+        MARRY = #{marry,jdbcType=VARCHAR},
+      </if>
+      <if test="emaill != null" >
+        EMAILL = #{emaill,jdbcType=VARCHAR},
+      </if>
+      <if test="firstWorktime != null" >
+        FIRST_WORKTIME = #{firstWorktime,jdbcType=VARCHAR},
+      </if>
+      <if test="childrenNumber != null" >
+        CHILDREN_NUMBER = #{childrenNumber,jdbcType=INTEGER},
+      </if>
+      <if test="addreRegist != null" >
+        ADDRE_REGIST = #{addreRegist,jdbcType=VARCHAR},
+      </if>
+       
+        LIVEPHONE = #{livephone,jdbcType=VARCHAR},
+       
+      <if test="liveCondition != null" >
+        LIVE_CONDITION = #{liveCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="householdProv != null" >
+        HOUSEHOLD_PROV = #{householdProv,jdbcType=VARCHAR},
+      </if>
+      <if test="householdCity != null" >
+        HOUSEHOLD_CITY = #{householdCity,jdbcType=VARCHAR},
+      </if>
+      <if test="householdTown != null" >
+        HOUSEHOLD_TOWN = #{householdTown,jdbcType=VARCHAR},
+      </if>
+      <if test="householdStr != null" >
+        HOUSEHOLD_STR = #{householdStr,jdbcType=VARCHAR},
+      </if>
+      <if test="householdRidge != null" >
+        HOUSEHOLD_RIDGE = #{householdRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="householdHome != null" >
+        HOUSEHOLD_HOME = #{householdHome,jdbcType=VARCHAR},
+      </if>
+      <if test="liveProv != null" >
+        LIVE_PROV = #{liveProv,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null" >
+        LIVE_CITY = #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveTown != null" >
+        LIVE_TOWN = #{liveTown,jdbcType=VARCHAR},
+      </if>
+      <if test="liveStr != null" >
+        LIVE_STR = #{liveStr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveRidge != null" >
+        LIVE_RIDGE = #{liveRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="liveHome != null" >
+        LIVE_HOME = #{liveHome,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyIncome != null" >
+        MONTHLY_INCOME = #{monthlyIncome,jdbcType=INTEGER},
+      </if>
+      <if test="otherIncome != null" >
+        OTHER_INCOME = #{otherIncome,jdbcType=INTEGER},
+      </if>
+      <if test="familyIncome != null" >
+        FAMILY_INCOME = #{familyIncome,jdbcType=INTEGER},
+      </if>
+      <if test="monthlySpending != null" >
+        MONTHLY_SPENDING = #{monthlySpending,jdbcType=INTEGER},
+      </if>
+      <if test="unitname != null" >
+        UNITNAME = #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        INDUSTRY = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="unittype != null" >
+        UNITTYPE = #{unittype,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        DUTY = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null" >
+        ENTRY_DATE = #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSocialSec != null" >
+        IS_SOCIAL_SEC = #{isSocialSec,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddre != null" >
+        UNIT_ADDRE = #{unitAddre,jdbcType=VARCHAR},
+      </if>
+      <if test="unitTown != null" >
+        UNIT_TOWN = #{unitTown,jdbcType=VARCHAR},
+      </if>
+      <if test="unitStr != null" >
+        UNIT_STR = #{unitStr,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRidge != null" >
+        UNIT_RIDGE = #{unitRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="unitHome != null" >
+        UNIT_HOME = #{unitHome,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="ossId != null" >
+        OSS_ID = #{ossId,jdbcType=VARCHAR},
+      </if>
+      <if test="nciicAuditResult != null" >
+        NCIIC_AUDIT_RESULT = #{nciicAuditResult,jdbcType=CHAR},
+      </if>
+      <if test="identityCardValidityPeriod != null" >
+        IDENTITY_CARD_VALIDITY_PERIOD = #{identityCardValidityPeriod,jdbcType=DATE},
+      </if>
+      <if test="issuingOrgan != null" >
+        ISSUING_ORGAN = #{issuingOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="quartersPhoneRegistrant != null" >
+        QUARTERS_PHONE_REGISTRANT = #{quartersPhoneRegistrant,jdbcType=VARCHAR},
+      </if>
+     
+        QQ_CODE = #{qqCode,jdbcType=VARCHAR},
+     
+      
+        WEIXIN_CODE = #{weixinCode,jdbcType=VARCHAR},
+      
+      <if test="yixin != null" >
+        YIXIN = #{yixin,jdbcType=VARCHAR},
+      </if>
+      <if test="mateAddress != null" >
+        MATE_ADDRESS = #{mateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mateIdCode != null" >
+        MATE_ID_CODE = #{mateIdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdPostcode != null" >
+        HOUSEHOLD_POSTCODE = #{householdPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="livePostcode != null" >
+        LIVE_POSTCODE = #{livePostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null" >
+        UNIT_PHONE = #{unitPhone,jdbcType=VARCHAR},
+      </if>
+        UNIT_EXT_PHONE = #{unitExtPhone,jdbcType=VARCHAR},
+      <if test="postProv != null" >
+        POST_PROV = #{postProv,jdbcType=VARCHAR},
+      </if>
+      <if test="postTown != null" >
+        POST_TOWN = #{postTown,jdbcType=VARCHAR},
+      </if>
+      <if test="postCity != null" >
+        POST_CITY = #{postCity,jdbcType=VARCHAR},
+      </if>
+      <if test="postStr != null" >
+        POST_STR = #{postStr,jdbcType=VARCHAR},
+      </if>
+      <if test="postRidge != null" >
+        POST_RIDGE = #{postRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="postHome != null" >
+        POST_HOME = #{postHome,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCity != null" >
+        UNIT_CITY = #{unitCity,jdbcType=CHAR},
+      </if>
+      <if test="workexperience != null" >
+        WORKEXPERIENCE = #{workexperience,jdbcType=INTEGER},
+      </if>
+      <if test="career != null" >
+        CAREER = #{career,jdbcType=VARCHAR},
+      </if>
+     
+        PARTER_NAME = #{parterName,jdbcType=VARCHAR},
+      
+      <if test="unitWorktime != null" >
+        UNIT_WORKTIME = #{unitWorktime,jdbcType=INTEGER},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPostcode != null" >
+        UNIT_POSTCODE = #{unitPostcode,jdbcType=VARCHAR},
+      </if>
+      
+        MATE_MOBEL = #{mateMobel,jdbcType=VARCHAR},
+      
+      <if test="mateUnit != null" >
+        MATE_UNIT = #{mateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="postState != null" >
+        POST_STATE = #{postState,jdbcType=VARCHAR},
+      </if>
+      <if test="householdZhen != null" >
+        HOUSEHOLD_ZHEN = #{householdZhen,jdbcType=VARCHAR},
+      </if>
+      <if test="liveZhen != null" >
+        LIVE_ZHEN = #{liveZhen,jdbcType=VARCHAR},
+      </if>
+      <if test="unitZhen != null" >
+        UNIT_ZHEN = #{unitZhen,jdbcType=VARCHAR},
+      </if>
+      <if test="emailSign != null" >
+        EMAIL_SIGN = #{emailSign,jdbcType=CHAR},
+      </if>
+      <if test="careerType != null" >
+        CAREER_TYPE = #{careerType,jdbcType=VARCHAR},
+      </if>
+      <if test="industryType != null" >
+        INDUSTRY_TYPE = #{industryType,jdbcType=VARCHAR},
+      </if>
+      <if test="expectGraduateYear != null" >
+     	EXPECT_GRADUATE_YEAR = #{expectGraduateYear,jdbcType=VARCHAR},
+      </if>
+      
+     	UNITN_WEIXIN = #{unitnWeixin,jdbcType=VARCHAR},
+        PARTE_WEIXIN = #{parteWeixin,jdbcType=VARCHAR},
+        PARTE_QQ = #{parteQq,jdbcType=VARCHAR},
+       
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

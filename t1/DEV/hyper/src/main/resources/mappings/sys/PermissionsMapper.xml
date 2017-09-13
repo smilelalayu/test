@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gep.sys.dao.PermissionsMapper" >
+  <!-- redis缓存 -->
+  <!-- <cache type="com.gep.core.cache.MybatisRedisCache" /> -->
+  
+  <resultMap id="BaseResultMap" type="com.gep.sys.model.Permissions" >
+    <id column="CODE" property="code" jdbcType="BIGINT" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+    <result column="RESOURCES" property="resources" jdbcType="VARCHAR" />
+    <result column="AppCode" property="appcode" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="isSystemApplicant" property="issystemapplicant" jdbcType="VARCHAR" />
+    <result column="MODULECODE" property="modulecode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CODE, COMMENTS, RESOURCES, AppCode, URL, isSystemApplicant, MODULECODE
+  </sql>
+  
+  <select id="listUserPermissions" resultMap="BaseResultMap" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    from permissions
+    where AppCode='HM' 
+    and CODE in 
+    <foreach collection="list" item="code" index="index" open="(" close=")" separator=",">
+        #{code,jdbcType=BIGINT}
+    </foreach>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from permissions
+    where CODE = #{code,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from permissions
+    where CODE = #{code,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gep.sys.model.Permissions" >
+    insert into permissions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+      <if test="resources != null" >
+        RESOURCES,
+      </if>
+      <if test="appcode != null" >
+        AppCode,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="issystemapplicant != null" >
+        isSystemApplicant,
+      </if>
+      <if test="modulecode != null" >
+        MODULECODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=BIGINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="resources != null" >
+        #{resources,jdbcType=VARCHAR},
+      </if>
+      <if test="appcode != null" >
+        #{appcode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="issystemapplicant != null" >
+        #{issystemapplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="modulecode != null" >
+        #{modulecode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.gep.sys.model.Permissions" >
+    update permissions
+    <set >
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="resources != null" >
+        RESOURCES = #{resources,jdbcType=VARCHAR},
+      </if>
+      <if test="appcode != null" >
+        AppCode = #{appcode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="issystemapplicant != null" >
+        isSystemApplicant = #{issystemapplicant,jdbcType=VARCHAR},
+      </if>
+      <if test="modulecode != null" >
+        MODULECODE = #{modulecode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CODE = #{code,jdbcType=BIGINT}
+  </update>
+</mapper>

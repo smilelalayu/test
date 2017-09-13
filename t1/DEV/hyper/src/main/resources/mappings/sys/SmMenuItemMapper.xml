@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gep.sys.dao.SmMenuItemMapper" >
+  <!-- redis缓存 -->
+  <!-- <cache type="com.gep.core.cache.MybatisRedisCache" /> -->
+  
+  <resultMap id="BaseResultMap" type="com.gep.sys.model.SmMenuItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="caption" property="caption" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentid" jdbcType="INTEGER" />
+    <result column="show_order" property="showorder" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column" >
+    id, caption, code, parent_id, show_order, icon, url
+  </sql>
+  
+  <sql id="Base_Condition_Select">
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+		app_code = 'HM'
+		<if test="caption != null and caption != ''" >
+		  and caption = #{caption,jdbcType=VARCHAR},
+		</if>
+		<if test="code != null and code != ''" >
+		  and code = #{code,jdbcType=VARCHAR},
+		</if>
+		<if test="parentid != null and parentid !=''" >
+		  and parent_id = #{parentid,jdbcType=INTEGER},
+		</if>
+		<if test="showorder != null and showorder > 0" >
+		  and show_order = #{showorder,jdbcType=INTEGER},
+		</if>
+		<if test="icon != null and icon != ''" >
+		  and icon = #{icon,jdbcType=VARCHAR},
+		</if>
+		<if test="url != null and url != ''" >
+		  and url = #{url,jdbcType=VARCHAR},
+		</if>
+	</trim>
+</sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column" />
+    from uum_menuitem
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from uum_menuitem
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.gep.sys.model.SmMenuItem" >
+    insert into uum_menuitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="caption != null" >
+        caption,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="parentid != null" >
+        parent_id,
+      </if>
+      <if test="showorder != null" >
+        show_order,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="caption != null" >
+        #{caption,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="showorder != null" >
+        #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="com.gep.sys.model.SmMenuItem" >
+    update uum_menuitem
+    <set >
+      <if test="caption != null" >
+        caption = #{caption,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parent_id = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="showorder != null" >
+        show_order = #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="list" resultMap="BaseResultMap" parameterType="com.gep.sys.dao.SmMenuItemMapper" >
+    select 
+		<include refid="Base_Column" />
+    from uum_menuitem
+		<include refid="Base_Condition_Select" />
+	order by show_order asc, id asc
+  </select>
+</mapper>

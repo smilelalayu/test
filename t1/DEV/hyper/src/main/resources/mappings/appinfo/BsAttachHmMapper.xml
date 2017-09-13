@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.BsAttachHmMapper">
+
+    <parameterMap type="com.hm.product.model.BsAttach" id="bsAttach"></parameterMap>
+    <resultMap id="BaseResultMap" type="com.hm.product.model.BsAttach">
+        <id column="ID" property="id" jdbcType="BIGINT"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="ACCESSORY_NAME" property="accessoryName" jdbcType="VARCHAR"/>
+        <result column="ACCESSORY_LIMIT" property="accessoryLimit" jdbcType="INTEGER"/>
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR"/>
+        <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP"/>
+        <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR"/>
+        <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP"/>
+        <result column="PARENT_ID" property="parentId" jdbcType="BIGINT"/>
+        <result column="CAREER_TYPE" property="careerType" jdbcType="VARCHAR"/>
+        <result column="LEVEL" property="level" jdbcType="INTEGER"/>
+        <result column="CHOOSE_TYPE" property="chooseType" jdbcType="VARCHAR"/>
+        <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="attachResultMap" type="com.hm.appinfo.model.LnAttachNode">
+        <result column="ID" property="attachId" jdbcType="BIGINT"/>
+        <result column="CODE" property="attachCode" jdbcType="VARCHAR"/>
+        <result column="ACCESSORY_NAME" property="attachName" jdbcType="VARCHAR"/>
+        <result column="CAREER_TYPE" property="careerType" jdbcType="VARCHAR"/>
+        <result column="LEVEL" property="attachLevel" jdbcType="INTEGER"/>
+        <result column="PARENT_ID" property="parentId" jdbcType="BIGINT"/>
+        <result column="CHOOSE_TYPE" property="chooseType" jdbcType="VARCHAR"/>
+        <result column="appAttachId" property="appAttachId" jdbcType="BIGINT"/>
+        <result column="appId" property="appId" jdbcType="BIGINT"/>
+        <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP"/>
+        <result column="OSS_ID" property="ossId" jdbcType="VARCHAR"/>
+        <result column="EXAMINE_BATCH_NO" property="batchNo" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    ID, CODE, TYPE, ACCESSORY_NAME, ACCESSORY_LIMIT, DESCRIPTION, REMARK, CREATEDBY, 
+    CREATEDON, MODIFIEDBY, MODIFIEDON, PARENT_ID, CAREER_TYPE, LEVEL, CHOOSE_TYPE, PRODUCT_TYPE
+  </sql>
+
+    <select id="list" resultMap="BaseResultMap" parameterMap="bsAttach">
+        select
+        <include refid="Base_Column_List"/>
+        from bs_attach
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND ID = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="type != null">
+                AND TYPE = #{type,jdbcType=BIGINT}
+            </if>
+        </trim>
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Long">
+    delete from bs_attach
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+
+    <insert id="insert" parameterMap="bsAttach">
+    insert into bs_attach (ID, CODE, TYPE, 
+      ACCESSORY_NAME, ACCESSORY_LIMIT, DESCRIPTION, 
+      REMARK, CREATEDBY, CREATEDON, 
+      MODIFIEDBY, MODIFIEDON, PARENT_ID, 
+      CAREER_TYPE, LEVEL, CHOOSE_TYPE, 
+      PRODUCT_TYPE)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{accessoryName,jdbcType=VARCHAR}, #{accessoryLimit,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=VARCHAR}, #{modifiedon,jdbcType=TIMESTAMP}, #{parentId,jdbcType=BIGINT}, 
+      #{careerType,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{chooseType,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=VARCHAR})
+  </insert>
+
+    <!-- 通过产品系列id查询对应附件列表 -->
+    <select id="getAttachListBySeriesId" resultMap="attachResultMap">
+  	SELECT
+		*
+	FROM
+		(
+			SELECT
+				b.ID,
+				b.CODE,
+				b.ACCESSORY_NAME,
+				b.CAREER_TYPE,
+				b.`LEVEL`,
+				b.PARENT_ID,
+				b.CHOOSE_TYPE
+			FROM
+				bs_products_attach a
+			LEFT JOIN bs_attach b ON a.ATTACH_ID = b.ID
+			WHERE
+				b.TYPE = 'Bef_Loan'
+			AND a.PRODUCT_SERIES_ID = #{productSeriesId,jdbcType=BIGINT} 
+			UNION
+			SELECT
+				b.ID,
+				b.CODE,
+				b.ACCESSORY_NAME,
+				b.CAREER_TYPE,
+				b.`LEVEL`,
+				b.PARENT_ID,
+				b.CHOOSE_TYPE
+			FROM
+				bs_attach b
+			WHERE
+				b.CAREER_TYPE = #{careeType,jdbcType=VARCHAR}
+		) a
+	ORDER BY a.ID;
+  </select>
+
+    <!-- 通过工单附件id数组查询对应附件列表 -->
+    <select id="getAttachListByAttachids" resultMap="attachResultMap">
+        SELECT
+        a.*,
+        la.ID AS appAttachId,
+        la.APP_ID AS appId,
+        la.MODIFIEDON,
+        la.OSS_ID,
+        la.EXAMINE_BATCH_NO
+        FROM
+        (
+        SELECT
+        b.ID,
+        b.CODE,
+        b.ACCESSORY_NAME,
+        b.CAREER_TYPE,
+        b.`LEVEL`,
+        b.PARENT_ID,
+        b.CHOOSE_TYPE
+        FROM
+        bs_products_attach a
+        LEFT JOIN bs_attach b ON a.ATTACH_ID = b.ID
+        WHERE
+        b.TYPE = 'Bef_Loan'
+        AND a.PRODUCT_SERIES_ID = #{productSeriesId,jdbcType=BIGINT}
+        UNION
+        SELECT
+        b.ID,
+        b.CODE,
+        b.ACCESSORY_NAME,
+        b.CAREER_TYPE,
+        b.`LEVEL`,
+        b.PARENT_ID,
+        b.CHOOSE_TYPE
+        FROM
+        bs_attach b
+        WHERE
+        b.CAREER_TYPE = #{careeType,jdbcType=VARCHAR}
+        ) a
+        LEFT JOIN ln_attach_info la ON a. CODE = la.ATTACH_TYPE
+        <if test="ids!=null and ids.length != 0">
+            AND la.ID IN
+            <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+                #{id,jdbcType=BIGINT}
+            </foreach>
+        </if>
+        ORDER BY a.ID,la.MODIFIEDON ASC
+    </select>
+
+    <!-- 通过工单id查询工单附件列表 -->
+    <select id="getAttachListByAppId" resultMap="attachResultMap">
+        SELECT
+        a.*,
+        la.ID AS appAttachId,
+        la.APP_ID AS appId,
+        la.MODIFIEDON,
+        la.OSS_ID,
+        la.EXAMINE_BATCH_NO
+        FROM
+        (
+        SELECT
+        b.ID,
+        b.CODE,
+        b.ACCESSORY_NAME,
+        b.CAREER_TYPE,
+        b.`LEVEL`,
+        b.PARENT_ID,
+        b.CHOOSE_TYPE
+        FROM
+        bs_products_attach a
+        LEFT JOIN bs_attach b ON a.ATTACH_ID = b.ID
+        WHERE
+        b.TYPE = 'Bef_Loan'
+        AND a.PRODUCT_SERIES_ID = #{productSeriesId,jdbcType=BIGINT}
+        UNION
+        SELECT
+        b.ID,
+        b.CODE,
+        b.ACCESSORY_NAME,
+        b.CAREER_TYPE,
+        b.`LEVEL`,
+        b.PARENT_ID,
+        b.CHOOSE_TYPE
+        FROM
+        bs_attach b
+        WHERE
+        b.CAREER_TYPE = #{careeType,jdbcType=VARCHAR}
+        ) a
+        LEFT JOIN ln_attach_info la ON a. CODE = la.ATTACH_TYPE
+        <if test="appId != null">
+            AND la.APP_ID = #{appId,jdbcType=BIGINT}
+        </if>
+        ORDER BY a.ID,la.MODIFIEDON ASC
+    </select>
+
+</mapper>

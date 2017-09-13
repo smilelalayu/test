@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.bus.dao.BusGoodsDictMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.BusGoodsDict" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+    <result column="PARENT_CODE" property="parentCode" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, CODE, PARENT_ID, PARENT_CODE, LEVEL, STATE, CREATEDBY, CREATEDON, MODIFIEDBY, 
+    MODIFIEDON
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_dict
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_dict
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.BusGoodsDict" >
+    insert into goods_dict (ID, NAME, CODE, 
+      PARENT_ID, PARENT_CODE, LEVEL, 
+      STATE, CREATEDBY, CREATEDON, 
+      MODIFIEDBY, MODIFIEDON)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{parentCode,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{state,jdbcType=VARCHAR}, #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=VARCHAR}, #{modifiedon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.bus.module.BusGoodsDict" >
+    insert into goods_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY,
+      </if>
+      <if test="createdon != null" >
+        CREATEDON,
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY,
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.BusGoodsDict" >
+    update goods_dict
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.bus.module.BusGoodsDict" >
+    update goods_dict
+    set NAME = #{name,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=INTEGER},
+      STATE = #{state,jdbcType=VARCHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_dict
+    where CODE = #{code,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectGoodsDictCodeName" resultType="java.util.HashMap" >
+    select 
+    code, name
+    from goods_dict
+    where CODE IS NOT NULL
+    GROUP BY code, name
+  </select>
+  
+</mapper>

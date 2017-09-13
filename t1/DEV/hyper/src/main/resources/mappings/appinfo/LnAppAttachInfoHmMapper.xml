@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.LnAppAttachInfoHmMapper" >
+  <parameterMap type="com.hm.appinfo.model.LnAttachInfo" id="lnAttachInfo"></parameterMap>
+  <resultMap id="BaseResultMap" type="com.hm.appinfo.model.LnAttachInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="ATTACH_TYPE" property="attachType" jdbcType="VARCHAR" />
+    <result column="ATTACH_NAME" property="attachName" jdbcType="VARCHAR" />
+    <result column="ATTACH_URL" property="attachUrl" jdbcType="VARCHAR" />
+    <result column="FILE_TYPE" property="fileType" jdbcType="VARCHAR" />
+    <result column="FILE_SIZE" property="fileSize" jdbcType="INTEGER" />
+    <result column="FILE_SERIAL" property="fileSerial" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="OSS_ID" property="ossId" jdbcType="VARCHAR" />
+    <result column="CAREER_TYPE" property="careerType" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="CHOOSE_TYPE" property="chooseType" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="EXAMINE_SEQ_NO" property="examineSeqNo" jdbcType="VARCHAR" />
+    
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="parent_accessory_name" property="parentAccessoryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, ATTACH_TYPE, ATTACH_NAME, ATTACH_URL, FILE_TYPE, FILE_SIZE, FILE_SERIAL, 
+    REMARK, CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, VERSION, OSS_ID, CAREER_TYPE, 
+    LEVEL, CHOOSE_TYPE, PRODUCT_TYPE, SOURCE,EXAMINE_SEQ_NO
+  </sql>
+  
+  <delete id="attachDelete" parameterMap="lnAttachInfo" >
+    DELETE FROM 
+    	LN_ATTACH_INFO 
+    where ID = #{id,jdbcType=BIGINT}
+    AND SOURCE = #{source,jdbcType=VARCHAR}
+    AND APP_ID = #{appId,jdbcType=BIGINT}
+  </delete>
+</mapper>

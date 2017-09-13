@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.base.dao.ProvinceCityHmMapper">
+
+    <resultMap id="baseInfoMap" type="com.hm.base.model.BaseInfo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="parentId" property="parentId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="queryBaseInfoByCondition" resultMap="baseInfoMap" parameterType="java.util.Map" >
+      	   <if test='type == "P"'>
+		        SELECT PROVINCEID as id, PROVINCENAME as name,  provinceUpId as parentId  FROM SM_PROVINCE 
+		        <if test="id != null">
+		        	where PROVINCEID = #{id}
+		        </if>
+	       </if>
+	       
+	       <if test='type == "C"'>
+		        SELECT CITYID as id, CITYNAME as name,  cityUpId as parentId  FROM SM_CITY 
+	       		<if test="id != null">
+		        	WHERE CITYID=#{id}
+		        </if>
+	       </if>
+	       
+	       <if test='type == "D"'>
+		        SELECT DISTRICTID as id, DISTRICTNAME as name,  districtUpId as parentId   FROM SM_DISTRICT 
+	       		<if test="id != null">
+		        	WHERE DISTRICTID=#{id}
+		        </if>
+	       </if>
+    </select>
+
+
+</mapper>

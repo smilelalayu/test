@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gep.sys.dao.UserInfoMapper" >
+  <!-- redis缓存 -->
+  <!-- <cache type="com.gep.core.cache.MybatisRedisCache" /> -->
+  
+  <resultMap id="BaseResultMap" type="com.gep.sys.model.UserInfo" >
+    <id column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_ID" property="employeeId" jdbcType="VARCHAR" />
+    <result column="MOB_TEL1" property="mobTel1" jdbcType="VARCHAR" />
+    <result column="MOB_TEL2" property="mobTel2" jdbcType="VARCHAR" />
+    <result column="FAM_TEL" property="famTel" jdbcType="VARCHAR" />
+    <result column="COM_TEL" property="comTel" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="IS_STOP" property="isStop" jdbcType="CHAR" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="RESERVER1" property="reserver1" jdbcType="VARCHAR" />
+    <result column="RESERVER2" property="reserver2" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="user_category" property="userCategory" jdbcType="VARCHAR" />
+    <result column="AppCode" property="appcode" jdbcType="VARCHAR" />
+    <result column="APPLICANT_ID" property="applicantId" jdbcType="BIGINT" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="BIGINT" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+    <result column="USER_SEX" property="userSex" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="BIGINT" />
+    <result column="USER_STATUS" property="userStatus" jdbcType="VARCHAR" />
+    <result column="ENTRY_TIME" property="entryTime" jdbcType="TIMESTAMP" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="stop_status" property="stopStatus" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column" >
+    USER_ID, GROUP_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMPLOYEE_ID, MOB_TEL1, MOB_TEL2, 
+    FAM_TEL, COM_TEL, DEPARTMENT, TITLE, IS_STOP, MODIFY_TIME, CREATE_TIME, RESERVER1, 
+    RESERVER2, email, user_category, AppCode, APPLICANT_ID, ACCOUNT_ID, CARD_ID, USER_TYPE, 
+    USER_SEX, DEPT_ID, USER_STATUS, ENTRY_TIME, POSITION, TOKEN, stop_status
+  </sql>
+  
+  <sql id="Base_Condition_Select">
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+	  <if test="userId != null and userId > 0" >
+       and USER_ID = #{userId,jdbcType=INTEGER}
+      </if>
+	  <if test="groupId != null" >
+       and GROUP_ID = #{groupId,jdbcType=INTEGER}
+      </if>
+      <if test="userName != null" >
+       and USER_NAME = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="loginName != null" >
+       and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+      </if>
+      <!--<if test="password != null" >
+       and PASSWORD = #{password,jdbcType=VARCHAR}
+      </if>-->
+      <if test="employeeId != null" >
+       and EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR}
+      </if>
+      <if test="mobTel1 != null" >
+       and MOB_TEL1 = #{mobTel1,jdbcType=VARCHAR}
+      </if>
+      <if test="mobTel2 != null" >
+       and MOB_TEL2 = #{mobTel2,jdbcType=VARCHAR}
+      </if>
+      <if test="famTel != null" >
+       and FAM_TEL = #{famTel,jdbcType=VARCHAR}
+      </if>
+      <if test="comTel != null" >
+       and COM_TEL = #{comTel,jdbcType=VARCHAR}
+      </if>
+      <if test="department != null" >
+       and DEPARTMENT = #{department,jdbcType=VARCHAR}
+      </if>
+      <if test="title != null" >
+       and TITLE = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="isStop != null" >
+       and IS_STOP = #{isStop,jdbcType=CHAR}
+      </if>
+      <if test="modifyTime != null" >
+       and MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null" >
+       and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="reserver1 != null" >
+       and RESERVER1 = #{reserver1,jdbcType=VARCHAR}
+      </if>
+      <if test="reserver2 != null" >
+       and RESERVER2 = #{reserver2,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+       and email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="userCategory != null" >
+       and user_category = #{userCategory,jdbcType=VARCHAR}
+      </if>
+      <if test="appcode != null" >
+       and AppCode = #{appcode,jdbcType=VARCHAR}
+      </if>
+      <if test="applicantId != null" >
+       and APPLICANT_ID = #{applicantId,jdbcType=BIGINT}
+      </if>
+      <if test="accountId != null" >
+       and ACCOUNT_ID = #{accountId,jdbcType=BIGINT}
+      </if>
+      <if test="cardId != null" >
+       and CARD_ID = #{cardId,jdbcType=VARCHAR}
+      </if>
+      <if test="userType != null" >
+       and USER_TYPE = #{userType,jdbcType=VARCHAR}
+      </if>
+      <if test="userSex != null" >
+       and USER_SEX = #{userSex,jdbcType=VARCHAR}
+      </if>
+      <if test="deptId != null" >
+       and DEPT_ID = #{deptId,jdbcType=BIGINT}
+      </if>
+      <if test="userStatus != null" >
+       and USER_STATUS = #{userStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="entryTime != null" >
+       and ENTRY_TIME = #{entryTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="position != null" >
+       and POSITION = #{position,jdbcType=VARCHAR}
+      </if>
+      <if test="token != null" >
+       and TOKEN = #{token,jdbcType=VARCHAR}
+      </if>
+      <if test="stopStatus != null" >
+       and stop_status = #{stopStatus,jdbcType=CHAR}
+      </if>
+	</trim>
+	</sql>
+ 
+  <select id="list" resultMap="BaseResultMap" parameterType="com.gep.sys.model.UserInfo" >
+    select 
+		<include refid="Base_Column" />
+    from user_info
+		<include refid="Base_Condition_Select" />
+  </select>
+ 
+  <select id="selectByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+      ui.USER_ID, GROUP_ID, USER_NAME, LOGIN_NAME, PASSWORD, EMPLOYEE_ID, MOB_TEL1, MOB_TEL2,
+      FAM_TEL, COM_TEL, DEPARTMENT, TITLE, IS_STOP, MODIFY_TIME, CREATE_TIME, RESERVER1,
+      RESERVER2, email, user_category, AppCode, APPLICANT_ID, ACCOUNT_ID, CARD_ID, USER_TYPE,
+      USER_SEX, DEPT_ID, ui.USER_STATUS, ENTRY_TIME, POSITION, ua.TOKEN, stop_status
+    FROM user_info ui
+    INNER JOIN uum_user_app ua ON ui.user_id = ua.user_id
+    WHERE ui.LOGIN_NAME = #{loginName,jdbcType=VARCHAR} AND ui.USER_STATUS = 'job' AND ui.IS_STOP = 'n'
+    AND ua.app_code = 'HM'
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer" >
+    delete from user_info
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gep.sys.model.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="employeeId != null" >
+        EMPLOYEE_ID,
+      </if>
+      <if test="mobTel1 != null" >
+        MOB_TEL1,
+      </if>
+      <if test="mobTel2 != null" >
+        MOB_TEL2,
+      </if>
+      <if test="famTel != null" >
+        FAM_TEL,
+      </if>
+      <if test="comTel != null" >
+        COM_TEL,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="isStop != null" >
+        IS_STOP,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="reserver1 != null" >
+        RESERVER1,
+      </if>
+      <if test="reserver2 != null" >
+        RESERVER2,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="userCategory != null" >
+        user_category,
+      </if>
+      <if test="appcode != null" >
+        AppCode,
+      </if>
+      <if test="applicantId != null" >
+        APPLICANT_ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="cardId != null" >
+        CARD_ID,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+      <if test="userSex != null" >
+        USER_SEX,
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID,
+      </if>
+      <if test="userStatus != null" >
+        USER_STATUS,
+      </if>
+      <if test="entryTime != null" >
+        ENTRY_TIME,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+      <if test="token != null" >
+        TOKEN,
+      </if>
+      <if test="stopStatus != null" >
+        stop_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobTel1 != null" >
+        #{mobTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="mobTel2 != null" >
+        #{mobTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="famTel != null" >
+        #{famTel,jdbcType=VARCHAR},
+      </if>
+      <if test="comTel != null" >
+        #{comTel,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null" >
+        #{isStop,jdbcType=CHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserver1 != null" >
+        #{reserver1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserver2 != null" >
+        #{reserver2,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userCategory != null" >
+        #{userCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="appcode != null" >
+        #{appcode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantId != null" >
+        #{applicantId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="entryTime != null" >
+        #{entryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="stopStatus != null" >
+        #{stopStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.gep.sys.model.UserInfo" >
+    update user_info
+    <set >
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null" >
+        EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobTel1 != null" >
+        MOB_TEL1 = #{mobTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="mobTel2 != null" >
+        MOB_TEL2 = #{mobTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="famTel != null" >
+        FAM_TEL = #{famTel,jdbcType=VARCHAR},
+      </if>
+      <if test="comTel != null" >
+        COM_TEL = #{comTel,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null" >
+        IS_STOP = #{isStop,jdbcType=CHAR},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserver1 != null" >
+        RESERVER1 = #{reserver1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserver2 != null" >
+        RESERVER2 = #{reserver2,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userCategory != null" >
+        user_category = #{userCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="appcode != null" >
+        AppCode = #{appcode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantId != null" >
+        APPLICANT_ID = #{applicantId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="cardId != null" >
+        CARD_ID = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        USER_SEX = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="userStatus != null" >
+        USER_STATUS = #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="entryTime != null" >
+        ENTRY_TIME = #{entryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        TOKEN = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="stopStatus != null" >
+        stop_status = #{stopStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

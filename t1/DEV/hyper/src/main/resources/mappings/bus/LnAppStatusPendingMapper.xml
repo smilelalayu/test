@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.bus.dao.LnAppStatusPendingMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnAppStatusPending" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="INPUT_TRADE_NO" property="inputTradeNo" jdbcType="VARCHAR" />
+    <result column="INPUT_TIME" property="inputTime" jdbcType="TIMESTAMP" />
+    <result column="OUTPUT_TRADE_NO" property="outputTradeNo" jdbcType="VARCHAR" />
+    <result column="OUTPUT_TIME" property="outputTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="DESP" property="desp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, INPUT_TRADE_NO, INPUT_TIME, OUTPUT_TRADE_NO, OUTPUT_TIME, STATUS, DESP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_status_pending
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ln_app_status_pending
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.LnAppStatusPending" >
+    insert into ln_app_status_pending (ID, APP_ID, INPUT_TRADE_NO, 
+      INPUT_TIME, OUTPUT_TRADE_NO, OUTPUT_TIME, 
+      STATUS, DESP)
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{inputTradeNo,jdbcType=VARCHAR}, 
+      #{inputTime,jdbcType=TIMESTAMP}, #{outputTradeNo,jdbcType=VARCHAR}, #{outputTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{desp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.bus.module.LnAppStatusPending" >
+    insert into ln_app_status_pending
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="inputTradeNo != null" >
+        INPUT_TRADE_NO,
+      </if>
+      <if test="inputTime != null" >
+        INPUT_TIME,
+      </if>
+      <if test="outputTradeNo != null" >
+        OUTPUT_TRADE_NO,
+      </if>
+      <if test="outputTime != null" >
+        OUTPUT_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="desp != null" >
+        DESP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="inputTradeNo != null" >
+        #{inputTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inputTime != null" >
+        #{inputTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outputTradeNo != null" >
+        #{outputTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outputTime != null" >
+        #{outputTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null" >
+        #{desp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.LnAppStatusPending" >
+    update ln_app_status_pending
+    <set >
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="inputTradeNo != null" >
+        INPUT_TRADE_NO = #{inputTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inputTime != null" >
+        INPUT_TIME = #{inputTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outputTradeNo != null" >
+        OUTPUT_TRADE_NO = #{outputTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outputTime != null" >
+        OUTPUT_TIME = #{outputTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null" >
+        DESP = #{desp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.bus.module.LnAppStatusPending" >
+    update ln_app_status_pending
+    set APP_ID = #{appId,jdbcType=BIGINT},
+      INPUT_TRADE_NO = #{inputTradeNo,jdbcType=VARCHAR},
+      INPUT_TIME = #{inputTime,jdbcType=TIMESTAMP},
+      OUTPUT_TRADE_NO = #{outputTradeNo,jdbcType=VARCHAR},
+      OUTPUT_TIME = #{outputTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DESP = #{desp,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

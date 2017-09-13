@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hm.bus.dao.LnAppCashWhiteCustMapper">
+
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnAppCashWhiteCust" >
+	  <id column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+	  <result column="CUSTOM_NAME" property="customName" jdbcType="VARCHAR" />
+	  <result column="CITY" property="city" jdbcType="VARCHAR" />
+	  <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+	  <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+	  <result column="MAX_LOAN_AMOUNT" property="maxLoanAmount" jdbcType="DECIMAL" />
+	  <result column="RISK_GRADE" property="riskGrade" jdbcType="VARCHAR" />
+	  <result column="RISK_SCORE" property="riskScore" jdbcType="VARCHAR" />
+	  <result column="POLICY" property="policy" jdbcType="VARCHAR" />
+	  <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	  <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+     IDCARD, CUSTOM_NAME, CITY, MOBILE, APP_ID, MAX_LOAN_AMOUNT,RISK_GRADE,RISK_SCORE,POLICY, CREATE_TIME, UPDATE_TIME
+  </sql>
+  
+  <select id="getAlreadyExistIdcards" resultMap="BaseResultMap" >
+    select t.IDCARD from ln_app_cash_white_cust t
+  </select>
+  
+  <insert id="insert" >
+    insert into ln_app_cash_white_cust
+      (
+        <include refid="Base_Column_List"></include>
+       )
+     values
+     <foreach collection="list" item="item" index="index" separator="," >
+        (
+        #{item.idcard,jdbcType=VARCHAR},
+        #{item.customName,jdbcType=VARCHAR},
+        #{item.city,jdbcType=VARCHAR},
+        #{item.mobile,jdbcType=VARCHAR},
+        #{item.appId,jdbcType=BIGINT},
+        #{item.maxLoanAmount,jdbcType=DECIMAL},
+        #{item.riskGrade,jdbcType=VARCHAR},
+        #{item.riskScore,jdbcType=VARCHAR},
+        #{item.policy,jdbcType=VARCHAR},
+        CURRENT_TIMESTAMP(),
+        CURRENT_TIMESTAMP()
+        )
+      </foreach>
+  </insert>
+  
+  <select id="queryByCardId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_cash_white_cust
+    where IDCARD = #{idcard,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

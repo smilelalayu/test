@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.bus.dao.LnAttachInfoMapper" >
+  <parameterMap type="com.hm.bus.module.LnAttachInfo" id="lnAttachInfo"></parameterMap>
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnAttachInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="ATTACH_TYPE" property="attachType" jdbcType="VARCHAR" />
+    <result column="ATTACH_NAME" property="attachName" jdbcType="VARCHAR" />
+    <result column="ATTACH_URL" property="attachUrl" jdbcType="VARCHAR" />
+    <result column="FILE_TYPE" property="fileType" jdbcType="VARCHAR" />
+    <result column="FILE_SIZE" property="fileSize" jdbcType="INTEGER" />
+    <result column="FILE_SERIAL" property="fileSerial" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="OSS_ID" property="ossId" jdbcType="VARCHAR" />
+    <result column="CAREER_TYPE" property="careerType" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="CHOOSE_TYPE" property="chooseType" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="EXAMINE_SEQ_NO" property="examineSeqNo" jdbcType="VARCHAR" />
+    
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="parent_accessory_name" property="parentAccessoryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, ATTACH_TYPE, ATTACH_NAME, ATTACH_URL, FILE_TYPE, FILE_SIZE, FILE_SERIAL, 
+    REMARK, CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, VERSION, OSS_ID, CAREER_TYPE, 
+    LEVEL, CHOOSE_TYPE, PRODUCT_TYPE, SOURCE,EXAMINE_SEQ_NO
+  </sql>
+  
+   <sql id="Base_Column_List_distinct" >
+    ID, APP_ID, ATTACH_TYPE, ATTACH_NAME, ATTACH_URL, FILE_TYPE, FILE_SIZE, FILE_SERIAL, 
+    REMARK, CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, VERSION, OSS_ID, CAREER_TYPE, 
+    LEVEL, CHOOSE_TYPE, PRODUCT_TYPE, SOURCE
+  </sql>
+  
+  <sql id="Base_Column_List_mutli" >
+  	patt.CODE parent_code,patt.ACCESSORY_NAME parent_accessory_name,
+    ainfo.ID, ainfo.APP_ID, ainfo.ATTACH_TYPE, ainfo.ATTACH_NAME, ainfo.ATTACH_URL, 
+    ainfo.FILE_TYPE, ainfo.FILE_SIZE, ainfo.FILE_SERIAL, ainfo.REMARK, ainfo.CREATEDBY, 
+    MAX(ainfo.CREATEDON) CREATEDON, ainfo.MODIFIEDBY, MAX(ainfo.MODIFIEDON) MODIFIEDON, ainfo.VERSION, ainfo.OSS_ID, 
+    ainfo.CAREER_TYPE, ainfo.LEVEL, ainfo.CHOOSE_TYPE, ainfo.PRODUCT_TYPE, ainfo.SOURCE
+  </sql>
+  
+  <select id="list" resultMap="BaseResultMap" parameterMap="lnAttachInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_attach_info
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+   	<if test="id != null">
+		AND ID = #{id,jdbcType=BIGINT}
+	</if>
+   	<if test="appId != null">
+		 AND APP_ID = #{appId,jdbcType=BIGINT}
+	</if>
+   	<if test="source != null">
+		 AND SOURCE = #{source}
+	</if>	
+   	<if test="chooseType != null">
+		 AND CHOOSE_TYPE = #{chooseType}
+	</if>
+   	<if test="attachType != null">
+		 AND ATTACH_TYPE = #{attachType}
+	</if>	
+   	<if test="examineSeqNo != null">
+		 AND EXAMINE_SEQ_NO = #{examineSeqNo}
+	</if>	
+   	<if test="examineBatchNo != null">
+		 AND EXAMINE_BATCH_NO = #{examineBatchNo}
+	</if>	
+	</trim>
+	ORDER BY CREATEDON desc
+  </select>
+  <select id="distinctList" resultMap="BaseResultMap" parameterMap="lnAttachInfo" >
+    select 
+    <include refid="Base_Column_List_distinct" />
+    from ln_attach_info
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+   	<if test="id != null">
+		AND ID = #{id,jdbcType=BIGINT}
+	</if>
+   	<if test="appId != null">
+		 AND APP_ID = #{appId,jdbcType=BIGINT}
+	</if>
+   	<if test="source != null">
+		 AND SOURCE = #{source}
+	</if>	
+   	<if test="chooseType != null">
+		 AND CHOOSE_TYPE = #{chooseType}
+	</if>
+	</trim>
+	GROUP BY ATTACH_TYPE
+  </select>
+  
+  <select id="multiList" resultMap="BaseResultMap" parameterMap="lnAttachInfo" >
+    SELECT 
+    	DISTINCT
+		<include refid="Base_Column_List_mutli" />
+    FROM 
+    	bs_attach att,
+		bs_attach patt,
+    	ln_attach_info ainfo
+    WHERE
+   		patt.id = att.parent_id
+   	AND ainfo.attach_type = att.code
+   	AND patt.parent_id IS NULL
+   	<if test="appId != null">
+		 AND ainfo.app_id = #{appId,jdbcType=BIGINT}
+	</if>
+   	<if test="source != null">
+		 AND ainfo.source = #{source}
+	</if>	
+   	<if test="chooseType != null">
+		 AND patt.choose_type = #{chooseType}
+	</if>
+	GROUP BY ainfo.ATTACH_TYPE
+	ORDER BY patt.`CODE`
+  </select>
+  
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ln_attach_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.LnAttachInfo" >
+    insert into ln_attach_info (ID, APP_ID, ATTACH_TYPE, 
+      ATTACH_NAME, ATTACH_URL, FILE_TYPE, 
+      FILE_SIZE, FILE_SERIAL, REMARK, 
+      CREATEDBY, CREATEDON, MODIFIEDBY, 
+      MODIFIEDON, VERSION, OSS_ID, 
+      CAREER_TYPE, LEVEL, CHOOSE_TYPE, 
+      PRODUCT_TYPE, SOURCE)
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{attachType,jdbcType=VARCHAR}, 
+      #{attachName,jdbcType=VARCHAR}, #{attachUrl,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, 
+      #{fileSize,jdbcType=INTEGER}, #{fileSerial,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=VARCHAR}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{ossId,jdbcType=VARCHAR}, 
+      #{careerType,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{chooseType,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR})
+  </insert>
+</mapper>

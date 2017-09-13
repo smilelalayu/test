@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.LnAssistCheckinfoHmMapper" >
+  <parameterMap type="com.hm.appinfo.model.LnAssistCheckinfo" id="lnAssistCheckinfo"></parameterMap>
+  <resultMap id="BaseResultMap" type="com.hm.appinfo.model.LnAssistCheckinfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="CHECK_DEBIT_CARD" property="checkDebitCard" jdbcType="VARCHAR" />
+    <result column="CHECK_APPLY_INFO" property="checkApplyInfo" jdbcType="VARCHAR" />
+    <result column="MATTERS_NEED" property="mattersNeed" jdbcType="VARCHAR" />
+    <result column="CHECK_MOBILE" property="checkMobile" jdbcType="VARCHAR" />
+    <result column="CHECK_TEL" property="checkTel" jdbcType="VARCHAR" />
+    <result column="CHECK_LINKMAN_TEL" property="checkLinkmanTel" jdbcType="VARCHAR" />
+    <result column="CHECK_SOCIAL" property="checkSocial" jdbcType="VARCHAR" />
+    <result column="CHECK_COMPANY" property="checkCompany" jdbcType="VARCHAR" />
+    <result column="ACCOMPANY" property="accompany" jdbcType="INTEGER" />
+    <result column="ACC_APPLY" property="accApply" jdbcType="VARCHAR" />
+    <result column="ACC_NAME" property="accName" jdbcType="VARCHAR" />
+    <result column="ACC_MOBILE" property="accMobile" jdbcType="VARCHAR" />
+    <result column="MOBILE_BRAND" property="mobileBrand" jdbcType="VARCHAR" />
+    <result column="MOBILE_STATE" property="mobileState" jdbcType="VARCHAR" />
+    <result column="STORT_FAM_KM" property="stortFamKm" jdbcType="DOUBLE" />
+    <result column="STORT_COM_KM" property="stortComKm" jdbcType="DOUBLE" />
+    <result column="FAM_COM_KM" property="famComKm" jdbcType="DOUBLE" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="ASSIST_WEIXIN" property="assistWeixin" jdbcType="VARCHAR" />
+    <result column="ASSIST_QQ" property="assistQq" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, APP_ID, CHECK_DEBIT_CARD, CHECK_APPLY_INFO, MATTERS_NEED, CHECK_MOBILE, CHECK_TEL, 
+    CHECK_LINKMAN_TEL, CHECK_SOCIAL, CHECK_COMPANY, ACCOMPANY, ACC_APPLY, ACC_NAME, ACC_MOBILE, 
+    MOBILE_BRAND, MOBILE_STATE, STORT_FAM_KM, STORT_COM_KM, FAM_COM_KM, CREATEDBY, CREATEDON, 
+    MODIFIEDBY, MODIFIEDON, VERSION, ASSIST_WEIXIN, ASSIST_QQ
+  </sql>
+  
+  <select id="list" resultMap="BaseResultMap" parameterMap="lnAssistCheckinfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_assist_checkinfo
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+   	<if test="id != null">
+		AND ID = #{id,jdbcType=BIGINT}
+	</if>
+   	<if test="appId != null">
+		 AND APP_ID = #{appId,jdbcType=BIGINT}
+	</if>
+	</trim>
+  </select>
+  
+  <select id="listByAppId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_assist_checkinfo
+        where APP_ID = #{appId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from ln_assist_checkinfo
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hm.appinfo.model.LnAssistCheckinfo" >
+    insert into ln_assist_checkinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="checkDebitCard != null" >
+        CHECK_DEBIT_CARD,
+      </if>
+      <if test="checkApplyInfo != null" >
+        CHECK_APPLY_INFO,
+      </if>
+      <if test="mattersNeed != null" >
+        MATTERS_NEED,
+      </if>
+      <if test="checkMobile != null" >
+        CHECK_MOBILE,
+      </if>
+      <if test="checkTel != null" >
+        CHECK_TEL,
+      </if>
+      <if test="checkLinkmanTel != null" >
+        CHECK_LINKMAN_TEL,
+      </if>
+      <if test="checkSocial != null" >
+        CHECK_SOCIAL,
+      </if>
+      <if test="checkCompany != null" >
+        CHECK_COMPANY,
+      </if>
+      <if test="accompany != null" >
+        ACCOMPANY,
+      </if>
+      <if test="accApply != null" >
+        ACC_APPLY,
+      </if>
+      <if test="accName != null" >
+        ACC_NAME,
+      </if>
+      <if test="accMobile != null" >
+        ACC_MOBILE,
+      </if>
+      <if test="mobileBrand != null" >
+        MOBILE_BRAND,
+      </if>
+      <if test="mobileState != null" >
+        MOBILE_STATE,
+      </if>
+      <if test="stortFamKm != null" >
+        STORT_FAM_KM,
+      </if>
+      <if test="stortComKm != null" >
+        STORT_COM_KM,
+      </if>
+      <if test="famComKm != null" >
+        FAM_COM_KM,
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY,
+      </if>
+      <if test="createdon != null" >
+        CREATEDON,
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY,
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="assistWeixin != null" >
+        ASSIST_WEIXIN,
+      </if>
+      <if test="assistQq != null" >
+        ASSIST_QQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="checkDebitCard != null" >
+        #{checkDebitCard,jdbcType=VARCHAR},
+      </if>
+      <if test="checkApplyInfo != null" >
+        #{checkApplyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mattersNeed != null" >
+        #{mattersNeed,jdbcType=VARCHAR},
+      </if>
+      <if test="checkMobile != null" >
+        #{checkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTel != null" >
+        #{checkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="checkLinkmanTel != null" >
+        #{checkLinkmanTel,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSocial != null" >
+        #{checkSocial,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCompany != null" >
+        #{checkCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="accompany != null" >
+        #{accompany,jdbcType=INTEGER},
+      </if>
+      <if test="accApply != null" >
+        #{accApply,jdbcType=VARCHAR},
+      </if>
+      <if test="accName != null" >
+        #{accName,jdbcType=VARCHAR},
+      </if>
+      <if test="accMobile != null" >
+        #{accMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileBrand != null" >
+        #{mobileBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileState != null" >
+        #{mobileState,jdbcType=VARCHAR},
+      </if>
+      <if test="stortFamKm != null" >
+        #{stortFamKm,jdbcType=DOUBLE},
+      </if>
+      <if test="stortComKm != null" >
+        #{stortComKm,jdbcType=DOUBLE},
+      </if>
+      <if test="famComKm != null" >
+        #{famComKm,jdbcType=DOUBLE},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="assistWeixin != null" >
+      	#{assistWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="assistQq != null" >
+      	#{assistQq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="com.hm.appinfo.model.LnAssistCheckinfo" >
+    update ln_assist_checkinfo
+    <set >
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="checkDebitCard != null" >
+        CHECK_DEBIT_CARD = #{checkDebitCard,jdbcType=VARCHAR},
+      </if>
+      <if test="checkApplyInfo != null" >
+        CHECK_APPLY_INFO = #{checkApplyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mattersNeed != null" >
+        MATTERS_NEED = #{mattersNeed,jdbcType=VARCHAR},
+      </if>
+      <if test="checkMobile != null" >
+        CHECK_MOBILE = #{checkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTel != null" >
+        CHECK_TEL = #{checkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="checkLinkmanTel != null" >
+        CHECK_LINKMAN_TEL = #{checkLinkmanTel,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSocial != null" >
+        CHECK_SOCIAL = #{checkSocial,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCompany != null" >
+        CHECK_COMPANY = #{checkCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="accompany != null" >
+        ACCOMPANY = #{accompany,jdbcType=INTEGER},
+      </if>
+      <if test="accApply != null" >
+        ACC_APPLY = #{accApply,jdbcType=VARCHAR},
+      </if>
+      
+        ACC_NAME = #{accName,jdbcType=VARCHAR},
+        ACC_MOBILE = #{accMobile,jdbcType=VARCHAR},
+       
+      <if test="mobileBrand != null" >
+        MOBILE_BRAND = #{mobileBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileState != null" >
+        MOBILE_STATE = #{mobileState,jdbcType=VARCHAR},
+      </if>
+      <if test="stortFamKm != null" >
+        STORT_FAM_KM = #{stortFamKm,jdbcType=DOUBLE},
+      </if>
+      <if test="stortComKm != null" >
+        STORT_COM_KM = #{stortComKm,jdbcType=DOUBLE},
+      </if>
+      <if test="famComKm != null" >
+        FAM_COM_KM = #{famComKm,jdbcType=DOUBLE},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+       
+      	ASSIST_WEIXIN = #{assistWeixin,jdbcType=VARCHAR},
+      	ASSIST_QQ = #{assistQq,jdbcType=VARCHAR},
+     
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

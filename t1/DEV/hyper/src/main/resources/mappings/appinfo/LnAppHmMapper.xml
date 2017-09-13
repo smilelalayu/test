@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.LnAppHmMapper" >
+
+  <parameterMap id="lnApp" type="com.hm.appinfo.model.LnApp" />
+	
+  <resultMap id="BaseResultMap" type="com.hm.appinfo.model.LnApp" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="FIRM_NAME" property="firmName" jdbcType="VARCHAR" />
+    <result column="STORE_ID" property="storeId" jdbcType="BIGINT" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_SERIES_ID" property="productSeriesId" jdbcType="BIGINT" />
+    <result column="PRODUCT_SERIES_NAME" property="productSeriesName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="BIGINT" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="L1_MANAGER" property="l1Manager" jdbcType="BIGINT" />
+    <result column="L2_MANAGER" property="l2Manager" jdbcType="BIGINT" />
+    <result column="L3_MANAGER" property="l3Manager" jdbcType="BIGINT" />
+    <result column="L4_MANAGER" property="l4Manager" jdbcType="BIGINT" />
+    <result column="SALE_MANAGER" property="saleManager" jdbcType="BIGINT" />
+    <result column="SA" property="sa" jdbcType="BIGINT" />
+    <result column="APP_STATE" property="appState" jdbcType="VARCHAR" />
+    <result column="LOAN_MONEY" property="loanMoney" jdbcType="DECIMAL" />
+    <result column="USER_EVALUATE" property="userEvaluate" jdbcType="VARCHAR" />
+    <result column="WO_BUILD_TIME" property="woBuildTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_CONT_TIME" property="createContTime" jdbcType="TIMESTAMP" />
+    <result column="SIGN_TIME" property="signTime" jdbcType="TIMESTAMP" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="CLIENT_ID" property="clientId" jdbcType="BIGINT" />
+    <result column="PERIODS" property="periods" jdbcType="INTEGER" />
+    <result column="INTEREST_RATE" property="interestRate" jdbcType="DOUBLE" />
+    <result column="PENALTY_RATE" property="penaltyRate" jdbcType="DOUBLE" />
+    <result column="LATE_EXPENESE_RATE" property="lateExpeneseRate" jdbcType="DOUBLE" />
+    <result column="BILLING_RULE" property="billingRule" jdbcType="VARCHAR" />
+    <result column="PREMIUM" property="premium" jdbcType="DECIMAL" />
+    <result column="DISCOUNT_RATE" property="discountRate" jdbcType="DECIMAL" />
+    <result column="SA_BONUS" property="saBonus" jdbcType="DECIMAL" />
+    <result column="DSM_BONUS" property="dsmBonus" jdbcType="DECIMAL" />
+    <result column="COMMISSION_RATE" property="commissionRate" jdbcType="DECIMAL" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="DOWN_PAYMENT_AMOUNT" property="downPaymentAmount" jdbcType="DECIMAL" />
+    <result column="CONTRACT_AMOUNT" property="contractAmount" jdbcType="DECIMAL" />
+    <result column="SERVICE_CHARGE" property="serviceCharge" jdbcType="DECIMAL" />
+    <result column="RISK_RATE" property="riskRate" jdbcType="DOUBLE" />
+    <result column="RISK_AMOUNT" property="riskAmount" jdbcType="DECIMAL" />
+    <result column="OTHER_AMOUNT" property="otherAmount" jdbcType="DECIMAL" />
+    <result column="MONTH_AMOUNT" property="monthAmount" jdbcType="DECIMAL" />
+    <result column="REPAYMENT_DAY" property="repaymentDay" jdbcType="INTEGER" />
+    <result column="REPAYMENT_TYPE" property="repaymentType" jdbcType="VARCHAR" />
+    <result column="REPAYMENT_ACC" property="repaymentAcc" jdbcType="VARCHAR" />
+    <result column="REPAYMENT_ACC_NAME" property="repaymentAccName" jdbcType="VARCHAR" />
+    <result column="REPAYMENT_BANK" property="repaymentBank" jdbcType="VARCHAR" />
+    <result column="REPAYMENT_CITY" property="repaymentCity" jdbcType="VARCHAR" />
+    <result column="PAYMENT_ACC" property="paymentAcc" jdbcType="VARCHAR" />
+    <result column="PAYMENT_ACC_NAME" property="paymentAccName" jdbcType="VARCHAR" />
+    <result column="PAYMENT_BANK" property="paymentBank" jdbcType="VARCHAR" />
+    <result column="PAYMENT_SUB_BANK" property="paymentSubBank" jdbcType="VARCHAR" />
+    <result column="PAYMENT_CITY" property="paymentCity" jdbcType="VARCHAR" />
+    <result column="REPAYMENT_SUB_BANK" property="repaymentSubBank" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="CFC_ID" property="cfcId" jdbcType="INTEGER" />
+    <result column="COF_TRACE_TIME" property="cofTraceTime" jdbcType="TIMESTAMP" />
+    <result column="SA_REMARK" property="saRemark" jdbcType="VARCHAR" />
+    <result column="FY_ACCOUNT_NAME" property="fyAccountName" jdbcType="VARCHAR" />
+    <result column="FY_ACCOUNT_NO" property="fyAccountNo" jdbcType="VARCHAR" />
+    <result column="BUS_APPID" property="busAppid" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="CHAR" />
+    <result column="SELF_REPAY_NAME" property="selfRepayName" jdbcType="VARCHAR" />
+    <result column="SELF_REPAY_ACCOUNT" property="selfRepayAccount" jdbcType="VARCHAR" />
+    <result column="SELF_REPAY_BANK" property="selfRepayBank" jdbcType="VARCHAR" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="CHECK_ACC_TIME" property="checkAccTime" jdbcType="TIMESTAMP" />
+    <result column="MIN_LOAN_AMOUNT" property="minLoanAmount" jdbcType="DECIMAL" />
+    <result column="MAX_LOAN_AMOUNT" property="maxLoanAmount" jdbcType="DECIMAL" />
+    <result column="DOWN_PAYMENT_RATIO" property="downPaymentRatio" jdbcType="DECIMAL" />
+    <result column="DOWN_PAYMENT_TYPE" property="downPaymentType" jdbcType="VARCHAR" />
+    <result column="SA_BONUS_TYPE" property="saBonusType" jdbcType="VARCHAR" />
+    <result column="MONTHLY_PREMIUM_RATE" property="monthlyPremiumRate" jdbcType="DECIMAL" />
+    <result column="CONTR_ANNUAL_INTEREST_RATE" property="contrAnnualInterestRate" jdbcType="DECIMAL" />
+    <result column="RESERVE_RATE" property="reserveRate" jdbcType="DECIMAL" />
+    <result column="YB_BIND_ID" property="ybBindId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_NO" property="contractNo" jdbcType="VARCHAR" />
+    <result column="BUY_INSURANCE" property="buyInsurance" jdbcType="BIT" />
+    <result column="MONTH_CONSULT_SERVICE_RATE" property="monthConsultServiceRate" jdbcType="DECIMAL" />
+    <result column="REPAYMENT_WAY" property="repaymentWay" jdbcType="VARCHAR" />
+    <result column="CLIENT_SIGNED_TIME" property="clientSignedTime" jdbcType="DATE" />
+    <result column="STORE_SIGNED_TIME" property="storeSignedTime" jdbcType="DATE" />
+    <result column="YB_USER_ID" property="ybUserId" jdbcType="VARCHAR" />
+    <result column="CHECK_RETURN" property="checkReturn" jdbcType="BIT" />
+    <result column="ATTACH_TIP_INFO" property="attachTipInfo" jdbcType="VARCHAR" />
+    <result column="BANK_TEL" property="bankTel" jdbcType="VARCHAR" />
+    <result column="YB_USER_TYPE" property="ybUserType" jdbcType="VARCHAR" />
+    <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR" />
+    <result column="CLIENT_CFC_ID" property="clientCfcId" jdbcType="BIGINT" />
+    <result column="FIRM_CFC_ID" property="firmCfcId" jdbcType="BIGINT" />
+    <result column="CLIENT_CON_STATUS" property="clientConStatus" jdbcType="VARCHAR" />
+    <result column="FIRM_CON_STATUS" property="firmConStatus" jdbcType="VARCHAR" />
+    <result column="SA_NAME" property="saName" jdbcType="VARCHAR" />
+    <result column="APP_STATUS_Name" property="appStatusName" jdbcType="VARCHAR" />
+    <result column="IS_UPLOAD_ATTACH" property="isUploadAttach" jdbcType="VARCHAR" />
+    <result column="PAID_SUCCESS_TIME" property="paidSuccessTime" jdbcType="TIMESTAMP" />
+    <result column="IS_REPAYMENT_SUCCESS" property="isRepaymentSuccess" jdbcType="VARCHAR" />
+    <result column="BUS_RET_INFO" property="busRetInfo" jdbcType="VARCHAR" />
+    <result column="SEND_BUS_TIME" property="sendBusTime" jdbcType="TIMESTAMP" />
+    <result column="REVOCATION_TYPE" property="revocationType" jdbcType="INTEGER" />
+    <result column="REVOCATION_DESC" property="revocationDesc" jdbcType="VARCHAR" />
+    <result column="MARKER" property="marker" jdbcType="INTEGER" />
+    <result column="CONTRACT_STATE" property="contractState" jdbcType="VARCHAR" />
+    <result column="LOAN_TYPE" property="loanType" jdbcType="VARCHAR" />
+    <result column="CAPITAL_TYPE" property="capitalType" jdbcType="VARCHAR" />
+    <result column="USER_EVALUATE_CODE" property="userEvaluateCode" jdbcType="VARCHAR" />
+    <result column="BUS_PRODUCT_ID" property="busProductId" jdbcType="VARCHAR" />
+    <result column="IS_SEND_WK" property="isSendWk" jdbcType="VARCHAR" />
+    <result column="APP_STATUS_INNER" property="appStatusInner" jdbcType="VARCHAR" />
+    <result column="STATUS" property="oldAppState" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, FIRM_NAME, STORE_ID, SHOP_NAME, PRODUCT_SERIES_ID, PRODUCT_SERIES_NAME, PRODUCT_ID, 
+    PRODUCT_NAME, CARD_ID, MOBILE, L1_MANAGER, L2_MANAGER, L3_MANAGER, L4_MANAGER, SALE_MANAGER, 
+    SA, APP_STATE, LOAN_MONEY, USER_EVALUATE, WO_BUILD_TIME, CREATE_CONT_TIME, SIGN_TIME, 
+    ORG_CODE, CLIENT_ID, PERIODS, INTEREST_RATE, PENALTY_RATE, LATE_EXPENESE_RATE, BILLING_RULE, 
+    PREMIUM, DISCOUNT_RATE, SA_BONUS, DSM_BONUS, COMMISSION_RATE, AMOUNT, DOWN_PAYMENT_AMOUNT, 
+    CONTRACT_AMOUNT, SERVICE_CHARGE, RISK_RATE, RISK_AMOUNT, OTHER_AMOUNT, MONTH_AMOUNT, 
+    REPAYMENT_DAY, REPAYMENT_TYPE, REPAYMENT_ACC, REPAYMENT_ACC_NAME, REPAYMENT_BANK, 
+    REPAYMENT_CITY, PAYMENT_ACC, PAYMENT_ACC_NAME, PAYMENT_BANK, PAYMENT_SUB_BANK, PAYMENT_CITY, 
+    REPAYMENT_SUB_BANK, LAST_UPDATE_TIME, CFC_ID, COF_TRACE_TIME, SA_REMARK, FY_ACCOUNT_NAME, 
+    FY_ACCOUNT_NO, BUS_APPID, CUST_TYPE, SELF_REPAY_NAME, SELF_REPAY_ACCOUNT, SELF_REPAY_BANK, 
+    CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, VERSION, CHECK_ACC_TIME, MIN_LOAN_AMOUNT, 
+    MAX_LOAN_AMOUNT, DOWN_PAYMENT_RATIO, DOWN_PAYMENT_TYPE, SA_BONUS_TYPE, MONTHLY_PREMIUM_RATE, 
+    CONTR_ANNUAL_INTEREST_RATE, RESERVE_RATE, YB_BIND_ID, CONTRACT_NO, BUY_INSURANCE, 
+    MONTH_CONSULT_SERVICE_RATE, REPAYMENT_WAY, CLIENT_SIGNED_TIME, STORE_SIGNED_TIME, 
+    YB_USER_ID, CHECK_RETURN, ATTACH_TIP_INFO, BANK_TEL, YB_USER_TYPE, GOODS_TYPE, CUSTOMER_NAME, 
+    CLIENT_CFC_ID, FIRM_CFC_ID, CLIENT_CON_STATUS, FIRM_CON_STATUS, SA_NAME, APP_STATUS_Name, 
+    IS_UPLOAD_ATTACH, PAID_SUCCESS_TIME, IS_REPAYMENT_SUCCESS, BUS_RET_INFO, SEND_BUS_TIME, 
+    REVOCATION_TYPE, REVOCATION_DESC,LOAN_TYPE,MARKER,CAPITAL_TYPE
+  </sql>
+  <sql id="Base_Column_Left_Bank" >
+  	app.ID,
+	app.FIRM_NAME,
+	app.STORE_ID,
+	app.SHOP_NAME,
+	app.PRODUCT_SERIES_ID,
+	app.PRODUCT_SERIES_NAME,
+	app.PRODUCT_ID,
+	app.PRODUCT_NAME,
+	app.CARD_ID,
+	app.MOBILE,
+	app.L1_MANAGER,
+	app.L2_MANAGER,
+	app.L3_MANAGER,
+	app.L4_MANAGER,
+	app.SALE_MANAGER,
+	app.SA,
+	app.APP_STATE,
+	app.LOAN_MONEY,
+	app.USER_EVALUATE,
+	app.WO_BUILD_TIME,
+	app.CREATE_CONT_TIME,
+	app.SIGN_TIME,
+	app.ORG_CODE,
+	app.CLIENT_ID,
+	app.PERIODS,
+	app.INTEREST_RATE,
+	app.PENALTY_RATE,
+	app.LATE_EXPENESE_RATE,
+	app.BILLING_RULE,
+	app.PREMIUM,
+	app.DISCOUNT_RATE,
+	app.SA_BONUS,
+	app.DSM_BONUS,
+	app.COMMISSION_RATE,
+	app.AMOUNT,
+	app.DOWN_PAYMENT_AMOUNT,
+	app.CONTRACT_AMOUNT,
+	app.SERVICE_CHARGE,
+	app.RISK_RATE,
+	app.RISK_AMOUNT,
+	app.OTHER_AMOUNT,
+	app.MONTH_AMOUNT,
+	app.REPAYMENT_DAY,
+	app.REPAYMENT_TYPE,
+	app.REPAYMENT_ACC,
+	app.REPAYMENT_ACC_NAME,
+	bank.`name` REPAYMENT_BANK,
+	city.cityName REPAYMENT_CITY,
+	app.PAYMENT_ACC,
+	app.PAYMENT_ACC_NAME,
+	bank2.`name` PAYMENT_BANK,
+	app.PAYMENT_SUB_BANK,
+	app.PAYMENT_CITY,
+	app.REPAYMENT_SUB_BANK,
+	app.LAST_UPDATE_TIME,
+	app.CFC_ID,
+	app.COF_TRACE_TIME,
+	app.SA_REMARK,
+	app.FY_ACCOUNT_NAME,
+	app.FY_ACCOUNT_NO,
+	app.BUS_APPID,
+	app.CUST_TYPE,
+	app.SELF_REPAY_NAME,
+	app.SELF_REPAY_ACCOUNT,
+	app.SELF_REPAY_BANK,
+	app.CREATEDBY,
+	app.CREATEDON,
+	app.MODIFIEDBY,
+	app.MODIFIEDON,
+	app.VERSION,
+	app.CHECK_ACC_TIME,
+	app.MIN_LOAN_AMOUNT,
+	app.MAX_LOAN_AMOUNT,
+	app.DOWN_PAYMENT_RATIO,
+	app.DOWN_PAYMENT_TYPE,
+	app.SA_BONUS_TYPE,
+	app.MONTHLY_PREMIUM_RATE,
+	app.CONTR_ANNUAL_INTEREST_RATE,
+	app.RESERVE_RATE,
+	app.YB_BIND_ID,
+	app.CONTRACT_NO,
+	app.BUY_INSURANCE,
+	app.MONTH_CONSULT_SERVICE_RATE,
+	app.REPAYMENT_WAY,
+	app.CLIENT_SIGNED_TIME,
+	app.STORE_SIGNED_TIME,
+	app.YB_USER_ID,
+	app.CHECK_RETURN,
+	app.ATTACH_TIP_INFO,
+	app.BANK_TEL,
+	app.YB_USER_TYPE,
+	app.GOODS_TYPE,
+	app.CUSTOMER_NAME,
+	app.CLIENT_CFC_ID,
+	app.FIRM_CFC_ID,
+	app.CLIENT_CON_STATUS,
+	app.FIRM_CON_STATUS,
+	app.SA_NAME,
+	app.APP_STATUS_Name,
+	app.IS_UPLOAD_ATTACH,
+	app.PAID_SUCCESS_TIME,
+	app.IS_REPAYMENT_SUCCESS,
+	app.BUS_RET_INFO,
+	app.SEND_BUS_TIME,
+	app.REVOCATION_TYPE,
+	app.REVOCATION_DESC,
+	app.LOAN_TYPE,
+	app.MARKER,
+	app.CAPITAL_TYPE,
+	app.BUS_PRODUCT_ID,
+	app.IS_SEND_WK,
+	app.APP_STATUS_INNER,
+	stlog.STATUS
+  </sql>
+  
+  <sql id="Base_Column_Left_Process">
+      app1.ID,
+      app1.FIRM_NAME,
+      app1.STORE_ID,
+      app1.SHOP_NAME,
+      app1.PRODUCT_SERIES_ID,
+      app1.PRODUCT_SERIES_NAME,
+      app1.PRODUCT_ID,
+      app1.PRODUCT_NAME,
+      app1.CARD_ID,
+      app1.MOBILE,
+      app1.L1_MANAGER,
+      app1.L2_MANAGER,
+      app1.L3_MANAGER,
+      app1.L4_MANAGER,
+      app1.SALE_MANAGER,
+      app1.SA,
+      app1.APP_STATE,
+      app1.LOAN_MONEY,
+      app1.USER_EVALUATE,
+      app1.WO_BUILD_TIME,
+      app1.CREATE_CONT_TIME,
+      app1.SIGN_TIME,
+      app1.ORG_CODE,
+      app1.CLIENT_ID,
+      app1.PERIODS,
+      app1.INTEREST_RATE,
+      app1.PENALTY_RATE,
+      app1.LATE_EXPENESE_RATE,
+      app1.BILLING_RULE,
+      app1.PREMIUM,
+      app1.DISCOUNT_RATE,
+      app1.SA_BONUS,
+      app1.DSM_BONUS,
+      app1.COMMISSION_RATE,
+      app1.AMOUNT,
+      app1.DOWN_PAYMENT_AMOUNT,
+      app1.CONTRACT_AMOUNT,
+      app1.SERVICE_CHARGE,
+      app1.RISK_RATE,
+      app1.RISK_AMOUNT,
+      app1.OTHER_AMOUNT,
+      app1.MONTH_AMOUNT,
+      app1.REPAYMENT_DAY,
+      app1.REPAYMENT_TYPE,
+      app1.REPAYMENT_ACC,
+      app1.REPAYMENT_ACC_NAME,
+      app1.REPAYMENT_BANK,
+      app1.REPAYMENT_CITY,
+      app1.PAYMENT_ACC,
+      app1.PAYMENT_ACC_NAME,
+      app1.PAYMENT_BANK,
+      app1.PAYMENT_SUB_BANK,
+      app1.PAYMENT_CITY,
+      app1.REPAYMENT_SUB_BANK,
+      app1.LAST_UPDATE_TIME,
+      app1.CFC_ID,
+      app1.COF_TRACE_TIME,
+      app1.SA_REMARK,
+      app1.FY_ACCOUNT_NAME,
+      app1.FY_ACCOUNT_NO,
+      app1.BUS_APPID,
+      app1.CUST_TYPE,
+      app1.SELF_REPAY_NAME,
+      app1.SELF_REPAY_ACCOUNT,
+      app1.SELF_REPAY_BANK,
+      app1.CREATEDBY,
+      app1.CREATEDON,
+      app1.MODIFIEDBY,
+      app1.MODIFIEDON,
+      app1.VERSION,
+      app1.CHECK_ACC_TIME,
+      app1.MIN_LOAN_AMOUNT,
+      app1.MAX_LOAN_AMOUNT,
+      app1.DOWN_PAYMENT_RATIO,
+      app1.DOWN_PAYMENT_TYPE,
+      app1.SA_BONUS_TYPE,
+      app1.MONTHLY_PREMIUM_RATE,
+      app1.CONTR_ANNUAL_INTEREST_RATE,
+      app1.RESERVE_RATE,
+      app1.YB_BIND_ID,
+      app1.CONTRACT_NO,
+      app1.BUY_INSURANCE,
+      app1.MONTH_CONSULT_SERVICE_RATE,
+      app1.REPAYMENT_WAY,
+      app1.CLIENT_SIGNED_TIME,
+      app1.STORE_SIGNED_TIME,
+      app1.YB_USER_ID,
+      app1.CHECK_RETURN,
+      app1.ATTACH_TIP_INFO,
+      app1.BANK_TEL,
+      app1.YB_USER_TYPE,
+      app1.GOODS_TYPE,
+      app1.CUSTOMER_NAME,
+      app1.CLIENT_CFC_ID,
+      app1.FIRM_CFC_ID,
+      app1.CLIENT_CON_STATUS,
+      app1.FIRM_CON_STATUS,
+      app1.SA_NAME,
+      app1.IS_UPLOAD_ATTACH,
+      app1.PAID_SUCCESS_TIME,
+      app1.IS_REPAYMENT_SUCCESS,
+      app1.BUS_RET_INFO,
+      app1.SEND_BUS_TIME,
+      app1.REVOCATION_TYPE,
+      app1.REVOCATION_DESC,
+      app1.LOAN_TYPE,
+      app1.MARKER,
+      app1.CAPITAL_TYPE,
+      app1.BUS_PRODUCT_ID,
+      app1.IS_SEND_WK,
+      app1.APP_STATUS_INNER,
+      app2.`CONTRACT_EXAMINE_STATUS` CONTRACT_STATE
+    </sql>
+  <select id="list" resultMap="BaseResultMap" parameterMap="lnApp" >
+  	  SELECT * from ln_app app1
+  	  INNER JOIN(
+    select 
+   	ID
+    from ln_app 
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+	<if test="id != null">
+		AND ID = #{id,jdbcType=BIGINT}
+	</if>
+	<if test="productSeriesName != null and productSeriesName != '' ">
+		AND PRODUCT_SERIES_NAME = #{productSeriesName }
+	</if>
+	<if test="shopName != null and shopName != '' ">
+		AND SHOP_NAME like CONCAT('%','${shopName}','%' )
+	</if>
+	<if test="firmName != null and firmName != '' ">
+		AND FIRM_NAME like CONCAT('%','${firmName}','%' )
+	</if>
+	<if test="appState != null and appState != '' ">
+		AND APP_STATE IN  (${appState})
+	</if>
+	<if test="customerName != null and customerName != '' ">
+		AND CUSTOMER_NAME like CONCAT('%','${customerName}','%' )
+	</if>
+	<if test="cardId != null and cardId != '' ">
+		AND CARD_ID like CONCAT('%','${cardId}','%' )
+	</if>
+	<if test="saName != null and saName != '' ">
+		AND SA_NAME like CONCAT('%','${saName}','%' )
+	</if>
+	<if test="busAppid != null and busAppid != '' ">
+		AND BUS_APPID = #{busAppid}
+	</if>
+	<if test="sendBusTime != null">
+		AND DATE_FORMAT(SEND_BUS_TIME, '%Y-%m-%d')=DATE_FORMAT(#{sendBusTime}, '%Y-%m-%d')
+	</if>
+	<if test="proResult != null and proResult !='' and proResult == 0">
+		AND BUS_RET_INFO!='success'
+	</if>
+	<if test="proResult != null and proResult !='' and proResult == 1">
+		AND BUS_RET_INFO='success'
+	</if>
+	<if test="sa != null and sa != '' ">
+		AND SA = ${sa}
+	</if>
+	<if test="loanType != null and loanType != '' ">
+		AND LOAN_TYPE = #{loanType}
+	</if>
+	<if test="startTime != null and startTime != ''">
+		and WO_BUILD_TIME <![CDATA[ >= ]]> '${startTime} 00:00:00'
+	</if>		
+	<if test="endTime != null and endTime != ''">
+		and WO_BUILD_TIME <![CDATA[ <= ]]> '${endTime} 23:59:59'
+	</if>
+	<if test="roleSql != null">
+		${roleSql }
+	</if>
+	<if test="repaymentAcc != null and repaymentAcc != ''">
+		and REPAYMENT_ACC = #{repaymentAcc}
+	</if>
+	<if test="isSendWk != null and isSendWk != '' ">
+		AND app.IS_SEND_WK = #{isSendWk}
+	</if>
+	</trim>
+	) app2
+		on app1.id=app2.id
+	ORDER BY app2.id DESC
+  </select>
+  
+  
+  <select id="listUnionBankInfo" resultMap="BaseResultMap" parameterMap="lnApp" >
+    select 
+    <include refid="Base_Column_Left_Bank" />
+	FROM
+		ln_app app
+	LEFT JOIN bank_record_information bank ON app.REPAYMENT_BANK = bank.`code`
+	LEFT JOIN bank_record_information bank2 ON app.PAYMENT_BANK = bank2.`code`
+	LEFT JOIN sm_city city ON city.cityId = LEFT(app.REPAYMENT_CITY,9)
+	LEFT JOIN (select * from ln_app_statuschangelog stlog where stlog.APP_ID=#{id,jdbcType=BIGINT} group by stlog.CREATEDON desc LIMIT 1) stLog
+		ON stLog.stlog.app_id = app.id
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+	<if test="id != null">
+		AND app.ID = #{id,jdbcType=BIGINT}
+	</if>
+	</trim>
+  </select>
+  	
+   <select id="listUnionProcess" resultMap="BaseResultMap" parameterMap="lnApp" >
+	SELECT
+		<include refid="Base_Column_Left_Process" />
+	FROM
+		ln_app app1
+	inner join
+	(
+	SELECT
+		app.ID,
+		process.CONTRACT_EXAMINE_STATUS
+	FROM
+		ln_app app
+	LEFT JOIN ln_app_process process ON app.id = process.APP_ID
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+	<if test="id != null">
+		AND app.ID = #{id,jdbcType=BIGINT}
+	</if>
+	<if test="contractState == null">
+		<if test="appState != null and appState != '' ">
+			AND app.APP_STATE IN (${appState })
+		</if>	
+	</if>
+	<if test="nextCursor!=null and nextCursor !='' ">
+		AND app.ID <![CDATA[ < ]]> #{nextCursor}
+	</if>
+	<if test="id != null">
+		AND app.ID = #{id,jdbcType=BIGINT}
+	</if>
+	<if test="productSeriesName != null and productSeriesName != '' ">
+		AND app.PRODUCT_SERIES_NAME  = #{productSeriesName}
+	</if>
+	<if test="shopName != null and shopName != '' ">
+		AND app.SHOP_NAME  like '${shopName}%'
+	</if>
+	<if test="firmName != null and firmName != '' ">
+		AND app.FIRM_NAME  like '${firmName}%'
+	</if>
+	<if test="customerName != null and customerName != '' ">
+		AND app.CUSTOMER_NAME like '${customerName}%'
+	</if>
+	<if test="cardId != null and cardId != '' ">
+		AND app.CARD_ID = #{cardId}
+	</if>
+	<if test="saName != null and saName != '' ">
+		AND app.SA_NAME like '${saName}%'
+	</if>
+	<if test="busAppid != null and busAppid != '' ">
+		AND app.BUS_APPID = #{busAppid}
+	</if>
+	<if test="startTime != null and startTime != ''">
+		and app.WO_BUILD_TIME <![CDATA[ >= ]]> '${startTime} 00:00:00'
+	</if>		
+	<if test="endTime != null and endTime != ''">
+		and app.WO_BUILD_TIME <![CDATA[ <= ]]> '${endTime} 23:59:59'
+	</if>
+	<if test="sendBusTime != null">
+		AND DATE_FORMAT(app.SEND_BUS_TIME, '%Y-%m-%d')=DATE_FORMAT(#{sendBusTime}, '%Y-%m-%d')
+	</if>
+	<if test="proResult != null and proResult !='' and proResult == 0">
+		AND app.BUS_RET_INFO!='success'
+	</if>
+	<if test="proResult != null and proResult !='' and proResult == 1">
+		AND app.BUS_RET_INFO='success'
+	</if>
+	<if test="roleSql != null">
+		${roleSql }
+	</if>	
+	<if test="contractState != null and contractState != ''">
+		AND process.CONTRACT_EXAMINE_STATUS = #{contractState }
+	</if>
+	<if test="loanType != null and loanType != '' ">
+		AND app.LOAN_TYPE = #{loanType}
+	</if>
+	<if test="isSendWk != null and isSendWk != '' ">
+		AND app.IS_SEND_WK = #{isSendWk}
+	</if>
+	</trim>
+	) app2 on app1.ID = app2.ID
+	ORDER BY app2.ID DESC
+  </select>
+  
+  <select id="getTotalCount" resultType="java.lang.Long" parameterMap="lnApp">
+  	SELECT 
+  		COUNT(1)
+  	FROM ln_app
+  	 <trim prefix="WHERE" prefixOverrides="AND|OR">
+  		<!--
+  		<if test="sa != null and sa != '' ">
+			AND t.SA = ${sa}
+		</if>
+		<if test="saleManager != null and saleManager != '' ">
+			AND t.SALE_MANAGER = ${saleManager}
+		</if>
+		<if test="orgCode != null and orgCode != '' ">
+			AND t.ORG_CODE = ${orgCode}
+		</if>
+		<if test="orgnInfos != null and orgnInfos.size!=0 ">
+			AND t.ORG_CODE IN 
+			<foreach item="groupCode" index="index" collection="orgnInfos" open="(" separator="," close=")">
+				#{groupCode}
+			</foreach>
+		</if>
+		<if test="bsStores != null and bsStores.size!=0 ">
+			AND t.STORE_ID IN 
+			<foreach item="storeId" index="index" collection="bsStores" open="(" separator="," close=")">
+				${storeId}
+			</foreach>
+		</if>
+		 -->
+		<if test="appState != null and appState != '' ">
+			AND APP_STATE in (${appState})
+		</if>
+		
+		<if test="roleSql != null and roleSql != '' ">
+			${roleSql}
+		</if>
+  	</trim>
+  </select>
+  
+  <update id="update" parameterMap="lnApp">
+        update ln_app
+        <set>
+            <if test="firmName != null">
+                FIRM_NAME = #{firmName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                STORE_ID = #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="shopName != null">
+                SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="productSeriesId != null">
+                PRODUCT_SERIES_ID = #{productSeriesId,jdbcType=BIGINT},
+            </if>
+            <if test="productSeriesName != null">
+                PRODUCT_SERIES_NAME = #{productSeriesName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null">
+                PRODUCT_ID = #{productId,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="cardId != null">
+                CARD_ID = #{cardId,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                MOBILE = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="l1Manager != null">
+                L1_MANAGER = #{l1Manager,jdbcType=BIGINT},
+            </if>
+            <if test="l2Manager != null">
+                L2_MANAGER = #{l2Manager,jdbcType=BIGINT},
+            </if>
+            <if test="l3Manager != null">
+                L3_MANAGER = #{l3Manager,jdbcType=BIGINT},
+            </if>
+            <if test="l4Manager != null">
+                L4_MANAGER = #{l4Manager,jdbcType=BIGINT},
+            </if>
+            <if test="saleManager != null">
+                SALE_MANAGER = #{saleManager,jdbcType=BIGINT},
+            </if>
+            <if test="sa != null">
+                SA = #{sa,jdbcType=BIGINT},
+            </if>
+            <if test="appState != null">
+                APP_STATE = #{appState,jdbcType=VARCHAR},
+            </if>
+            <if test="appStatusName != null">
+                APP_STATUS_Name = #{appStatusName,jdbcType=VARCHAR},
+            </if>
+            <if test="loanMoney != null">
+                LOAN_MONEY = #{loanMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="userEvaluate != null">
+                USER_EVALUATE = #{userEvaluate,jdbcType=VARCHAR},
+            </if>
+            <if test="woBuildTime != null">
+                WO_BUILD_TIME = #{woBuildTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createContTime != null">
+                CREATE_CONT_TIME = #{createContTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="signTime != null">
+                SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orgCode != null">
+                ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+            </if>
+            <if test="clientId != null">
+                CLIENT_ID = #{clientId,jdbcType=BIGINT},
+            </if>
+            <if test="periods != null">
+                PERIODS = #{periods,jdbcType=INTEGER},
+            </if>
+            <if test="interestRate != null">
+                INTEREST_RATE = #{interestRate,jdbcType=DOUBLE},
+            </if>
+            <if test="penaltyRate != null">
+                PENALTY_RATE = #{penaltyRate,jdbcType=DOUBLE},
+            </if>
+            <if test="lateExpeneseRate != null">
+                LATE_EXPENESE_RATE = #{lateExpeneseRate,jdbcType=DOUBLE},
+            </if>
+            <if test="billingRule != null">
+                BILLING_RULE = #{billingRule,jdbcType=VARCHAR},
+            </if>
+            <if test="premium != null">
+                PREMIUM = #{premium,jdbcType=DECIMAL},
+            </if>
+            <if test="discountRate != null">
+                DISCOUNT_RATE = #{discountRate,jdbcType=DECIMAL},
+            </if>
+            <if test="saBonus != null">
+                SA_BONUS = #{saBonus,jdbcType=DECIMAL},
+            </if>
+            <if test="dsmBonus != null">
+                DSM_BONUS = #{dsmBonus,jdbcType=DECIMAL},
+            </if>
+            <if test="commissionRate != null">
+                COMMISSION_RATE = #{commissionRate,jdbcType=DECIMAL},
+            </if>
+            <if test="amount != null">
+                AMOUNT = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="downPaymentAmount != null">
+                DOWN_PAYMENT_AMOUNT = #{downPaymentAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="contractAmount != null">
+                CONTRACT_AMOUNT = #{contractAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="serviceCharge != null">
+                SERVICE_CHARGE = #{serviceCharge,jdbcType=DECIMAL},
+            </if>
+            <if test="riskRate != null">
+                RISK_RATE = #{riskRate,jdbcType=DOUBLE},
+            </if>
+            <if test="riskAmount != null">
+                RISK_AMOUNT = #{riskAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="otherAmount != null">
+                OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="monthAmount != null">
+                MONTH_AMOUNT = #{monthAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="repaymentDay != null">
+                REPAYMENT_DAY = #{repaymentDay,jdbcType=INTEGER},
+            </if>
+            <if test="repaymentType != null">
+                REPAYMENT_TYPE = #{repaymentType,jdbcType=VARCHAR},
+            </if>
+            <if test="repaymentAcc != null">
+                REPAYMENT_ACC = #{repaymentAcc,jdbcType=VARCHAR},
+            </if>
+            <if test="repaymentAccName != null">
+                REPAYMENT_ACC_NAME = #{repaymentAccName,jdbcType=VARCHAR},
+            </if>
+            <if test="repaymentBank != null">
+                REPAYMENT_BANK = #{repaymentBank,jdbcType=VARCHAR},
+            </if>
+            <if test="repaymentCity != null">
+                REPAYMENT_CITY = #{repaymentCity,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentAcc != null">
+                PAYMENT_ACC = #{paymentAcc,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentAccName != null">
+                PAYMENT_ACC_NAME = #{paymentAccName,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentBank != null">
+                PAYMENT_BANK = #{paymentBank,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentSubBank != null">
+                PAYMENT_SUB_BANK = #{paymentSubBank,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentCity != null">
+                PAYMENT_CITY = #{paymentCity,jdbcType=VARCHAR},
+            </if>
+            <if test="repaymentSubBank != null">
+                REPAYMENT_SUB_BANK = #{repaymentSubBank,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdateTime != null">
+                LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cfcId != null">
+                CFC_ID = #{cfcId,jdbcType=INTEGER},
+            </if>
+            <if test="cofTraceTime != null">
+                COF_TRACE_TIME = #{cofTraceTime,jdbcType=TIMESTAMP},
+            </if>
+			 <if test="saRemark != null">
+            	SA_REMARK = #{saRemark,jdbcType=VARCHAR},
+ 			</if>
+            <if test="fyAccountName != null">
+                FY_ACCOUNT_NAME = #{fyAccountName,jdbcType=VARCHAR},
+            </if>
+            <if test="fyAccountNo != null">
+                FY_ACCOUNT_NO = #{fyAccountNo,jdbcType=VARCHAR},
+            </if>
+            <if test="busAppid != null">
+                BUS_APPID = #{busAppid,jdbcType=VARCHAR},
+            </if>
+            <if test="custType != null">
+                CUST_TYPE = #{custType,jdbcType=CHAR},
+            </if>
+            <if test="selfRepayName != null">
+                SELF_REPAY_NAME = #{selfRepayName,jdbcType=VARCHAR},
+            </if>
+            <if test="selfRepayAccount != null">
+                SELF_REPAY_ACCOUNT = #{selfRepayAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="selfRepayBank != null">
+                SELF_REPAY_BANK = #{selfRepayBank,jdbcType=VARCHAR},
+            </if>
+            <if test="createdby != null">
+                CREATEDBY = #{createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="createdon != null">
+                CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifiedby != null">
+                MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+            </if>
+            <if test="modifiedon != null">
+                MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                VERSION = #{version,jdbcType=INTEGER},
+            </if>
+            <if test="checkAccTime != null">
+                CHECK_ACC_TIME = #{checkAccTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="minLoanAmount != null">
+                MIN_LOAN_AMOUNT = #{minLoanAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="maxLoanAmount != null">
+                MAX_LOAN_AMOUNT = #{maxLoanAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="downPaymentRatio != null">
+                DOWN_PAYMENT_RATIO = #{downPaymentRatio,jdbcType=DECIMAL},
+            </if>
+            <if test="downPaymentType != null">
+                DOWN_PAYMENT_TYPE = #{downPaymentType,jdbcType=VARCHAR},
+            </if>
+            <if test="saBonusType != null">
+                SA_BONUS_TYPE = #{saBonusType,jdbcType=VARCHAR},
+            </if>
+            <if test="monthlyPremiumRate != null">
+                MONTHLY_PREMIUM_RATE = #{monthlyPremiumRate,jdbcType=DECIMAL},
+            </if>
+            <if test="contrAnnualInterestRate != null">
+                CONTR_ANNUAL_INTEREST_RATE = #{contrAnnualInterestRate,jdbcType=DECIMAL},
+            </if>
+            <if test="reserveRate != null">
+                RESERVE_RATE = #{reserveRate,jdbcType=DECIMAL},
+            </if>
+            <if test="ybBindId != null">
+                YB_BIND_ID = #{ybBindId,jdbcType=VARCHAR},
+            </if>
+            <if test="contractNo != null">
+                CONTRACT_NO = #{contractNo,jdbcType=VARCHAR},
+            </if>
+            <if test="buyInsurance != null">
+                BUY_INSURANCE = #{buyInsurance,jdbcType=BIT},
+            </if>
+            <if test="monthConsultServiceRate != null">
+                MONTH_CONSULT_SERVICE_RATE = #{monthConsultServiceRate,jdbcType=DECIMAL},
+            </if>
+            <if test="repaymentWay != null">
+                REPAYMENT_WAY = #{repaymentWay,jdbcType=VARCHAR},
+            </if>
+            <if test="clientSignedTime != null">
+                CLIENT_SIGNED_TIME = #{clientSignedTime,jdbcType=DATE},
+            </if>
+            <if test="storeSignedTime != null">
+                STORE_SIGNED_TIME = #{storeSignedTime,jdbcType=DATE},
+            </if>
+            <if test="ybUserId != null">
+                YB_USER_ID = #{ybUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="checkReturn != null">
+                CHECK_RETURN = #{checkReturn,jdbcType=BIT},
+            </if>
+            <if test="attachTipInfo != null">
+                ATTACH_TIP_INFO = #{attachTipInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="bankTel != null">
+                BANK_TEL = #{bankTel,jdbcType=VARCHAR},
+            </if>
+            <if test="ybUserType != null">
+                YB_USER_TYPE = #{ybUserType,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsType != null">
+                GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null">
+                CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="clientCfcId != null">
+                CLIENT_CFC_ID = #{clientCfcId,jdbcType=BIGINT},
+            </if>
+            <if test="firmCfcId != null">
+                FIRM_CFC_ID = #{firmCfcId,jdbcType=BIGINT},
+            </if>
+            <if test="clientConStatus != null">
+                CLIENT_CON_STATUS = #{clientConStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="firmConStatus != null">
+                FIRM_CON_STATUS = #{firmConStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="saName != null">
+                SA_NAME = #{saName,jdbcType=VARCHAR},
+            </if>
+            <if test="isUploadAttach != null">
+                IS_UPLOAD_ATTACH = #{isUploadAttach,jdbcType=VARCHAR},
+            </if>
+            <if test="paidSuccessTime != null">
+                PAID_SUCCESS_TIME = #{paidSuccessTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isRepaymentSuccess != null">
+                IS_REPAYMENT_SUCCESS = #{isRepaymentSuccess,jdbcType=VARCHAR},
+            </if>
+            <if test="busRetInfo != null">
+                BUS_RET_INFO = #{busRetInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="sendBusTime != null">
+                SEND_BUS_TIME = #{sendBusTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="revocationType != null">
+                REVOCATION_TYPE = #{revocationType,jdbcType=INTEGER},
+            </if>
+            <if test="revocationDesc != null">
+                REVOCATION_DESC = #{revocationDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="marker != null">
+                MARKER = #{marker,jdbcType=INTEGER},
+            </if>
+            <if test="capitalType != null">
+                CAPITAL_TYPE = #{capitalType,jdbcType=VARCHAR},
+            </if>
+            <if test="userEvaluateCode != null">
+                USER_EVALUATE_CODE = #{userEvaluateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="busProductId != null">
+                BUS_PRODUCT_ID = #{busProductId,jdbcType=VARCHAR},
+            </if>
+            <if test="isSendWk != null">
+                IS_SEND_WK = #{isSendWk,jdbcType=VARCHAR},
+            </if>
+            <if test="appStatusInner != null">
+            	APP_STATUS_INNER = #{appStatusInner,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+    
+    <update id="updateAppStatus" parameterMap="lnApp">
+        UPDATE ln_app
+			SET
+				APP_STATE = #{appState,jdbcType=VARCHAR},
+				APP_STATUS_Name = #{appStateName,jdbcType=VARCHAR},
+				CLIENT_SIGNED_TIME = #{clientSignedTime,jdbcType=DATE},
+			 	STORE_SIGNED_TIME = #{storeSignedTime,jdbcType=DATE},
+			 	CLIENT_CON_STATUS = #{clientConStatus,jdbcType=VARCHAR},
+			 	FIRM_CON_STATUS = #{firmConStatus,jdbcType=VARCHAR},
+			 	APP_STATUS_INNER = #{appStatusInner,jdbcType=VARCHAR}
+			WHERE ID = #{id,jdbcType=BIGINT}
+			AND APP_STATE = #{oldAppState,jdbcType=VARCHAR};
+    </update>
+</mapper>
