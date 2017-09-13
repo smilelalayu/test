@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.times.acs.pojo.admin.UserGroupPOJO" table="user_group"
+		lazy="false">
+		<cache usage="read-write" />
+		<id column="group_id" length="10" name="groupId" type="long">
+			<generator class="sequence"> <param name="sequence">USER_GROUP_GROUP_ID_SEQ</param>	</generator>
+		</id>
+		<property column="group_name" length="255" name="groupName"
+			not-null="true" type="string" />
+		<property column="group_code" length="50" name="groupCode"
+			not-null="true" type="string" />
+		<property column="level_" length="30" name="level"
+			type="java.lang.Integer" />
+		<property column="description" length="255" name="description"
+			type="string" />
+		<property column="ordernum" length="50" name="ordernum"
+			type="string" />
+		<property column="address" length="255" name="address"
+			type="string" />
+		<property column="contact_one" length="100" name="contact1"
+			type="string" />		
+		<property column="contact_two" length="100" name="contact2"
+			type="string" />
+		<property column="contactPerson" length="50" name="contactPerson"
+			type="string" />
+		<property column="telephone" length="100" name="telephone"
+			type="string" />	
+		<property column="fax" length="100" name="fax"
+			type="string" />	
+		<property column="groupType" length="30" name="groupType"
+			type="java.lang.Integer" />		
+		<property column="modify_time" length="19" name="modifyTime"
+			type="java.util.Date" />
+		<property column="create_time" length="19" name="createTime"
+			type="java.util.Date" />
+		<property column="reserver1" length="255" name="reserver1"
+			type="string" />
+		<property column="reserver2" length="255" name="reserver2"
+			type="string" />
+	
+		
+		<property name="sjID" type="java.lang.Long">
+            <column name="sj_id">
+               
+            </column>
+        </property>	
+		<set name="users" table="user_info" lazy="true" inverse="true"
+			cascade="none" order-by="create_time">
+			<key column="group_id" />
+			<one-to-many class="com.times.acs.pojo.admin.UserInfoPOJO" />
+		</set>
+		<set name="roles" table="usergroup_role" lazy="false" inverse="true"
+			cascade="delete">
+			<key column="group_id" />
+			<one-to-many class="com.times.acs.pojo.admin.UsergroupRolePOJO" />
+		</set>
+
+		<many-to-one name="parent" class="com.times.acs.pojo.admin.UserGroupPOJO"
+			column="parent_id" cascade="none" />
+		<set name="childs" lazy="true" inverse="true" cascade="save-update"
+			order-by="create_time">
+			<key column="parent_id" />
+			<one-to-many class="com.times.acs.pojo.admin.UserGroupPOJO" />
+		</set>
+	</class>
+</hibernate-mapping>

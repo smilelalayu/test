@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true">
+	<class name="com.times.acs.pojo.admin.UserInfoPOJO" table="user_info"
+		lazy="false">
+		<cache usage="read-write" />
+		<id column="user_id" length="10" name="userId" type="long">
+			<generator class="sequence"> <param name="sequence">USER_INFO_USER_ID_SEQ</param>	</generator>
+		</id>
+		<property column="user_name" length="255" name="userName"
+			not-null="true" type="string" />
+		<property column="login_name" length="255" name="loginName"
+			not-null="true" type="string" />
+		<property column="employee_id" length="16" name="employeeId"
+			type="string" />
+		<property column="password" length="16" name="password" type="string" />
+		<property column="email" length="255" name="email" type="string" />
+		<property column="mob_tel1" length="20" name="mobTel1" type="string" />
+		<property column="mob_tel2" length="20" name="mobTel2" type="string" />
+		<property column="fam_tel" length="20" name="famTel" type="string" />
+		<property column="com_tel" length="20" name="comTel" type="string" />
+		<property column="department" length="255" name="department"
+			type="string" />
+		<property column="title" length="255" name="title" type="string" />
+		<property column="is_stop" length="1" name="stop" type="string" />
+		<property column="modify_time" length="19" name="modifyTime"
+			type="java.util.Date" />
+		<property column="create_time" length="19" name="createTime"
+			type="java.util.Date" />
+		<property column="reserver1" length="255" name="reserver1"
+			type="string" />
+		<property column="reserver2" length="255" name="reserver2"
+			type="string" />
+		<property column="user_category" length="255" name="userCategory"
+			type="string" />
+			<property column="AppCode" length="50" name="appCode" type="string"/>
+		<many-to-one name="userGroup" class="com.times.acs.pojo.admin.UserGroupPOJO"
+			column="group_id" not-null="true"  />
+
+		<set name="roles" table="user_role" lazy="false" inverse="true"
+			cascade="delete" sort="unsorted">
+			<key column="user_id" />
+			<one-to-many class="com.times.acs.pojo.admin.UserRolePOJO" />
+		</set>
+		
+		
+		   <property name="applicantId" type="java.lang.Long">
+            <column name="APPLICANT_ID" />
+        </property>
+        
+        
+        
+           <property name="accountId" type="java.lang.Long">
+            <column name="ACCOUNT_ID" />
+        </property>
+	</class>
+</hibernate-mapping>

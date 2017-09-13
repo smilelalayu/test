@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.times.acs.pojo.admin.UserRolePOJO" table="user_role" lazy="false"  catalog="acs">
+<cache usage="read-write" /> 
+<id column="id" length="10" name="id" type="long">
+<generator class="identity"/>
+</id>
+<many-to-one name="role"
+			class="com.times.acs.pojo.admin.RolesPOJO" column="role_id" not-null="true" cascade="none"/>
+
+<many-to-one name="user"
+			class="com.times.acs.pojo.admin.UserInfoPOJO" column="user_id" not-null="true" cascade="none"/>
+</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.times.acs.pojo.admin.PermissionsPOJO" table="permissions" lazy="false" 
+catalog="acs">
+<cache usage="read-write" /> 
+<id column="code" length="10" name="code" type="long">
+<generator class="identity"/>
+</id>
+<property column="comments" length="40" name="comments" not-null="true" type="string"/>
+<property column="resources" length="255" name="resources" type="string"/>
+
+
+<property column="AppCode" length="50" name="appCode" type="string"/>
+
+</class>
+</hibernate-mapping>

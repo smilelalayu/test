@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.times.acs.pojo.admin.RolesPOJO" table="roles"
+		lazy="false"  catalog="acs">
+		<cache usage="read-write" />
+		<id column="role_id" length="10" name="roleId" type="long">
+			<generator class="identity" />
+		</id>
+		<property column="role_name" length="255" name="roleName"
+			not-null="true" type="string" />
+		<property column="permissions" length="255" name="permissions"
+			not-null="true" type="string" />
+		<property column="modify_time" length="19" name="modifyTime"
+			type="java.util.Date" />
+		<property column="create_time" length="19" name="createTime"
+			type="java.util.Date" />
+		<property column="reserver1" length="255" name="reserver1"
+			type="string" />
+		<property column="reserver2" length="255" name="reserver2"
+			type="string" />
+			
+		<property column="RoleCode" length="50" name="roleCode"
+			 type="string" />
+			
+			
+			
+		<many-to-one name="smApplication" class="com.times.acs.pojo.admin.SmApplication"
+			fetch="select">
+			<column name="ApplicationID" />
+		</many-to-one>
+		<set name="userRoles" table="user_role" lazy="true" inverse="true"
+			cascade="delete" sort="unsorted">
+			<key column="role_id" />
+			<one-to-many class="com.times.acs.pojo.admin.UserRolePOJO" />
+		</set>
+		<set name="userGroupRoles" table="usergroup_role" lazy="false"
+			inverse="true" cascade="delete" sort="unsorted">
+			<key column="role_id" />
+			<one-to-many class="com.times.acs.pojo.admin.UsergroupRolePOJO" />
+		</set>
+	</class>
+</hibernate-mapping>

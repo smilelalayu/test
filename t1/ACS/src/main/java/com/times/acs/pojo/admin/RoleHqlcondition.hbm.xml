@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-4-10 22:41:16 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.times.acs.pojo.admin.RoleHqlcondition" table="role_hqlcondition"
+		lazy="false">
+		<cache usage="read-write" />
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="entityName" type="string">
+			<column name="entityName">
+			</column>
+		</property>
+		<property name="roleName" type="string">
+			<column name="roleName">
+			</column>
+		</property>
+
+		<property name="roleCode" type="string">
+			<column name="roleCode" length="50">
+			</column>
+		</property>
+
+
+		<property name="roleId" type="java.lang.Long">
+			<column name="roleId">
+				<comment>&#189;&#199;&#201;&#171;ID</comment>
+			</column>
+		</property>
+		<property name="caption" type="string">
+			<column name="caption" length="50">
+				<comment>&#195;&#251;&#179;&#198;</comment>
+			</column>
+		</property>
+		<property name="parentid" type="java.lang.Integer">
+			<column name="parentid">
+				<comment>&#184;&#184;&#204;&#245;&#188;&#254;</comment>
+			</column>
+		</property>
+		<property name="fieldName" type="string">
+			<column name="fieldName" length="50">
+				<comment>&#215;&#214;&#182;&#206;</comment>
+			</column>
+		</property>
+
+		<property name="fldType" type="string">
+			<column name="fldType" length="50">
+			</column>
+		</property>
+
+		<property name="operator" type="string">
+			<column name="operator" length="10">
+				<comment>&#178;&#217;&#215;&#247;&#183;&#251;</comment>
+			</column>
+		</property>
+		<property name="paramName" type="string">
+			<column name="paramName" length="50">
+				<comment>&#178;&#206;&#202;&#253;&#195;&#251;&#179;&#198;</comment>
+			</column>
+		</property>
+		<property name="joinWord" type="string">
+			<column name="joinWord" length="5">
+				<comment>&#193;&#172;&#189;&#211;&#183;&#251;</comment>
+			</column>
+		</property>
+		<property name="paramValue" type="string">
+			<column name="paramValue">
+				<comment>&#178;&#206;&#202;&#253;&#214;&#181;</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

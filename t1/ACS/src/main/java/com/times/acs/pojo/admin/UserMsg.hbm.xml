@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-8-14 14:53:29 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.times.acs.pojo.admin.UserMsg" table="user_msg"  lazy="false">
+        <id name="msgId" type="java.lang.Long">
+            <column name="msgId" />
+            <generator class="identity" />
+        </id>
+        <version name="version" type="java.lang.Integer">
+            <column name="Version" />
+        </version>
+        <property name="sender" type="string">
+            <column name="sender" length="255" not-null="true" />
+        </property>
+        <property name="receiver" type="string">
+            <column name="receiver" length="255" not-null="true" />
+        </property>
+        <property name="msgStatus" type="java.lang.Integer">
+            <column name="msgStatus" />
+        </property>
+        <property name="senderTime" type="timestamp">
+            <column name="senderTime" length="19" />
+        </property>
+        <property name="isRead" type="java.lang.Boolean">
+            <column name="isRead" />
+        </property>
+        <property name="readTime" type="timestamp">
+            <column name="readTime" length="19" />
+        </property>
+        <property name="msgContent" type="string">
+            <column name="msgContent" length="500" />
+        </property>
+        <property name="createBy" type="string">
+            <column name="CreateBy" length="50" />
+        </property>
+        <property name="modifyBy" type="string">
+            <column name="ModifyBy" length="50" />
+        </property>
+        <property name="modifyOn" type="timestamp">
+            <column name="ModifyOn" length="19" />
+        </property>
+        <property name="createOn" type="timestamp">
+            <column name="CreateOn" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

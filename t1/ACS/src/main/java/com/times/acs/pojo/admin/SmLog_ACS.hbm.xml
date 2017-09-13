@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-3-1 18:50:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.times.acs.pojo.admin.SmLog" table="sm_log" lazy="false" catalog="acs">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="loginName" type="string">
+			<column name="login_name" length="20" not-null="true" />
+		</property>
+		<property name="loginIp" type="string">
+			<column name="login_ip" length="20" not-null="true" />
+		</property>
+		<property name="moduleName" type="string">
+			<column name="module_name" length="20" not-null="true" />
+		</property>
+		<property name="logContent" type="string">
+			<column name="log_content" not-null="true" />
+		</property>
+		<property name="logDate" type="timestamp">
+			<column name="log_date" length="19" not-null="true" />
+		</property>
+
+
+
+		<property name="requestStartTime" type="timestamp">
+			<column name="RequestStartTime" length="19" />
+		</property>
+
+
+		<property name="requestEndTime" type="timestamp">
+			<column name="RequestEndTime" length="19" />
+		</property>
+
+
+		<property name="systemDealTime" type="java.lang.Long">
+			<column name="SystemDealTime" />
+		</property>
+
+
+		<property name="type" type="string">
+			<column name="Type" length="50" />
+		</property>
+
+		<property name="subType" type="string">
+			<column name="SubType" length="50" />
+		</property>
+
+		<property name="result" type="string">
+			<column name="Result" length="50"/>
+		</property>
+
+
+		<property column="AppCode" length="50" name="appCode" type="string"/>
+
+
+	</class>
+</hibernate-mapping>
