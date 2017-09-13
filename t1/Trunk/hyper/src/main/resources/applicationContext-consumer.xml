@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://code.alibabatech.com/schema/dubbo 
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+ 
+
+    <dubbo:reference id="repayPlanService" interface="com.plm.service.RepayPlanService" check="false"/>
+   <!--   <dubbo:reference id="hyperService" interface="com.plm.service.HyperService" check="false"/> 	-->
+    <dubbo:reference id="contractService" interface="com.qz.service.ContractService" check="false"/>
+    <dubbo:reference id="fkTpApiService" interface="com.fk.api.service.FkTpApiService" check="false" />
+    
+    <dubbo:reference id="lnAppOperationService" interface="com.sc.api.service.LnAppOperationService" check="false"/>
+    <dubbo:reference id="fkRuleApiService" interface="com.fk.api.service.FkRuleApiService" check="false"/>
+    <dubbo:reference id="lnAppApiService" interface="com.fk.api.service.LnAppApiService" check="false"/>
+    <dubbo:reference id="quotaOperationService" interface="com.sc.api.service.QuotaOperationService" check="false"/>
+    
+    <!-- 推BUS 调用外联接口 -->
+    <dubbo:reference id="busLoanAfService"    interface="com.eip.service.biz.bjbus.inf.BusLoanAfService" check="false" />
+</beans>

@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.merchant.store.dao.BsStoreHmMapper" >
+  <parameterMap id="bsStore" type="com.hm.merchant.store.model.BsStore" />
+  <resultMap id="BaseResultMap" type="com.hm.merchant.store.model.BsStore" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="STORE_CODE" property="storeCode" jdbcType="VARCHAR" />
+    <result column="STORE_NAME" property="storeName" jdbcType="VARCHAR" />
+    <result column="MERCHANT_ID" property="merchantId" jdbcType="BIGINT" />
+    <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+    <result column="ORGCODE" property="orgcode" jdbcType="VARCHAR" />
+    <result column="STORE_PROV" property="storeProv" jdbcType="VARCHAR" />
+    <result column="STORE_CITY" property="storeCity" jdbcType="VARCHAR" />
+    <result column="STORE_TOWN" property="storeTown" jdbcType="VARCHAR" />
+    <result column="STORE_STR" property="storeStr" jdbcType="VARCHAR" />
+    <result column="STORE_RIDGE" property="storeRidge" jdbcType="VARCHAR" />
+    <result column="STORE_HOME" property="storeHome" jdbcType="VARCHAR" />
+    <result column="ZIPCODE" property="zipcode" jdbcType="VARCHAR" />
+    <result column="MAJOR_CONTACT_NAME" property="majorContactName" jdbcType="VARCHAR" />
+    <result column="MAJOR_CONTACT_PHONE" property="majorContactPhone" jdbcType="VARCHAR" />
+    <result column="MAJOR_CONTACT_MAIL" property="majorContactMail" jdbcType="VARCHAR" />
+    <result column="MAJOR_CONTACT_POSITION" property="majorContactPosition" jdbcType="VARCHAR" />
+    <result column="MAJOR_CONTACT_QQ" property="majorContactQq" jdbcType="VARCHAR" />
+    <result column="MAJOR_CONTACT_WEIXIN" property="majorContactWeixin" jdbcType="VARCHAR" />
+    <result column="FINANCE_NAME" property="financeName" jdbcType="VARCHAR" />
+    <result column="FINANCE_PHONE" property="financePhone" jdbcType="VARCHAR" />
+    <result column="FINANCE_MAIL" property="financeMail" jdbcType="VARCHAR" />
+    <result column="BUSINESS_START_TIME" property="businessStartTime" jdbcType="VARCHAR" />
+    <result column="BUSINESS_END_TIME" property="businessEndTime" jdbcType="VARCHAR" />
+    <result column="MAIN_BRAND" property="mainBrand" jdbcType="VARCHAR" />
+    <result column="MANAGER_ID" property="managerId" jdbcType="BIGINT" />
+    <result column="STORE_MANAGER_BINDING_TIME" property="storeManagerBindingTime" jdbcType="TIMESTAMP" />
+    <result column="CLOSEDBY" property="closedby" jdbcType="BIGINT" />
+    <result column="CLOSEDON" property="closedon" jdbcType="TIMESTAMP" />
+    <result column="ACTIVEDBY" property="activedby" jdbcType="BIGINT" />
+    <result column="ACTIVEDON" property="activedon" jdbcType="TIMESTAMP" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATEDON" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDBY" property="modifiedby" jdbcType="VARCHAR" />
+    <result column="MODIFIEDON" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="ACTIVE_STATUS" property="activeStatus" jdbcType="VARCHAR" />
+    <result column="STORE_STATUS" property="storeStatus" jdbcType="VARCHAR" />
+    <result column="OPER_MODE_CODE" property="operModeCode" jdbcType="VARCHAR" />
+    <result column="MERCHANT_TYPE_CODE" property="merchantTypeCode" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_SUB_BANK" property="accountSubBank" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_CITY" property="accountCity" jdbcType="VARCHAR" />
+    <result column="BANK_ACCOUNT" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="FU_MOBILE" property="fuMobile" jdbcType="VARCHAR" />
+    <result column="FU_PASSWORD" property="fuPassword" jdbcType="VARCHAR" />
+    <result column="FEE_PROPORTION" property="feeProportion" jdbcType="DECIMAL" />
+    <result column="CALCULATE_METHOD" property="calculateMethod" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="PASS_RATE_TIME" property="passRateTime" jdbcType="TIMESTAMP" />
+    <result column="PASS_RATE" property="passRate" jdbcType="DOUBLE" />
+    <result column="JSPN_VALUE" property="jspnValue" jdbcType="INTEGER" />
+    <result column="STORE_REGISTER_NO" property="storeRegisterNo" jdbcType="VARCHAR" />
+    <result column="STORE_DESC" property="storeDesc" jdbcType="VARCHAR" />
+    <result column="FACE_CHECK" property="faceCheck" jdbcType="INTEGER" />
+    <result column="STORE_CHARACTER" property="storeCharacter" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, STORE_CODE, STORE_NAME, MERCHANT_ID, BRANCH_NAME, ORGCODE, STORE_PROV, STORE_CITY, 
+    STORE_TOWN, STORE_STR, STORE_RIDGE, STORE_HOME, ZIPCODE, MAJOR_CONTACT_NAME, MAJOR_CONTACT_PHONE, 
+    MAJOR_CONTACT_MAIL, MAJOR_CONTACT_POSITION, MAJOR_CONTACT_QQ, MAJOR_CONTACT_WEIXIN, 
+    FINANCE_NAME, FINANCE_PHONE, FINANCE_MAIL, BUSINESS_START_TIME, BUSINESS_END_TIME, 
+    MAIN_BRAND, MANAGER_ID, STORE_MANAGER_BINDING_TIME, CLOSEDBY, CLOSEDON, ACTIVEDBY, 
+    ACTIVEDON, CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, ACTIVE_STATUS, STORE_STATUS, 
+    OPER_MODE_CODE, MERCHANT_TYPE_CODE, ACCOUNT_NAME, BANK_NAME, ACCOUNT_SUB_BANK, ACCOUNT_CITY, 
+    BANK_ACCOUNT, FU_MOBILE, FU_PASSWORD, FEE_PROPORTION, CALCULATE_METHOD, VERSION, 
+    PASS_RATE_TIME, PASS_RATE, JSPN_VALUE, STORE_REGISTER_NO, STORE_DESC, FACE_CHECK,STORE_CHARACTER
+  </sql>
+  
+  <sql id="BaseAndAddRess_Column_List" >
+	b.ID,
+	b.STORE_CODE,
+	b.STORE_NAME,
+	b.MERCHANT_ID,
+	b.BRANCH_NAME,
+	b.ORGCODE,
+	b.STORE_PROV,
+	b.STORE_CITY,
+	b.STORE_TOWN,
+	b.STORE_STR,
+	b.STORE_RIDGE,
+	b.STORE_HOME,
+	b.ZIPCODE,
+	b.MAJOR_CONTACT_NAME,
+	b.MAJOR_CONTACT_PHONE,
+	b.MAJOR_CONTACT_MAIL,
+	b.MAJOR_CONTACT_POSITION,
+	b.MAJOR_CONTACT_QQ,
+	b.MAJOR_CONTACT_WEIXIN,
+	b.FINANCE_NAME,
+	b.FINANCE_PHONE,
+	b.FINANCE_MAIL,
+	b.BUSINESS_START_TIME,
+	b.BUSINESS_END_TIME,
+	b.MAIN_BRAND,
+	b.MANAGER_ID,
+	b.STORE_MANAGER_BINDING_TIME,
+	b.CLOSEDBY,
+	b.CLOSEDON,
+	b.ACTIVEDBY,
+	b.ACTIVEDON,
+	b.CREATEDBY,
+	b.CREATEDON,
+	b.MODIFIEDBY,
+	b.MODIFIEDON,
+	b.ACTIVE_STATUS,
+	b.STORE_STATUS,
+	b.OPER_MODE_CODE,
+	b.MERCHANT_TYPE_CODE,
+	b.ACCOUNT_NAME,
+	b.BANK_NAME,
+	b.ACCOUNT_SUB_BANK,
+	b.ACCOUNT_CITY,
+	b.BANK_ACCOUNT,
+	b.FU_MOBILE,
+	b.FU_PASSWORD,
+	b.FEE_PROPORTION,
+	b.CALCULATE_METHOD,
+	b.VERSION,
+	b.PASS_RATE_TIME,
+	b.PASS_RATE,
+	b.JSPN_VALUE,
+	b.STORE_REGISTER_NO,
+	b.STORE_DESC,
+	b.FACE_CHECK,
+	b.STORE_CHARACTER,
+	p.provinceName storeProvName,
+	c.cityName storeCityName,
+	d.districtName storeTownName
+  </sql>
+  <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bs_store
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+    	<if test="id != null">
+    		AND ID = #{id,jdbcType=BIGINT}
+    	</if>
+    	<if test="managerId != null">
+    		AND MANAGER_ID = ${managerId}
+    	</if>
+    </trim> 
+  </select>
+  
+  <select id="listStoreSa" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select DISTINCT bs.ID,bs.STORE_NAME,bs.MANAGER_ID,bs.MERCHANT_ID,bs.STORE_CHARACTER from bs_store_sa bsa
+	left join bs_store bs on bsa.STORE_ID = bs.ID
+	where USER_ID = #{userId,jdbcType=BIGINT} 
+	and STORE_STATUS = "storeopen"
+	and ACTIVE_STATUS = "storeon"
+	and bsa.IS_DEL=0
+  </select>
+  
+  
+
+  
+   <select id="getStoreAddressById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select 
+    <include refid="BaseAndAddRess_Column_List" />
+	FROM
+		bs_store b
+	LEFT JOIN sm_province p ON p.provinceId = b.STORE_PROV
+	LEFT JOIN sm_city c on c.cityId = b.STORE_CITY
+	LEFT JOIN sm_district d on d.districtId = b.STORE_TOWN
+    where  b.ID = #{id,jdbcType=BIGINT}
+  </select>
+	
+  
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from bs_store
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterMap="bsStore" >
+    insert into bs_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="storeCode != null" >
+        STORE_CODE,
+      </if>
+      <if test="storeName != null" >
+        STORE_NAME,
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID,
+      </if>
+      <if test="branchName != null" >
+        BRANCH_NAME,
+      </if>
+      <if test="orgcode != null" >
+        ORGCODE,
+      </if>
+      <if test="storeProv != null" >
+        STORE_PROV,
+      </if>
+      <if test="storeCity != null" >
+        STORE_CITY,
+      </if>
+      <if test="storeTown != null" >
+        STORE_TOWN,
+      </if>
+      <if test="storeStr != null" >
+        STORE_STR,
+      </if>
+      <if test="storeRidge != null" >
+        STORE_RIDGE,
+      </if>
+      <if test="storeHome != null" >
+        STORE_HOME,
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE,
+      </if>
+      <if test="majorContactName != null" >
+        MAJOR_CONTACT_NAME,
+      </if>
+      <if test="majorContactPhone != null" >
+        MAJOR_CONTACT_PHONE,
+      </if>
+      <if test="majorContactMail != null" >
+        MAJOR_CONTACT_MAIL,
+      </if>
+      <if test="majorContactPosition != null" >
+        MAJOR_CONTACT_POSITION,
+      </if>
+      <if test="majorContactQq != null" >
+        MAJOR_CONTACT_QQ,
+      </if>
+      <if test="majorContactWeixin != null" >
+        MAJOR_CONTACT_WEIXIN,
+      </if>
+      <if test="financeName != null" >
+        FINANCE_NAME,
+      </if>
+      <if test="financePhone != null" >
+        FINANCE_PHONE,
+      </if>
+      <if test="financeMail != null" >
+        FINANCE_MAIL,
+      </if>
+      <if test="businessStartTime != null" >
+        BUSINESS_START_TIME,
+      </if>
+      <if test="businessEndTime != null" >
+        BUSINESS_END_TIME,
+      </if>
+      <if test="mainBrand != null" >
+        MAIN_BRAND,
+      </if>
+      <if test="managerId != null" >
+        MANAGER_ID,
+      </if>
+      <if test="storeManagerBindingTime != null" >
+        STORE_MANAGER_BINDING_TIME,
+      </if>
+      <if test="closedby != null" >
+        CLOSEDBY,
+      </if>
+      <if test="closedon != null" >
+        CLOSEDON,
+      </if>
+      <if test="activedby != null" >
+        ACTIVEDBY,
+      </if>
+      <if test="activedon != null" >
+        ACTIVEDON,
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY,
+      </if>
+      <if test="createdon != null" >
+        CREATEDON,
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY,
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON,
+      </if>
+      <if test="activeStatus != null" >
+        ACTIVE_STATUS,
+      </if>
+      <if test="storeStatus != null" >
+        STORE_STATUS,
+      </if>
+      <if test="operModeCode != null" >
+        OPER_MODE_CODE,
+      </if>
+      <if test="merchantTypeCode != null" >
+        MERCHANT_TYPE_CODE,
+      </if>
+      <if test="accountName != null" >
+        ACCOUNT_NAME,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+      <if test="accountSubBank != null" >
+        ACCOUNT_SUB_BANK,
+      </if>
+      <if test="accountCity != null" >
+        ACCOUNT_CITY,
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT,
+      </if>
+      <if test="fuMobile != null" >
+        FU_MOBILE,
+      </if>
+      <if test="fuPassword != null" >
+        FU_PASSWORD,
+      </if>
+      <if test="feeProportion != null" >
+        FEE_PROPORTION,
+      </if>
+      <if test="calculateMethod != null" >
+        CALCULATE_METHOD,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="passRateTime != null" >
+        PASS_RATE_TIME,
+      </if>
+      <if test="passRate != null" >
+        PASS_RATE,
+      </if>
+      <if test="jspnValue != null" >
+        JSPN_VALUE,
+      </if>
+      <if test="storeRegisterNo != null" >
+        STORE_REGISTER_NO,
+      </if>
+      <if test="storeDesc != null" >
+        STORE_DESC,
+      </if>
+      <if test="faceCheck != null" >
+        FACE_CHECK,
+      </if>
+      <if test="storeCharacter != null" >
+        STORE_CHARACTER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeCode != null" >
+        #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="branchName != null" >
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null" >
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeProv != null" >
+        #{storeProv,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCity != null" >
+        #{storeCity,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTown != null" >
+        #{storeTown,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStr != null" >
+        #{storeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRidge != null" >
+        #{storeRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="storeHome != null" >
+        #{storeHome,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactName != null" >
+        #{majorContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactPhone != null" >
+        #{majorContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactMail != null" >
+        #{majorContactMail,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactPosition != null" >
+        #{majorContactPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactQq != null" >
+        #{majorContactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactWeixin != null" >
+        #{majorContactWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="financeName != null" >
+        #{financeName,jdbcType=VARCHAR},
+      </if>
+      <if test="financePhone != null" >
+        #{financePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="financeMail != null" >
+        #{financeMail,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStartTime != null" >
+        #{businessStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEndTime != null" >
+        #{businessEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mainBrand != null" >
+        #{mainBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="storeManagerBindingTime != null" >
+        #{storeManagerBindingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closedby != null" >
+        #{closedby,jdbcType=BIGINT},
+      </if>
+      <if test="closedon != null" >
+        #{closedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activedby != null" >
+        #{activedby,jdbcType=BIGINT},
+      </if>
+      <if test="activedon != null" >
+        #{activedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activeStatus != null" >
+        #{activeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStatus != null" >
+        #{storeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operModeCode != null" >
+        #{operModeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantTypeCode != null" >
+        #{merchantTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSubBank != null" >
+        #{accountSubBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCity != null" >
+        #{accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="fuMobile != null" >
+        #{fuMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="fuPassword != null" >
+        #{fuPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="feeProportion != null" >
+        #{feeProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="calculateMethod != null" >
+        #{calculateMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="passRateTime != null" >
+        #{passRateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passRate != null" >
+        #{passRate,jdbcType=DOUBLE},
+      </if>
+      <if test="jspnValue != null" >
+        #{jspnValue,jdbcType=INTEGER},
+      </if>
+      <if test="storeRegisterNo != null" >
+        #{storeRegisterNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDesc != null" >
+        #{storeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="faceCheck != null" >
+        #{faceCheck,jdbcType=INTEGER},
+      </if>
+      <if test="storeCharacter != null" >
+        #{storeCharacter,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterMap="bsStore" >
+    update bs_store
+    <set >
+      <if test="storeCode != null" >
+        STORE_CODE = #{storeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        STORE_NAME = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        MERCHANT_ID = #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="branchName != null" >
+        BRANCH_NAME = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null" >
+        ORGCODE = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeProv != null" >
+        STORE_PROV = #{storeProv,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCity != null" >
+        STORE_CITY = #{storeCity,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTown != null" >
+        STORE_TOWN = #{storeTown,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStr != null" >
+        STORE_STR = #{storeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRidge != null" >
+        STORE_RIDGE = #{storeRidge,jdbcType=VARCHAR},
+      </if>
+      <if test="storeHome != null" >
+        STORE_HOME = #{storeHome,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactName != null" >
+        MAJOR_CONTACT_NAME = #{majorContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactPhone != null" >
+        MAJOR_CONTACT_PHONE = #{majorContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactMail != null" >
+        MAJOR_CONTACT_MAIL = #{majorContactMail,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactPosition != null" >
+        MAJOR_CONTACT_POSITION = #{majorContactPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactQq != null" >
+        MAJOR_CONTACT_QQ = #{majorContactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="majorContactWeixin != null" >
+        MAJOR_CONTACT_WEIXIN = #{majorContactWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="financeName != null" >
+        FINANCE_NAME = #{financeName,jdbcType=VARCHAR},
+      </if>
+      <if test="financePhone != null" >
+        FINANCE_PHONE = #{financePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="financeMail != null" >
+        FINANCE_MAIL = #{financeMail,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStartTime != null" >
+        BUSINESS_START_TIME = #{businessStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEndTime != null" >
+        BUSINESS_END_TIME = #{businessEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mainBrand != null" >
+        MAIN_BRAND = #{mainBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        MANAGER_ID = #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="storeManagerBindingTime != null" >
+        STORE_MANAGER_BINDING_TIME = #{storeManagerBindingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closedby != null" >
+        CLOSEDBY = #{closedby,jdbcType=BIGINT},
+      </if>
+      <if test="closedon != null" >
+        CLOSEDON = #{closedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activedby != null" >
+        ACTIVEDBY = #{activedby,jdbcType=BIGINT},
+      </if>
+      <if test="activedon != null" >
+        ACTIVEDON = #{activedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null" >
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null" >
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activeStatus != null" >
+        ACTIVE_STATUS = #{activeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStatus != null" >
+        STORE_STATUS = #{storeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operModeCode != null" >
+        OPER_MODE_CODE = #{operModeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantTypeCode != null" >
+        MERCHANT_TYPE_CODE = #{merchantTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSubBank != null" >
+        ACCOUNT_SUB_BANK = #{accountSubBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCity != null" >
+        ACCOUNT_CITY = #{accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="fuMobile != null" >
+        FU_MOBILE = #{fuMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="fuPassword != null" >
+        FU_PASSWORD = #{fuPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="feeProportion != null" >
+        FEE_PROPORTION = #{feeProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="calculateMethod != null" >
+        CALCULATE_METHOD = #{calculateMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="passRateTime != null" >
+        PASS_RATE_TIME = #{passRateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passRate != null" >
+        PASS_RATE = #{passRate,jdbcType=DOUBLE},
+      </if>
+      <if test="jspnValue != null" >
+        JSPN_VALUE = #{jspnValue,jdbcType=INTEGER},
+      </if>
+      <if test="storeRegisterNo != null" >
+        STORE_REGISTER_NO = #{storeRegisterNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDesc != null" >
+        STORE_DESC = #{storeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="faceCheck != null" >
+        FACE_CHECK = #{faceCheck,jdbcType=INTEGER},
+      </if>
+      <if test="storeCharacter != null" >
+        STORE_CHARACTER = #{storeCharacter,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

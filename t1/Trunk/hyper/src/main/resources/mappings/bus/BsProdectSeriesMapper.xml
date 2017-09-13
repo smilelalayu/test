@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.BsProdectSeriesMapper">
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.BsProdectSeries">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PRODUCT_SERIES_NAME" jdbcType="VARCHAR" property="productSeriesName" />
+    <result column="PRODUCT_CATEGORY" jdbcType="VARCHAR" property="productCategory" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="MIN_LOAN_AMOUNT" jdbcType="DECIMAL" property="minLoanAmount" />
+    <result column="MAX_LOAN_AMOUNT" jdbcType="DECIMAL" property="maxLoanAmount" />
+    <result column="PHASE_REDUCTION" jdbcType="VARCHAR" property="phaseReduction" />
+    <result column="COOPERATION_ORG" jdbcType="VARCHAR" property="cooperationOrg" />
+    <result column="PRODUCT_CHANNEL" jdbcType="VARCHAR" property="productChannel" />
+    <result column="DEL_STATUS" jdbcType="VARCHAR" property="delStatus" />
+    <result column="PENALTY_RATE" jdbcType="DECIMAL" property="penaltyRate" />
+    <result column="LATE_EXPENESE_RATE" jdbcType="DECIMAL" property="lateExpeneseRate" />
+    <result column="REPAYMENT_SMS" jdbcType="VARCHAR" property="repaymentSms" />
+    <result column="LATE_SMS" jdbcType="VARCHAR" property="lateSms" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="MODIFIEDBY" jdbcType="VARCHAR" property="modifiedby" />
+    <result column="MODIFIEDON" jdbcType="TIMESTAMP" property="modifiedon" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+    <result column="IS_ATTACH_CHECK" jdbcType="BIT" property="isAttachCheck" />
+    <result column="REPAYMENT_WAY" jdbcType="VARCHAR" property="repaymentWay" />
+    <result column="SERIES_CODE" jdbcType="VARCHAR" property="seriesCode" />
+    <result column="POSITION_ID" jdbcType="VARCHAR" property="positionId" />
+    <result column="REDUCTION_PERIOD" jdbcType="INTEGER" property="reductionPeriod" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PRODUCT_SERIES_NAME, PRODUCT_CATEGORY, START_TIME, END_TIME, MIN_LOAN_AMOUNT, 
+    MAX_LOAN_AMOUNT, PHASE_REDUCTION, COOPERATION_ORG, PRODUCT_CHANNEL, DEL_STATUS, PENALTY_RATE, 
+    LATE_EXPENESE_RATE, REPAYMENT_SMS, LATE_SMS, CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, 
+    VERSION, IS_ATTACH_CHECK, REPAYMENT_WAY, SERIES_CODE, POSITION_ID, REDUCTION_PERIOD
+  </sql>
+  <select id="listAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    bs_prodect_series
+  </select>
+  <select id="selectAllReductionPeriod" resultType="map">
+    SELECT id, reduction_period reductionPeriod FROM bs_prodect_series
+  </select>
+  <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bs_prodect_series
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+    <if test="id != null">
+    	and ID = #{id,jdbcType=BIGINT}
+    </if>
+    </trim>
+  </select>
+</mapper>

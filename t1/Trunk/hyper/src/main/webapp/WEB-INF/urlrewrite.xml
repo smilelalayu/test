@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<!--
+
+    Configuration file for UrlRewriteFilter
+    http://www.tuckey.org/urlrewrite/
+
+-->
+<urlrewrite>
+
+    <rule>
+    <note>Remove jsessionid from embedded urls - for urls WITH query parameters</note>
+    <from>^/(.*);JSESSIONID=.*[?](.*)$</from>
+    <to type="redirect">%{context-path}/$1?$2</to>
+    </rule>
+    <rule>
+        <note>Remove jsessionid from embedded urls - for urls WITHOUT query parameters</note>
+        <from>^/(.*);JSESSIONID=.*[^?]$</from>
+        <to type="redirect">%{context-path}/$1</to>
+    </rule>
+</urlrewrite>
+

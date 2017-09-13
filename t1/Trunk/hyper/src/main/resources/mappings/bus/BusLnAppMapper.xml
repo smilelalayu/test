@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.BusLnAppMapper">
+	<resultMap id="BaseResultMap" type="com.hm.bus.module.BusLnApp">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="FIRM_NAME" jdbcType="VARCHAR" property="firmName" />
+		<result column="STORE_ID" jdbcType="BIGINT" property="storeId" />
+		<result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />
+		<result column="PRODUCT_SERIES_ID" jdbcType="BIGINT" property="productSeriesId" />
+		<result column="PRODUCT_SERIES_NAME" jdbcType="VARCHAR"
+			property="productSeriesName" />
+		<result column="PRODUCT_ID" jdbcType="BIGINT" property="productId" />
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+		<result column="CARD_ID" jdbcType="VARCHAR" property="cardId" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="L1_MANAGER" jdbcType="BIGINT" property="l1Manager" />
+		<result column="L2_MANAGER" jdbcType="BIGINT" property="l2Manager" />
+		<result column="L3_MANAGER" jdbcType="BIGINT" property="l3Manager" />
+		<result column="L4_MANAGER" jdbcType="BIGINT" property="l4Manager" />
+		<result column="SALE_MANAGER" jdbcType="BIGINT" property="saleManager" />
+		<result column="SA" jdbcType="BIGINT" property="sa" />
+		<result column="APP_STATE" jdbcType="VARCHAR" property="appState" />
+		<result column="LOAN_MONEY" jdbcType="DECIMAL" property="loanMoney" />
+		<result column="USER_EVALUATE" jdbcType="VARCHAR" property="userEvaluate" />
+		<result column="WO_BUILD_TIME" jdbcType="TIMESTAMP" property="woBuildTime" />
+		<result column="CREATE_CONT_TIME" jdbcType="TIMESTAMP"
+			property="createContTime" />
+		<result column="SIGN_TIME" jdbcType="TIMESTAMP" property="signTime" />
+		<result column="ORG_CODE" jdbcType="VARCHAR" property="orgCode" />
+		<result column="CLIENT_ID" jdbcType="BIGINT" property="clientId" />
+		<result column="PERIODS" jdbcType="INTEGER" property="periods" />
+		<result column="INTEREST_RATE" jdbcType="DOUBLE" property="interestRate" />
+		<result column="PENALTY_RATE" jdbcType="DOUBLE" property="penaltyRate" />
+		<result column="LATE_EXPENESE_RATE" jdbcType="DOUBLE" property="lateExpeneseRate" />
+		<result column="BILLING_RULE" jdbcType="VARCHAR" property="billingRule" />
+		<result column="PREMIUM" jdbcType="DECIMAL" property="premium" />
+		<result column="DISCOUNT_RATE" jdbcType="DECIMAL" property="discountRate" />
+		<result column="SA_BONUS" jdbcType="DECIMAL" property="saBonus" />
+		<result column="DSM_BONUS" jdbcType="DECIMAL" property="dsmBonus" />
+		<result column="COMMISSION_RATE" jdbcType="DECIMAL" property="commissionRate" />
+		<result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+		<result column="DOWN_PAYMENT_AMOUNT" jdbcType="DECIMAL"
+			property="downPaymentAmount" />
+		<result column="CONTRACT_AMOUNT" jdbcType="DECIMAL" property="contractAmount" />
+		<result column="SERVICE_CHARGE" jdbcType="DECIMAL" property="serviceCharge" />
+		<result column="RISK_RATE" jdbcType="DOUBLE" property="riskRate" />
+		<result column="RISK_AMOUNT" jdbcType="DECIMAL" property="riskAmount" />
+		<result column="OTHER_AMOUNT" jdbcType="DECIMAL" property="otherAmount" />
+		<result column="MONTH_AMOUNT" jdbcType="DECIMAL" property="monthAmount" />
+		<result column="FIRST_REPAY_DATE" jdbcType="TIMESTAMP" property="firstRepayDate" />
+		<result column="REPAYMENT_DAY" jdbcType="INTEGER" property="repaymentDay" />
+		<result column="REPAYMENT_TYPE" jdbcType="VARCHAR" property="repaymentType" />
+		<result column="REPAYMENT_ACC" jdbcType="VARCHAR" property="repaymentAcc" />
+		<result column="REPAYMENT_ACC_NAME" jdbcType="VARCHAR"
+			property="repaymentAccName" />
+		<result column="REPAYMENT_BANK" jdbcType="VARCHAR" property="repaymentBank" />
+		<result column="REPAYMENT_CITY" jdbcType="VARCHAR" property="repaymentCity" />
+		<result column="PAYMENT_ACC" jdbcType="VARCHAR" property="paymentAcc" />
+		<result column="PAYMENT_ACC_NAME" jdbcType="VARCHAR" property="paymentAccName" />
+		<result column="PAYMENT_BANK" jdbcType="VARCHAR" property="paymentBank" />
+		<result column="PAYMENT_SUB_BANK" jdbcType="VARCHAR" property="paymentSubBank" />
+		<result column="PAYMENT_CITY" jdbcType="VARCHAR" property="paymentCity" />
+		<result column="REPAYMENT_SUB_BANK" jdbcType="VARCHAR"
+			property="repaymentSubBank" />
+		<result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP"
+			property="lastUpdateTime" />
+		<result column="CFC_ID" jdbcType="INTEGER" property="cfcId" />
+		<result column="COF_TRACE_TIME" jdbcType="TIMESTAMP" property="cofTraceTime" />
+		<result column="SA_REMARK" jdbcType="VARCHAR" property="saRemark" />
+		<result column="FY_ACCOUNT_NAME" jdbcType="VARCHAR" property="fyAccountName" />
+		<result column="FY_ACCOUNT_NO" jdbcType="VARCHAR" property="fyAccountNo" />
+		<result column="BUS_APPID" jdbcType="VARCHAR" property="busAppid" />
+		<result column="CUST_TYPE" jdbcType="CHAR" property="custType" />
+		<result column="SELF_REPAY_NAME" jdbcType="VARCHAR" property="selfRepayName" />
+		<result column="SELF_REPAY_ACCOUNT" jdbcType="VARCHAR"
+			property="selfRepayAccount" />
+		<result column="SELF_REPAY_BANK" jdbcType="VARCHAR" property="selfRepayBank" />
+		<result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+		<result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+		<result column="MODIFIEDBY" jdbcType="VARCHAR" property="modifiedby" />
+		<result column="MODIFIEDON" jdbcType="TIMESTAMP" property="modifiedon" />
+		<result column="VERSION" jdbcType="INTEGER" property="version" />
+		<result column="CHECK_ACC_TIME" jdbcType="TIMESTAMP" property="checkAccTime" />
+		<result column="MIN_LOAN_AMOUNT" jdbcType="DECIMAL" property="minLoanAmount" />
+		<result column="MAX_LOAN_AMOUNT" jdbcType="DECIMAL" property="maxLoanAmount" />
+		<result column="DOWN_PAYMENT_RATIO" jdbcType="DECIMAL"
+			property="downPaymentRatio" />
+		<result column="DOWN_PAYMENT_TYPE" jdbcType="VARCHAR" property="downPaymentType" />
+		<result column="SA_BONUS_TYPE" jdbcType="VARCHAR" property="saBonusType" />
+		<result column="MONTHLY_PREMIUM_RATE" jdbcType="DECIMAL"
+			property="monthlyPremiumRate" />
+		<result column="CONTR_ANNUAL_INTEREST_RATE" jdbcType="DECIMAL"
+			property="contrAnnualInterestRate" />
+		<result column="RESERVE_RATE" jdbcType="DECIMAL" property="reserveRate" />
+		<result column="YB_BIND_ID" jdbcType="VARCHAR" property="ybBindId" />
+		<result column="CONTRACT_NO" jdbcType="VARCHAR" property="contractNo" />
+		<result column="BUY_INSURANCE" jdbcType="BIT" property="buyInsurance" />
+		<result column="MONTH_CONSULT_SERVICE_RATE" jdbcType="DECIMAL"
+			property="monthConsultServiceRate" />
+		<result column="REPAYMENT_WAY" jdbcType="VARCHAR" property="repaymentWay" />
+		<result column="CLIENT_SIGNED_TIME" jdbcType="DATE" property="clientSignedTime" />
+		<result column="STORE_SIGNED_TIME" jdbcType="DATE" property="storeSignedTime" />
+		<result column="YB_USER_ID" jdbcType="VARCHAR" property="ybUserId" />
+		<result column="CHECK_RETURN" jdbcType="BIT" property="checkReturn" />
+		<result column="ATTACH_TIP_INFO" jdbcType="VARCHAR" property="attachTipInfo" />
+		<result column="BANK_TEL" jdbcType="VARCHAR" property="bankTel" />
+		<result column="YB_USER_TYPE" jdbcType="VARCHAR" property="ybUserType" />
+		<result column="GOODS_TYPE" jdbcType="VARCHAR" property="goodsType" />
+		<result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+		<result column="CLIENT_CFC_ID" jdbcType="BIGINT" property="clientCfcId" />
+		<result column="FIRM_CFC_ID" jdbcType="BIGINT" property="firmCfcId" />
+		<result column="CLIENT_CON_STATUS" jdbcType="VARCHAR" property="clientConStatus" />
+		<result column="FIRM_CON_STATUS" jdbcType="VARCHAR" property="firmConStatus" />
+		<result column="SA_NAME" jdbcType="VARCHAR" property="saName" />
+		<result column="APP_STATUS_Name" jdbcType="VARCHAR" property="appStatusName" />
+		<result column="IS_UPLOAD_ATTACH" jdbcType="VARCHAR" property="isUploadAttach" />
+		<result column="PAID_SUCCESS_TIME" jdbcType="TIMESTAMP"
+			property="paidSuccessTime" />
+		<result column="IS_REPAYMENT_SUCCESS" jdbcType="VARCHAR"
+			property="isRepaymentSuccess" />
+		<result column="BUS_RET_INFO" jdbcType="VARCHAR" property="busRetInfo" />
+		<result column="SEND_BUS_TIME" jdbcType="TIMESTAMP" property="sendBusTime" />
+		<result column="REVOCATION_TYPE" jdbcType="INTEGER" property="revocationType" />
+		<result column="REVOCATION_DESC" jdbcType="VARCHAR" property="revocationDesc" />
+		<result column="LOAN_TYPE" jdbcType="VARCHAR" property="loanType" />
+		<result column="MARKER" jdbcType="INTEGER" property="marker" />
+		<result column="CAPITAL_TYPE" jdbcType="VARCHAR" property="capitalType" />
+		<result column="USER_EVALUATE_CODE" jdbcType="VARCHAR"
+			property="userEvaluateCode" />
+		<result column="BUS_PRODUCT_ID" jdbcType="VARCHAR"
+			property="busProductId" />
+			<result column="APP_STATUS_INNER" jdbcType="VARCHAR"
+			property="appStatusInner" />
+			<result column="QUOTA_OPERATION_STATUS" jdbcType="VARCHAR"
+			property="quotaOperationStatus" />
+			
+			
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, FIRM_NAME, STORE_ID, SHOP_NAME, PRODUCT_SERIES_ID,
+		PRODUCT_SERIES_NAME, PRODUCT_ID,
+		PRODUCT_NAME, CARD_ID, MOBILE,
+		L1_MANAGER, L2_MANAGER, L3_MANAGER, L4_MANAGER,
+		SALE_MANAGER,
+		SA,
+		APP_STATE, LOAN_MONEY, USER_EVALUATE, WO_BUILD_TIME,
+		CREATE_CONT_TIME,
+		SIGN_TIME,
+		ORG_CODE, CLIENT_ID, PERIODS, INTEREST_RATE, PENALTY_RATE,
+		LATE_EXPENESE_RATE,
+		BILLING_RULE,
+		PREMIUM, DISCOUNT_RATE, SA_BONUS,
+		DSM_BONUS, COMMISSION_RATE, AMOUNT,
+		DOWN_PAYMENT_AMOUNT,
+		CONTRACT_AMOUNT, SERVICE_CHARGE, RISK_RATE, RISK_AMOUNT, OTHER_AMOUNT,
+		MONTH_AMOUNT,
+		FIRST_REPAY_DATE, REPAYMENT_DAY, REPAYMENT_TYPE, REPAYMENT_ACC,
+		REPAYMENT_ACC_NAME, REPAYMENT_BANK,
+		REPAYMENT_CITY, PAYMENT_ACC,
+		PAYMENT_ACC_NAME, PAYMENT_BANK, PAYMENT_SUB_BANK,
+		PAYMENT_CITY,
+		REPAYMENT_SUB_BANK, LAST_UPDATE_TIME, CFC_ID, COF_TRACE_TIME,
+		SA_REMARK, FY_ACCOUNT_NAME,
+		FY_ACCOUNT_NO, BUS_APPID, CUST_TYPE,
+		SELF_REPAY_NAME,
+		SELF_REPAY_ACCOUNT, SELF_REPAY_BANK,
+		CREATEDBY,
+		CREATEDON, MODIFIEDBY, MODIFIEDON, VERSION, CHECK_ACC_TIME,
+		MIN_LOAN_AMOUNT,
+		MAX_LOAN_AMOUNT, DOWN_PAYMENT_RATIO,
+		DOWN_PAYMENT_TYPE, SA_BONUS_TYPE,
+		MONTHLY_PREMIUM_RATE,
+		CONTR_ANNUAL_INTEREST_RATE, RESERVE_RATE, YB_BIND_ID, CONTRACT_NO,
+		BUY_INSURANCE,
+		MONTH_CONSULT_SERVICE_RATE, REPAYMENT_WAY,
+		CLIENT_SIGNED_TIME,
+		STORE_SIGNED_TIME,
+		YB_USER_ID, CHECK_RETURN,
+		ATTACH_TIP_INFO, BANK_TEL, YB_USER_TYPE, GOODS_TYPE,
+		CUSTOMER_NAME,
+		CLIENT_CFC_ID, FIRM_CFC_ID, CLIENT_CON_STATUS, FIRM_CON_STATUS,
+		SA_NAME,
+		APP_STATUS_Name,
+		IS_UPLOAD_ATTACH, PAID_SUCCESS_TIME,
+		IS_REPAYMENT_SUCCESS, BUS_RET_INFO, SEND_BUS_TIME,
+		REVOCATION_TYPE,
+		REVOCATION_DESC, LOAN_TYPE, MARKER, CAPITAL_TYPE,
+		USER_EVALUATE_CODE, BUS_PRODUCT_ID,APP_STATUS_INNER,QUOTA_OPERATION_STATUS
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectByIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app
+		where ID in
+		<foreach collection="ids" item="appid" open="(" close=")" separator=",">
+			#{appid,jdbcType=BIGINT}
+		</foreach>
+	</select>
+
+	<!-- 根据BUS工单号，查询超能ID -->
+	<select id="selectByBusAppId" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app
+		where BUS_APPID = #{busAppId,jdbcType=BIGINT} LIMIT 1
+	</select>
+
+
+	<select id="selectListByAppState" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app
+		where 1=1
+		AND app_state = #{appState}
+	</select>
+
+	<!-- 待确认放款成功列表 -->
+	<select id="selectSendBusLnAppList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app APP
+		where 1=1
+		<!-- 推bus成功 -->
+		AND APP.app_state = '32'
+		<!-- 且无放款确认成功记录-->
+		AND NOT EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1')
+	</select>
+
+	<!-- 待生成还款计划列表 -->
+	<select id="selectRepaymentLnAppList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app APP
+		where 1=1
+		AND (
+			<!-- 推bus成功  and  且有放款确认成功记录 -->
+		   (app.APP_STATE = '32' and EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1'))
+		   <!-- 历史数据:已确认放款成,但未生成还款计划 -->
+		or (app.APP_STATE = '50' and (app.IS_REPAYMENT_SUCCESS is null or app.IS_REPAYMENT_SUCCESS='' or app.IS_REPAYMENT_SUCCESS='failure') )
+		)
+	</select>
+
+	<!-- 推BUS工单查询列表 -->
+	<select id="list" resultMap="BaseResultMap" parameterType="com.hm.bus.module.BusLnApp">
+		SELECT
+		app.id,app.bus_appid,
+		<if test="appState == null or appState =='' or appState =='35' or appState =='36'">
+			batch.batch_no,
+		</if>
+		<if test='appState =="32" or appState =="50" or appState =="X"'>
+			(select batch_no from bus_lnapp_batch_mapping mapp where mapp.ln_app_id = app.ID order by mapp.update_time desc LIMIT 1) as batch_no,
+		</if>
+		app.customer_name,app.card_id,app.repayment_type,app.APP_STATE,
+		app.send_bus_time,app.bus_ret_info,app.wo_build_time,
+		case when app.APP_STATE = '32' AND NOT EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1') then '32'
+		     when app.APP_STATE = '32' AND EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1') then '32X'
+		     when app.APP_STATE = '50' AND (app.IS_REPAYMENT_SUCCESS is null or app.IS_REPAYMENT_SUCCESS='' or app.IS_REPAYMENT_SUCCESS='failure') then '32X'
+		     when app.APP_STATE = '50' AND app.IS_REPAYMENT_SUCCESS='success' then '50' else app.APP_STATE
+		 end
+		realAppState,app.LOAN_TYPE
+		from ln_app app 
+		<if test="appState == null or appState =='' or appState =='35' or appState =='36'">
+			left join bus_lnapp_batch_mapping batch on batch.ln_app_id = app.id 
+		</if>
+		
+		WHERE app.APP_STATE in ('35','36','32','50')
+		<if test="batchNO != null and batchNO !=''">
+			and batch.batch_no = #{batchNO,jdbcType=VARCHAR}
+		</if>
+		<if test="id != null">
+			AND app.ID = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="busAppid != null and busAppid !=''">
+			AND app.BUS_APPID = #{busAppid,jdbcType=VARCHAR}
+		</if>
+		<if test="loanType != null and loanType !=''">
+			AND app.LOAN_TYPE = #{loanType}
+		</if>
+		<if test="sendBusTime != null">
+			AND DATE(app.SEND_BUS_TIME)=#{sendBusTime}
+		</if>
+		<if test="appState != null and appState !=''">
+			<!-- 待保理放款 -->
+			<if test="appState=='35'">
+				AND app.APP_STATE = #{appState,jdbcType=VARCHAR}
+			</if>
+			<!-- 待BUS放款 -->
+			<if test="appState=='36'">
+				AND app.APP_STATE = #{appState,jdbcType=VARCHAR}
+			</if>
+			<!-- 32待放款 -->
+			<if test='appState == "32"'>
+				AND app.APP_STATE = #{appState,jdbcType=VARCHAR}
+				AND NOT EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1')
+			</if>
+			<!-- 待生成还款计划 -->
+			<if test="appState=='32X'">
+				AND ((app.APP_STATE = '32' and EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1'))
+					or (app.APP_STATE = '50' and (app.IS_REPAYMENT_SUCCESS is null or app.IS_REPAYMENT_SUCCESS='' or app.IS_REPAYMENT_SUCCESS='failure') )
+				)
+			</if>
+			<!-- 放款成功 -->
+			<if test='appState == "50"'>
+				AND app.APP_STATE = '50' AND app.IS_REPAYMENT_SUCCESS='success'
+			</if>
+		</if>
+		<!-- 推BUS至50结果 -->
+		<if test='proResult =="1" or proResult =="3"'>
+			<if test="appState=='35'">
+				and 1=2
+			</if>
+			<if test="appState=='36'">
+				and EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='2' and bsl.BUS_TYPE='1')
+				and not EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='1' and bsl.BUS_TYPE='1')
+			</if>
+			<if test="appState=='32'">
+				and EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='2' and bsl.BUS_TYPE='2')
+				and not EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='1' and bsl.BUS_TYPE='2')
+			</if>
+			<if test="appState=='32X'">
+				and EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='2' and bsl.BUS_TYPE='3')
+				and not EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='1' and bsl.BUS_TYPE='3')
+			</if>
+			<if test="appState=='50'">
+				and 1=2
+			</if>
+			<if test="appState == null or appState ==''">
+				and EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='2')
+				and not EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.state='1')
+				and app.APP_STATE!='50'
+			</if>
+		</if>
+		<if test='proResult=="2"'>
+			and 1=2
+		</if>
+		
+		ORDER BY app.id DESC 
+		<if test="appState == null or appState =='' or appState =='35' or appState =='36'">
+		,batch.batch_no DESC
+		</if>
+	</select>
+
+	<!-- 获取产品ID -->
+	<select id="selectBusProductId" parameterType="java.lang.Long"
+		resultType="java.lang.String">
+		select a.BUS_PRODUCT_ID from ln_app a 
+		where a.id = #{id,jdbcType=BIGINT} LIMIT
+		1
+	</select>
+
+	<update id="updateLnAppState">
+		update ln_app set APP_STATE = #{0} where ID = #{1}
+	</update>
+
+	<update id="updateBatchState35To36" parameterType="java.util.List">
+		update ln_app set APP_STATE = '36',APP_STATUS_INNER='B26',Modifiedon=now(),Modifiedby='auto' where ID in
+		<foreach collection="list" item="appid" open="(" close=")"
+			separator=",">
+			#{appid,jdbcType=BIGINT}
+		</foreach>
+		and APP_STATE='35'
+	</update>
+
+	<update id="updatePaidSuccessTimeById" parameterType="map">
+		update
+		ln_app set PAID_SUCCESS_TIME = #{paidSuccessTime} where ID = #{id}
+	</update>
+
+	<update id="batchUpdate" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+			update ln_app set APP_STATE = #{item.appState} where ID =
+			#{item.id}
+		</foreach>
+	</update>
+
+
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.BusLnApp">
+		update ln_app
+		<set>
+			<if test="firmName != null">
+				FIRM_NAME = #{firmName,jdbcType=VARCHAR},
+			</if>
+			<if test="storeId != null">
+				STORE_ID = #{storeId,jdbcType=BIGINT},
+			</if>
+			<if test="shopName != null">
+				SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+			</if>
+			<if test="productSeriesId != null">
+				PRODUCT_SERIES_ID = #{productSeriesId,jdbcType=BIGINT},
+			</if>
+			<if test="productSeriesName != null">
+				PRODUCT_SERIES_NAME =
+				#{productSeriesName,jdbcType=VARCHAR},
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID = #{productId,jdbcType=BIGINT},
+			</if>
+			<if test="productName != null">
+				PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null">
+				CARD_ID = #{cardId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="l1Manager != null">
+				L1_MANAGER = #{l1Manager,jdbcType=BIGINT},
+			</if>
+			<if test="l2Manager != null">
+				L2_MANAGER = #{l2Manager,jdbcType=BIGINT},
+			</if>
+			<if test="l3Manager != null">
+				L3_MANAGER = #{l3Manager,jdbcType=BIGINT},
+			</if>
+			<if test="l4Manager != null">
+				L4_MANAGER = #{l4Manager,jdbcType=BIGINT},
+			</if>
+			<if test="saleManager != null">
+				SALE_MANAGER = #{saleManager,jdbcType=BIGINT},
+			</if>
+			<if test="sa != null">
+				SA = #{sa,jdbcType=BIGINT},
+			</if>
+			<if test="appState != null">
+				APP_STATE = #{appState,jdbcType=VARCHAR},
+			</if>
+			<if test="loanMoney != null">
+				LOAN_MONEY = #{loanMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="userEvaluate != null">
+				USER_EVALUATE = #{userEvaluate,jdbcType=VARCHAR},
+			</if>
+			<if test="woBuildTime != null">
+				WO_BUILD_TIME = #{woBuildTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createContTime != null">
+				CREATE_CONT_TIME = #{createContTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="signTime != null">
+				SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orgCode != null">
+				ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+			</if>
+			<if test="clientId != null">
+				CLIENT_ID = #{clientId,jdbcType=BIGINT},
+			</if>
+			<if test="periods != null">
+				PERIODS = #{periods,jdbcType=INTEGER},
+			</if>
+			<if test="interestRate != null">
+				INTEREST_RATE = #{interestRate,jdbcType=DOUBLE},
+			</if>
+			<if test="penaltyRate != null">
+				PENALTY_RATE = #{penaltyRate,jdbcType=DOUBLE},
+			</if>
+			<if test="lateExpeneseRate != null">
+				LATE_EXPENESE_RATE = #{lateExpeneseRate,jdbcType=DOUBLE},
+			</if>
+			<if test="billingRule != null">
+				BILLING_RULE = #{billingRule,jdbcType=VARCHAR},
+			</if>
+			<if test="premium != null">
+				PREMIUM = #{premium,jdbcType=DECIMAL},
+			</if>
+			<if test="discountRate != null">
+				DISCOUNT_RATE = #{discountRate,jdbcType=DECIMAL},
+			</if>
+			<if test="saBonus != null">
+				SA_BONUS = #{saBonus,jdbcType=DECIMAL},
+			</if>
+			<if test="dsmBonus != null">
+				DSM_BONUS = #{dsmBonus,jdbcType=DECIMAL},
+			</if>
+			<if test="commissionRate != null">
+				COMMISSION_RATE = #{commissionRate,jdbcType=DECIMAL},
+			</if>
+			<if test="amount != null">
+				AMOUNT = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="downPaymentAmount != null">
+				DOWN_PAYMENT_AMOUNT =
+				#{downPaymentAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="contractAmount != null">
+				CONTRACT_AMOUNT = #{contractAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="serviceCharge != null">
+				SERVICE_CHARGE = #{serviceCharge,jdbcType=DECIMAL},
+			</if>
+			<if test="riskRate != null">
+				RISK_RATE = #{riskRate,jdbcType=DOUBLE},
+			</if>
+			<if test="riskAmount != null">
+				RISK_AMOUNT = #{riskAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="otherAmount != null">
+				OTHER_AMOUNT = #{otherAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="monthAmount != null">
+				MONTH_AMOUNT = #{monthAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="firstRepayDate != null">
+				FIRST_REPAY_DATE = #{firstRepayDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="repaymentDay != null">
+				REPAYMENT_DAY = #{repaymentDay,jdbcType=INTEGER},
+			</if>
+			<if test="repaymentType != null">
+				REPAYMENT_TYPE = #{repaymentType,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentAcc != null">
+				REPAYMENT_ACC = #{repaymentAcc,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentAccName != null">
+				REPAYMENT_ACC_NAME =
+				#{repaymentAccName,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentBank != null">
+				REPAYMENT_BANK = #{repaymentBank,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentCity != null">
+				REPAYMENT_CITY = #{repaymentCity,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentAcc != null">
+				PAYMENT_ACC = #{paymentAcc,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentAccName != null">
+				PAYMENT_ACC_NAME = #{paymentAccName,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentBank != null">
+				PAYMENT_BANK = #{paymentBank,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentSubBank != null">
+				PAYMENT_SUB_BANK = #{paymentSubBank,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentCity != null">
+				PAYMENT_CITY = #{paymentCity,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentSubBank != null">
+				REPAYMENT_SUB_BANK =
+				#{repaymentSubBank,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cfcId != null">
+				CFC_ID = #{cfcId,jdbcType=INTEGER},
+			</if>
+			<if test="cofTraceTime != null">
+				COF_TRACE_TIME = #{cofTraceTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saRemark != null">
+				SA_REMARK = #{saRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="fyAccountName != null">
+				FY_ACCOUNT_NAME = #{fyAccountName,jdbcType=VARCHAR},
+			</if>
+			<if test="fyAccountNo != null">
+				FY_ACCOUNT_NO = #{fyAccountNo,jdbcType=VARCHAR},
+			</if>
+			<if test="busAppid != null">
+				BUS_APPID = #{busAppid,jdbcType=VARCHAR},
+			</if>
+			<if test="custType != null">
+				CUST_TYPE = #{custType,jdbcType=CHAR},
+			</if>
+			<if test="selfRepayName != null">
+				SELF_REPAY_NAME = #{selfRepayName,jdbcType=VARCHAR},
+			</if>
+			<if test="selfRepayAccount != null">
+				SELF_REPAY_ACCOUNT =
+				#{selfRepayAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="selfRepayBank != null">
+				SELF_REPAY_BANK = #{selfRepayBank,jdbcType=VARCHAR},
+			</if>
+			<if test="createdby != null">
+				CREATEDBY = #{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="createdon != null">
+				CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedby != null">
+				MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+			</if>
+			<if test="modifiedon != null">
+				MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+			</if>
+			<if test="version != null">
+				VERSION = #{version,jdbcType=INTEGER},
+			</if>
+			<if test="checkAccTime != null">
+				CHECK_ACC_TIME = #{checkAccTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="minLoanAmount != null">
+				MIN_LOAN_AMOUNT = #{minLoanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="maxLoanAmount != null">
+				MAX_LOAN_AMOUNT = #{maxLoanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="downPaymentRatio != null">
+				DOWN_PAYMENT_RATIO =
+				#{downPaymentRatio,jdbcType=DECIMAL},
+			</if>
+			<if test="downPaymentType != null">
+				DOWN_PAYMENT_TYPE = #{downPaymentType,jdbcType=VARCHAR},
+			</if>
+			<if test="saBonusType != null">
+				SA_BONUS_TYPE = #{saBonusType,jdbcType=VARCHAR},
+			</if>
+			<if test="monthlyPremiumRate != null">
+				MONTHLY_PREMIUM_RATE =
+				#{monthlyPremiumRate,jdbcType=DECIMAL},
+			</if>
+			<if test="contrAnnualInterestRate != null">
+				CONTR_ANNUAL_INTEREST_RATE =
+				#{contrAnnualInterestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="reserveRate != null">
+				RESERVE_RATE = #{reserveRate,jdbcType=DECIMAL},
+			</if>
+			<if test="ybBindId != null">
+				YB_BIND_ID = #{ybBindId,jdbcType=VARCHAR},
+			</if>
+			<if test="contractNo != null">
+				CONTRACT_NO = #{contractNo,jdbcType=VARCHAR},
+			</if>
+			<if test="buyInsurance != null">
+				BUY_INSURANCE = #{buyInsurance,jdbcType=BIT},
+			</if>
+			<if test="monthConsultServiceRate != null">
+				MONTH_CONSULT_SERVICE_RATE =
+				#{monthConsultServiceRate,jdbcType=DECIMAL},
+			</if>
+			<if test="repaymentWay != null">
+				REPAYMENT_WAY = #{repaymentWay,jdbcType=VARCHAR},
+			</if>
+			<if test="clientSignedTime != null">
+				CLIENT_SIGNED_TIME = #{clientSignedTime,jdbcType=DATE},
+			</if>
+			<if test="storeSignedTime != null">
+				STORE_SIGNED_TIME = #{storeSignedTime,jdbcType=DATE},
+			</if>
+			<if test="ybUserId != null">
+				YB_USER_ID = #{ybUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="checkReturn != null">
+				CHECK_RETURN = #{checkReturn,jdbcType=BIT},
+			</if>
+			<if test="attachTipInfo != null">
+				ATTACH_TIP_INFO = #{attachTipInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankTel != null">
+				BANK_TEL = #{bankTel,jdbcType=VARCHAR},
+			</if>
+			<if test="ybUserType != null">
+				YB_USER_TYPE = #{ybUserType,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsType != null">
+				GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+			</if>
+			<if test="customerName != null">
+				CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+			</if>
+			<if test="clientCfcId != null">
+				CLIENT_CFC_ID = #{clientCfcId,jdbcType=BIGINT},
+			</if>
+			<if test="firmCfcId != null">
+				FIRM_CFC_ID = #{firmCfcId,jdbcType=BIGINT},
+			</if>
+			<if test="clientConStatus != null">
+				CLIENT_CON_STATUS = #{clientConStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="firmConStatus != null">
+				FIRM_CON_STATUS = #{firmConStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="saName != null">
+				SA_NAME = #{saName,jdbcType=VARCHAR},
+			</if>
+			<if test="appStatusName != null">
+				APP_STATUS_Name = #{appStatusName,jdbcType=VARCHAR},
+			</if>
+			<if test="isUploadAttach != null">
+				IS_UPLOAD_ATTACH = #{isUploadAttach,jdbcType=VARCHAR},
+			</if>
+			<if test="paidSuccessTime != null">
+				PAID_SUCCESS_TIME =
+				#{paidSuccessTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isRepaymentSuccess != null">
+				IS_REPAYMENT_SUCCESS =
+				#{isRepaymentSuccess,jdbcType=VARCHAR},
+			</if>
+			<if test="busRetInfo != null">
+				BUS_RET_INFO = #{busRetInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="sendBusTime != null">
+				SEND_BUS_TIME = #{sendBusTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="revocationType != null">
+				REVOCATION_TYPE = #{revocationType,jdbcType=INTEGER},
+			</if>
+			<if test="revocationDesc != null">
+				REVOCATION_DESC = #{revocationDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="loanType != null">
+				LOAN_TYPE = #{loanType,jdbcType=VARCHAR},
+			</if>
+			<if test="marker != null">
+				MARKER = #{marker,jdbcType=INTEGER},
+			</if>
+			<if test="capitalType != null">
+				CAPITAL_TYPE = #{capitalType,jdbcType=VARCHAR},
+			</if>
+			<if test="userEvaluateCode != null">
+				USER_EVALUATE_CODE =
+				#{userEvaluateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="appStatusInner != null">
+				APP_STATUS_INNER = #{appStatusInner,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateList" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+		update ln_app
+		set
+		IS_REPAYMENT_SUCCESS = #{item.isRepaymentSuccess,jdbcType=VARCHAR}
+		where ID = #{item.id,jdbcType=BIGINT}
+		</foreach>
+	</update>
+
+	<select id="selectBusProductIdByBatchNo" resultType="map"
+		parameterType="string">
+		select DISTINCT a.id id, a.BUS_PRODUCT_ID busProductId
+		from
+		bus_lnapp_batch_mapping m
+		RIGHT JOIN ln_app a ON a.id = m.ln_app_id
+		WHERE
+		m.batch_no = #{batchNo}
+	</select>
+		<!--查询所有36失败工单 -->
+	<select id="selectAppIds36To32"  resultType="string">
+		SELECT app.id
+		from ln_app app
+		WHERE  app.APP_STATE = '36' 
+		<!-- 存在失败记录 -->
+		and not EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1 and bsl1.state=1)
+		<!-- 不存在成功记录 -->
+		and EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1 and bsl1.state=2)
+	</select>
+	<select id="selectBusProductIdById" resultType="map"
+		parameterType="string">
+		select DISTINCT a.id id, a.BUS_PRODUCT_ID busProductId
+		from ln_app a
+		WHERE
+		a.id = #{id}
+	</select>
+
+	<select id="selectBusProductIdByAppState" resultType="map"
+		parameterType="java.lang.String">
+		SELECT DISTINCT
+		a.id id,
+		a.BUS_PRODUCT_ID busProductId
+		FROM ln_app a
+		where
+		a.APP_STATE = #{appState}
+	</select>
+	
+	<!-- 推BUS失败笔数 -->
+	<select id="selectBusFailCount" resultType="int">
+		select ifnull(sum(1),0) ct from ln_app app where 
+		APP_STATE='36' 
+		and EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1 and bsl1.state=2)
+		and not EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1 and bsl1.state=1)
+	</select>
+	
+	<!-- 待推BUS笔数 -->
+	<select id="selectBusWaitCount" resultType="int">
+		select ifnull(sum(1),0) ct from ln_app app 
+		where APP_STATE in('35','36')
+		and EXISTS (select 1 from bus_lnapp_batch_mapping mapp where mapp.ln_app_id=app.id)
+		and not EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1)
+	</select>
+	
+	<!-- 确认放款状态失败笔数 -->
+	<select id="selectLoanConfirmFailCount" resultType="int">
+		select count(1) ct from ln_app app 
+		where APP_STATE = '32' 
+		and EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=2 and bsl1.state=2)
+		and not EXISTS (select 1 from bus_sent_log bsl2 where bsl2.ln_app_id=app.id and bsl2.bus_type=2 and bsl2.state=1)
+	</select>
+	
+	<!-- 待确认放款状态笔数 -->
+	<select id="selectLoanConfirmWaitCount" resultType="int">
+		select count(1) ct from ln_app app where APP_STATE='32' 
+		and not EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.bus_type=2)
+	</select>
+	
+	<!-- 生成还款计划失败笔数 -->
+	<select id="selectRepaymentPlanFailCount" resultType="int">
+		select count(1) ct from ln_app app where APP_STATE='32' 
+		and EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=3 and bsl1.state=2)
+		and not EXISTS (select 1 from bus_sent_log bsl2 where bsl2.ln_app_id=app.id and bsl2.bus_type=3 and bsl2.state=1)
+	</select>
+	
+	<!-- 待生成还款计划笔数 -->
+	<select id="selectRepaymentPlanWaitCount" resultType="int">
+		select count(1) ct from ln_app app  
+	    where (app.APP_STATE = '32' and EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1')) or 
+	    (app.APP_STATE = '50' and (app.IS_REPAYMENT_SUCCESS is null or app.IS_REPAYMENT_SUCCESS='' or app.IS_REPAYMENT_SUCCESS='failure') )
+	</select>
+	
+	<select id="selectCountMap" resultType="java.util.HashMap">
+		<!-- 推BUS失败笔数 -->
+		select 'fail36' flag,ifnull(sum(1),0) ct from ln_app app where 
+			<!-- 发送过推BUS -->
+			APP_STATE='36' 
+			<!-- 存在失败记录 -->
+			and EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1 and bsl1.state=2)
+			<!-- 不存在成功记录 -->
+			and not EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1 and bsl1.state=1) union all
+			
+		<!-- 待推BUS笔数 -->
+		select 'wait36' flag,ifnull(sum(1),0) ct from ln_app app 
+			<!-- POS导入的和现金贷 -->
+			where APP_STATE in('35','36')
+			<!-- 导入后的 -->
+			and EXISTS (select 1 from bus_lnapp_batch_mapping mapp where mapp.ln_app_id=app.id)
+			<!-- 且未推BUS的 -->
+			and not EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=1) union all 
+			
+		<!-- 确认放款状态失败笔数 -->
+		select 'fail32' flag,count(1) ct from ln_app app 
+			<!-- 推bus成功 -->
+			where APP_STATE = '32' 
+			<!-- 有放款确认失败记录 -->
+			and EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=2 and bsl1.state=2)
+			<!-- 无放款确认成功记录 -->
+			and not EXISTS (select 1 from bus_sent_log bsl2 where bsl2.ln_app_id=app.id and bsl2.bus_type=2 and bsl2.state=1) union all
+			
+		<!-- 待确认放款状态笔数 -->
+		select 'wait32' flag,count(1) ct from ln_app app 
+			<!-- 推bus成功 -->
+			where APP_STATE='32' 
+			<!-- 无放款确认交易记录 -->
+			and not EXISTS (select 1 from bus_sent_log bsl where bsl.ln_app_id=app.id and bsl.bus_type=2) union all
+			
+		<!-- 生成还款计划失败笔数 -->
+		select 'fail50' flag,count(1) ct from ln_app app 
+			<!-- 推bus成功 -->
+			where APP_STATE='32' 
+			<!-- 有生成还款计划失败记录 -->
+			and EXISTS (select 1 from bus_sent_log bsl1 where bsl1.ln_app_id=app.id and bsl1.bus_type=3 and bsl1.state=2)
+			<!-- 无生成还款计划成功记录 -->
+			and not EXISTS (select 1 from bus_sent_log bsl2 where bsl2.ln_app_id=app.id and bsl2.bus_type=3 and bsl2.state=1) union all
+			
+		<!-- 待生成还款计划笔数 -->
+		select 'wait50' flag,count(1) ct from ln_app app  
+		 	<!-- 推bus成功  and 且有放款确认成功记录   -->
+		    where (app.APP_STATE = '32' and EXISTS (SELECT 1 FROM bus_sent_log BSL WHERE BSL.LN_APP_ID=APP.ID AND BSL.BUS_TYPE='2' AND BSL.STATE='1')) or 
+		    <!-- 历史数据:已确认放款成,但未生成还款计划 -->
+		    (app.APP_STATE = '50' and (app.IS_REPAYMENT_SUCCESS is null or app.IS_REPAYMENT_SUCCESS='' or app.IS_REPAYMENT_SUCCESS='failure') )
+	</select>
+	
+	
+	<select id="listCashAppIds" resultType="string">
+		SELECT app.id from ln_APP app where app.loan_type = 'CASH' and app.APP_STATE = '36' 
+	</select>
+	
+</mapper>

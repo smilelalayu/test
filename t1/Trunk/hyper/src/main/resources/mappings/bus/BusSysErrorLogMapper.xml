@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.BusSysErrorLogMapper">
+	<resultMap id="BaseResultMap" type="com.hm.bus.module.BusSysErrorLog">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="err_msg" jdbcType="VARCHAR" property="errMsg" />
+		<result column="err_throwable" jdbcType="VARCHAR" property="errThrowable" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, err_msg, err_throwable, update_time, remark
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bus_sys_error_log
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="list" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from bus_sys_error_log
+		<where>
+			<if test="err != null and err !='' ">
+				AND (err_msg LIKE concat('%',#{err},'%') OR err_throwable LIKE concat('%',#{err},'%'))
+			</if>
+			<if test="beginDate!=null">
+				AND update_time &gt;= #{beginDate}
+			</if>
+			<if test="endDate!=null">
+				AND update_time &lt;=#{endDate}
+			</if>
+		</where>
+		order by id DESC
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		bus_sys_error_log
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.hm.bus.module.BusSysErrorLog">
+		insert into bus_sys_error_log
+		(id, err_msg, err_throwable,
+		update_time, remark)
+		values
+		(#{id,jdbcType=INTEGER}, #{errMsg,jdbcType=VARCHAR},
+		#{errThrowable,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hm.bus.module.BusSysErrorLog">
+		insert into bus_sys_error_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="errMsg != null">
+				err_msg,
+			</if>
+			<if test="errThrowable != null">
+				err_throwable,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="errMsg != null">
+				#{errMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="errThrowable != null">
+				#{errThrowable,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.BusSysErrorLog">
+		update bus_sys_error_log
+		<set>
+			<if test="errMsg != null">
+				err_msg = #{errMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="errThrowable != null">
+				err_throwable = #{errThrowable,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hm.bus.module.BusSysErrorLog">
+		update
+		bus_sys_error_log
+		set err_msg = #{errMsg,jdbcType=VARCHAR},
+		err_throwable = #{errThrowable,jdbcType=VARCHAR},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

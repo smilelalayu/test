@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.userauth.dao.UserAppMangerMapper" >
+
+	<!-- redis缓存 -->
+	 <!-- <cache type="com.gep.core.cache.MybatisRedisCache" /> -->
+	
+	<resultMap id="BaseResultMap" type="com.hm.userauth.model.UserApp" >
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="app_code" property="appCode" jdbcType="VARCHAR" />
+		<result column="app_name" property="appName" jdbcType="VARCHAR" />
+		<result column="token" property="token" jdbcType="VARCHAR" />
+		<result column="user_status" property="userStatus" jdbcType="VARCHAR" />
+		<result column="channel_id" property="channelId" jdbcType="BIGINT" />
+		<result column="token_Create_Time" property="tokenCreateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+    <sql id="Base_Column" >
+      id, user_id, app_code,app_name,token,user_status,channel_id,token_Create_Time
+    </sql>
+	<sql id="Base_Condition_Select">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="userId != null and userId > -1" >
+	        AND user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="appCode != null and appCode != '' " >
+	        AND app_code = #{appCode,jdbcType=VARCHAR}
+			</if>
+			<if test="appName != null and appName != '' " >
+	        AND app_name = #{appName,jdbcType=VARCHAR}
+			</if>
+			<if test="token != null and token != '' " >
+	        AND token = #{token,jdbcType=VARCHAR}
+			</if>
+			<if test="userStatus != null and userStatus != '' " >
+	        AND user_status = #{userStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="channelId != null and channelId > -1" >
+	        AND channel_id = #{channelId,jdbcType=BIGINT}
+			</if>
+			<if test="tokenCreateTime != null " >
+	        AND token_Create_Time = #{tokenCreateTime,jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</sql>
+
+	<select id="getUserAppList" resultMap="BaseResultMap" parameterType="com.hm.userauth.model.UserApp" >
+	  select 
+		<include refid="Base_Column" />
+    from  uum_user_app
+		<include refid="Base_Condition_Select" />
+	</select>
+
+	<select id="list" resultMap="BaseResultMap" parameterType="com.hm.userauth.model.UserApp" >
+	  select *  from (  SELECT
+		 p.*, c.NAME channel_name
+			FROM
+				(
+					SELECT
+						p.*, u.LOGIN_NAME
+					FROM
+						uum_user_app p  
+					LEFT JOIN
+						user_info u
+					ON 
+						u.USER_ID = p.user_id	
+					<if test="appCode != null and appCode != ''" >
+				           AND p.app_code = #{appCode,jdbcType=VARCHAR}
+				    </if>
+				    <if test="token != null and token != ''" >
+				           AND p.token = #{token,jdbcType=VARCHAR}
+				    </if>
+				    <if test="loginName != null and loginName != ''" >
+				           AND u.login_Name = #{loginName,jdbcType=VARCHAR}
+				    </if>
+				) p
+			LEFT JOIN uum_user_channel c ON c.id = p.channel_id ) p where 1=1 
+			<if test="id != null and id >0 " >
+				    AND p.id = #{id,jdbcType=BIGINT}
+			</if>
+	</select>
+
+	<insert id="insert" parameterType="com.hm.userauth.model.UserApp" >
+	    insert into uum_user_app
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="userId != null" >
+	        user_Id,
+	      </if>
+	      <if test="appCode != null" >
+	        app_Code,
+	      </if>
+	      <if test="appName != null" >
+	        app_Name,
+	      </if>
+	      <if test="token != null" >
+	        token,
+	      </if>
+	      <if test="userStatus != null" >
+	        user_Status,
+	      </if>
+	      <if test="channelId != null" >
+	        channel_Id,
+	      </if>
+	      <if test="tokenCreateTime != null " >
+	        token_Create_Time ,
+		   </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="userId != null" >
+	        #{userId,jdbcType=INTEGER},
+	      </if>
+	      <if test="appCode != null" >
+	        #{appCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="appName != null" >
+	        #{appName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="token != null" >
+	        #{token,jdbcType=VARCHAR},
+	      </if>
+	      <if test="userStatus != null" >
+	        #{userStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channelId != null" >
+	        #{channelId,jdbcType=INTEGER},
+	      </if>
+	      <if test="tokenCreateTime != null " >
+	        #{tokenCreateTime,jdbcType=TIMESTAMP},
+			</if>
+	    </trim>
+	  </insert>
+	  <update id="update" parameterType="com.hm.userauth.model.UserApp" >
+	    update uum_user_app
+	    <set >
+	     <if test="userId != null" >
+	        user_Id = #{userId,jdbcType=INTEGER},
+	      </if>
+	      <if test="appCode != null" >
+	        app_Code = #{appCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="appName != null" >
+	        app_Name= #{appName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="token != null" >
+	        token = #{token,jdbcType=VARCHAR}, 
+	      </if>
+	      <if test="userStatus != null" >
+	        user_Status =  #{userStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channelId != null" >
+	        channel_Id = #{channelId,jdbcType=INTEGER},
+	      </if>
+	      <if test="tokenCreateTime != null " >
+	       token_Create_Time = #{tokenCreateTime,jdbcType=TIMESTAMP},
+		  </if>
+	    </set>
+	    where id = #{id,jdbcType=BIGINT}
+	  </update>
+</mapper>

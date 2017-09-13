@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.LnAppCalcInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.appinfo.model.LnAppCalcInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_id" property="appId" jdbcType="BIGINT" />
+    <result column="mon_credit_rate" property="monCreditRate" jdbcType="DECIMAL" />
+    <result column="mon_consult_rate" property="monConsultRate" jdbcType="DECIMAL" />
+    <result column="mon_service_fee" property="monServiceFee" jdbcType="DECIMAL" />
+    <result column="mon_repay_amt" property="monRepayAmt" jdbcType="DECIMAL" />
+    <result column="mon_loan_rate" property="monLoanRate" jdbcType="DECIMAL" />
+    <result column="periods" property="periods" jdbcType="INTEGER" />
+    <result column="loan_money" property="loanMoney" jdbcType="DECIMAL" />
+    <result column="down_payment_amount" property="downPaymentAmount" jdbcType="DECIMAL" />
+    <result column="buy_Insurance" property="buyInsurance" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="first_day_date" property="firstDayDate" jdbcType="TIMESTAMP" />
+    <result column="repy_day" property="repyDay" jdbcType="VARCHAR" />
+    <result column="contract_amt" property="contractAmt" jdbcType="DECIMAL" />
+    <result column="total_fee" property="totalFee" jdbcType="DECIMAL" />
+    <result column="consult_service_fee" property="consultServiceFee" jdbcType="DECIMAL" />
+    <result column="security_fee" property="securityFee" jdbcType="DECIMAL" />
+    <result column="insurance_fee" property="insuranceFee" jdbcType="DECIMAL" />
+    <result column="total_service_fee" property="totalServiceFee" jdbcType="DECIMAL" />
+    <result column="advance_settle_fee" property="advanceSettleFee" jdbcType="DECIMAL" />
+    <result column="manage_fee" property="manageFee" jdbcType="DECIMAL" />
+    <result column="bl_service_advance_rate" property="blServiceAdvanceRate" jdbcType="DECIMAL" />
+    <result column="loan_after_manage_fee" property="loanAfterManageFee" jdbcType="DECIMAL" />
+    <result column="ensure_fee_cn" property="ensureFeeCn" jdbcType="DECIMAL" />
+    <result column="insurance_fee_cn" property="insuranceFeeCn" jdbcType="DECIMAL" />
+    <result column="mon_avg_credit_fee" property="monCreditFee" jdbcType="DECIMAL" />
+    <result column="mon_avg_consult_fee" property="monConsultFee" jdbcType="DECIMAL" />
+    <result column="poundage_fee" property="poundageFee" jdbcType="DECIMAL" />
+    <result column="zz_To_Technology_Fee" property="zzToTechnologyServiceFee" jdbcType="DECIMAL" />
+    <result column="contract_amt_jf" property="contractAmtJF" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, app_id, mon_credit_rate, mon_consult_rate, mon_service_fee, mon_repay_amt, mon_loan_rate, 
+    periods, loan_money, down_payment_amount, buy_Insurance, amount, first_day_date, 
+    repy_day, contract_amt, total_fee,consult_service_fee,security_fee,insurance_fee,total_service_fee,
+    advance_settle_fee,manage_fee,bl_service_advance_rate,loan_after_manage_fee,ensure_fee_cn,insurance_fee_cn,
+    mon_avg_credit_fee,mon_avg_consult_fee,poundage_fee,zz_To_Technology_Fee,contract_amt_jf
+  </sql>
+  
+  <select id="list" resultMap="BaseResultMap" parameterType="com.hm.appinfo.model.LnAppCalcInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_calc_info 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+    <if test="appId != null">
+		AND app_id = #{appId,jdbcType=BIGINT}
+	</if>
+	</trim>
+  </select>
+  
+</mapper>

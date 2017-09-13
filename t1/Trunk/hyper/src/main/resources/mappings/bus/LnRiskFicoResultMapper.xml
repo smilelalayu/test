@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.bus.dao.LnRiskFicoResultMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnRiskFicoResult" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="SCORE" property="score" jdbcType="VARCHAR" />
+    <result column="GRADE" property="grade" jdbcType="VARCHAR" />
+    <result column="POLICY" property="policy" jdbcType="VARCHAR" />
+    <result column="RULEMESSAGE" property="rulemessage" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="FSTANDBY1" property="fstandby1" jdbcType="BIGINT" />
+    <result column="FSTANDBY2" property="fstandby2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, SCORE, GRADE, POLICY, RULEMESSAGE, CREATE_TIME, FSTANDBY1, FSTANDBY2
+  </sql>
+  
+  <!-- 通过工单ID删除评分数据 -->
+  <delete id="deleteMarkTWByAppId" parameterType="java.lang.Long" >
+    delete from fk_rk_score_fico_record
+    <where>
+    	<choose>
+    		<when test="appId != null">
+	         APP_ID = #{appId,jdbcType=BIGINT}
+    	</when>
+    	<otherwise> 1!=1</otherwise>
+    	</choose>
+    </where>
+  </delete>
+  
+  <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fk_rk_score_fico_record
+    where APP_ID = #{id,jdbcType=BIGINT}
+  </select>
+   <select id="query" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fk_rk_score_fico_record
+    where APP_ID = #{appId,jdbcType=BIGINT}
+    ORDER BY create_time desc
+    limit 1
+  </select>
+
+  <select id="selectByBatchNo" resultType="map" parameterType="string">
+    SELECT r.APP_ID appId, r.score, r.grade , r.policy FROM fk_rk_score_fico_record r
+    LEFT JOIN bus_lnapp_batch_mapping m ON  r.APP_ID = m.ln_app_id
+    WHERE m.batch_no = #{batchNo}
+  </select>
+
+  <select id="selectByAppId" resultType="map" parameterType="string">
+    SELECT r.APP_ID appId, r.score, r.grade , r.policy FROM fk_rk_score_fico_record r
+    WHERE r.APP_ID = #{appId}
+  </select>
+
+
+  
+  <insert id="insert" parameterType="com.hm.bus.module.LnRiskFicoResult">
+    insert into fk_rk_score_fico_record (APP_ID, SCORE, 
+      GRADE, POLICY, RULEMESSAGE, 
+      CREATE_TIME, FSTANDBY1, FSTANDBY2
+      )
+    values ( #{appId,jdbcType=BIGINT}, #{score,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR}, #{policy,jdbcType=VARCHAR}, #{rulemessage,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{fstandby1,jdbcType=BIGINT}, #{fstandby2,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+</mapper>

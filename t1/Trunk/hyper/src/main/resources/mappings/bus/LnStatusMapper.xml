@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.bus.dao.LnStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnStatus" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="TRADE_NAME" property="tradeName" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="METO" property="meto" jdbcType="VARCHAR" />
+    <result column="MODULE" property="module" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TRADE_NO, TRADE_NAME, CODE, TYPE, METO, MODULE, VERSION
+  </sql>
+  <select id="selectByPTradeNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_status
+    where TRADE_NO = #{tradeNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectLnStatusList" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List" />
+	from ln_status
+	where 1=1
+  </select>
+  
+  <select id="list" parameterType="com.hm.bus.module.LnStatus" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_status
+    <trim prefix="WHERE" prefixOverrides="AND">
+	    <if test="tradeNo != null">
+	        and TRADE_NO = #{tradeNo,jdbcType=VARCHAR}
+	      </if>
+	      <if test="tradeName != null">
+	        and TRADE_NAME = #{tradeName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="code != null">
+	        and CODE = #{code,jdbcType=VARCHAR}
+	      </if>
+	      <if test="type != null">
+	        and TYPE = #{type,jdbcType=VARCHAR}
+	      </if>
+	      <if test="meto != null">
+	        and METO = #{meto,jdbcType=VARCHAR}
+	      </if>
+	      <if test="module != null">
+	        and MODULE = #{module,jdbcType=VARCHAR}
+	      </if>
+	      <if test="version != null">
+	        and VERSION = #{version,jdbcType=INTEGER}
+	      </if>
+      </trim>
+  </select>
+  
+  <insert id="insert" parameterType="com.hm.bus.module.LnStatus" >
+    insert into ln_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO,
+      </if>
+      <if test="tradeName != null" >
+        TRADE_NAME,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="meto != null" >
+        METO,
+      </if>
+      <if test="module != null" >
+        MODULE,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeName != null" >
+        #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="meto != null" >
+        #{meto,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.LnAppStatuschangelogMapper">
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnAppStatuschangelog">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="APP_ID" jdbcType="BIGINT" property="appId" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="NEW_STATUS" jdbcType="VARCHAR" property="newStatus" />
+    <result column="CHANGE_TIME" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="CHANGE_USER" jdbcType="VARCHAR" property="changeUser" />
+    <result column="DESP" jdbcType="VARCHAR" property="desp" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="MODIFIEDBY" jdbcType="VARCHAR" property="modifiedby" />
+    <result column="MODIFIEDON" jdbcType="TIMESTAMP" property="modifiedon" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, APP_ID, STATUS, NEW_STATUS, CHANGE_TIME, CHANGE_USER, DESP, CREATEDBY, CREATEDON, 
+    MODIFIEDBY, MODIFIEDON, VERSION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_statuschangelog
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByAppId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_statuschangelog
+    where  APP_ID = #{appId,jdbcType=BIGINT}
+    and STATUS='20' and NEW_STATUS='21' LIMIT 1
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ln_app_statuschangelog
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.LnAppStatuschangelog">
+    insert into ln_app_statuschangelog (ID, APP_ID, STATUS, 
+      NEW_STATUS, CHANGE_TIME, CHANGE_USER, 
+      DESP, CREATEDBY, CREATEDON, 
+      MODIFIEDBY, MODIFIEDON, VERSION
+      )
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}, 
+      #{newStatus,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}, #{changeUser,jdbcType=VARCHAR}, 
+      #{desp,jdbcType=VARCHAR}, #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=VARCHAR}, #{modifiedon,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.bus.module.LnAppStatuschangelog">
+    insert into ln_app_statuschangelog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="newStatus != null">
+        NEW_STATUS,
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME,
+      </if>
+      <if test="changeUser != null">
+        CHANGE_USER,
+      </if>
+      <if test="desp != null">
+        DESP,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="modifiedby != null">
+        MODIFIEDBY,
+      </if>
+      <if test="modifiedon != null">
+        MODIFIEDON,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="newStatus != null">
+        #{newStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null">
+        #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null">
+        #{desp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null">
+        #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null">
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.LnAppStatuschangelog">
+    update ln_app_statuschangelog
+    <set>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="newStatus != null">
+        NEW_STATUS = #{newStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null">
+        CHANGE_USER = #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null">
+        DESP = #{desp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null">
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null">
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.bus.module.LnAppStatuschangelog">
+    update ln_app_statuschangelog
+    set APP_ID = #{appId,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=VARCHAR},
+      NEW_STATUS = #{newStatus,jdbcType=VARCHAR},
+      CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+      CHANGE_USER = #{changeUser,jdbcType=VARCHAR},
+      DESP = #{desp,jdbcType=VARCHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
