@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.validate.dao.ValidModulesMapper" >
+	<!-- redis缓存 -->
+	<!--  <cache type="com.gep.core.cache.MybatisRedisCache" /> -->
+	
+	<resultMap id="BaseResultMap" type="com.hm.validate.model.ValidModules" >
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR" />
+		<result column="MODEL_NAME" property="modelName" jdbcType="VARCHAR" />
+		<result column="CONTEXT" property="context" jdbcType="VARCHAR" />
+		<result column="ACTION_CODE" property="actionCode" jdbcType="VARCHAR" />
+		<result column="VERSION" property="version" jdbcType="INTEGER" />
+		<result column="ACCESS_URL" property="accessUrl" jdbcType="VARCHAR" />
+		<result column="POST_URL" property="postUrl" jdbcType="VARCHAR" />
+		<result column="LAST_OPER" property="lastOper" jdbcType="VARCHAR" />
+		<result column="LAST_UPDATE" property="lastUpdate" jdbcType="TIMESTAMP" />
+	</resultMap>
+  
+	<sql id="Base_Column" >
+    ID, MODEL_CODE, MODEL_NAME, CONTEXT, ACTION_CODE, VERSION, ACCESS_URL, POST_URL, LAST_OPER, LAST_UPDATE
+	</sql>
+	
+	<sql id="Base_Condition_Select">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+	  		<if test="modelCode != null and modelCode != ''" >
+	        AND MODEL_CODE = #{modelCode,jdbcType=VARCHAR}
+			</if>
+			<if test="modelName != null and modelName != ''" >
+	        AND MODEL_NAME = #{modelName,jdbcType=VARCHAR}
+			</if>
+			<if test="context != null and context != ''" >
+	        AND CONTEXT = #{context,jdbcType=VARCHAR}
+			</if>
+			<if test="actionCode != null and actionCode != ''" >
+	        AND ACTION_CODE = #{actionCode,jdbcType=VARCHAR}
+			</if>
+			<if test="version != null and version > 0" >
+	        AND VERSION = #{version,jdbcType=INTEGER}
+			</if>
+			<if test="accessUrl != null and accessUrl != ''" >
+	        AND ACCESS_URL = #{accessUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="postUrl != null and postUrl != ''" >
+	        AND POST_URL LIKE concat(concat('%',#{postUrl,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="lastOper != null and lastOper != ''" >
+	        AND LAST_OPER = #{lastOper,jdbcType=VARCHAR}
+			</if>
+			<if test="lastUpdate != null" >
+	        AND LAST_UPDATE = #{lastUpdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="id != null and id > 0" >
+	        AND id = #{id,jdbcType=INTEGER}
+			</if>
+		</trim>
+	</sql>
+  
+	<select id="list" resultMap="BaseResultMap" parameterType="com.hm.validate.model.ValidModules" >
+    select 
+		<include refid="Base_Column" />
+    from validate_modules
+		<include refid="Base_Condition_Select" />
+	</select>
+    <insert id="insert" parameterType="com.hm.validate.model.ValidModules" >
+	    insert into validate_modules
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        id,
+	      </if>
+	      <if test="modelCode != null" >
+	        model_Code,
+	      </if>
+	      <if test="modelName != null" >
+	        model_Name,
+	      </if>
+	      <if test="context != null" >
+	        context,
+	      </if>
+	      <if test="actionCode != null" >
+	        action_Code,
+	      </if>
+	       <if test="version != null" >
+	        version,
+	      </if>
+	      <if test="accessUrl != null" >
+	        access_Url,
+	      </if>
+	      <if test="postUrl != null" >
+	        post_Url,
+	      </if>
+	      <if test="lastOper != null" >
+	        last_Oper,
+	      </if>
+	      <if test="lastUpdate != null" >
+	        last_Update,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        #{id,jdbcType=BIGINT},
+	      </if>
+	      <if test="modelCode != null" >
+	        #{modelCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="modelName != null" >
+	        #{modelName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="context != null" >
+	        #{context,jdbcType=VARCHAR},
+	      </if>
+	      <if test="actionCode != null" >
+	        #{actionCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="version != null" >
+	        #{version,jdbcType=INTEGER},
+	      </if>
+	       <if test="accessUrl != null" >
+	        #{accessUrl,jdbcType=VARCHAR},
+	      </if>
+	       <if test="postUrl != null" >
+	        #{postUrl,jdbcType=VARCHAR},
+	      </if>
+	       <if test="lastOper != null" >
+	        #{lastOper,jdbcType=VARCHAR},
+	      </if>
+	       <if test="lastUpdate != null" >
+	        #{lastUpdate,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	  </insert>
+	  <update id="update" parameterType="com.hm.validate.model.ValidModules" >
+	    update validate_modules
+	    <set >
+	      <if test="modelCode != null" >
+	        model_Code = #{modelCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="modelName != null" >
+	        model_Name= #{modelName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="context != null" >
+	        context = #{context,jdbcType=VARCHAR},
+	      </if>
+	      <if test="actionCode != null" >
+	        action_Code =  #{actionCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="version != null" >
+	        version = #{version,jdbcType=INTEGER},
+	      </if>
+	      <if test="accessUrl != null" >
+	        access_Url = #{accessUrl,jdbcType=VARCHAR},
+	      </if>
+	      <if test="postUrl != null" >
+	        post_Url = #{postUrl,jdbcType=VARCHAR},
+	      </if>
+	      <if test="lastOper != null" >
+	        last_Oper = #{lastOper,jdbcType=VARCHAR},
+	      </if>
+	      <if test="lastUpdate != null" >
+	        last_Update = #{lastUpdate,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where id = #{id,jdbcType=BIGINT}
+	  </update>
+	  
+</mapper>

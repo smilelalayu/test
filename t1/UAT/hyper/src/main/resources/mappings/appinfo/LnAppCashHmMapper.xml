@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.LnAppCashHmMapper">
+	
+	<parameterMap id="lnAppCash" type="com.hm.appinfo.model.LnAppCash" />
+	
+	<resultMap id="BaseResultMap" type="com.hm.appinfo.model.LnAppCash">
+		<id column="APP_ID" property="appId" jdbcType="BIGINT" />
+		<result column="USE_TYPE" property="useType" jdbcType="VARCHAR" />
+		<result column="SRC_APP_ID" property="srcAppId" jdbcType="BIGINT" />
+		<result column="SRC_APP_DIFFER" property="srcAppDiffer"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		APP_ID, USE_TYPE, SRC_APP_ID, SRC_APP_DIFFER
+	</sql>
+
+	<select id="selectByAppId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app_cash
+		where APP_ID = #{appId,jdbcType=BIGINT}
+	</select>
+
+	<select id="list" resultMap="BaseResultMap" parameterMap="lnAppCash">
+		select
+		<include refid="Base_Column_List" />
+		from ln_app_cash
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="appId != null and appId != '' ">
+				AND APP_ID = #{appId }
+			</if>
+			<if test="useType != null and useType != '' ">
+				AND USE_TYPE = #{useType }
+			</if>
+			<if test="srcAppId != null and srcAppId != '' ">
+				AND SRC_APP_ID = #{srcAppId }
+			</if>
+		</trim>
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from ln_app_cash
+		where APP_ID = #{appId,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterMap="lnAppCash">
+		insert into ln_app_cash
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="useType != null">
+				USE_TYPE,
+			</if>
+			<if test="srcAppId != null">
+				SRC_APP_ID,
+			</if>
+			<if test="srcAppDiffer != null">
+				SRC_APP_DIFFER,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				#{appId,jdbcType=BIGINT},
+			</if>
+			<if test="useType != null">
+				#{useType,jdbcType=VARCHAR},
+			</if>
+			<if test="srcAppId != null">
+				#{srcAppId,jdbcType=BIGINT},
+			</if>
+			<if test="srcAppDiffer != null">
+				#{srcAppDiffer,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterMap="lnAppCash">
+		update ln_app_cash
+		<set>
+			<if test="useType != null">
+				USE_TYPE = #{useType,jdbcType=VARCHAR},
+			</if>
+			<if test="srcAppId != null">
+				SRC_APP_ID = #{srcAppId,jdbcType=BIGINT},
+			</if>
+			<if test="srcAppDiffer != null">
+				SRC_APP_DIFFER = #{srcAppDiffer,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where APP_ID = #{appId,jdbcType=BIGINT}
+	</update>
+
+</mapper>

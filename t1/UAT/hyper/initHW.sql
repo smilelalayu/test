@@ -1,0 +1,10 @@
+
+####################################################华丽的分割线####################################################
+
+###参数校验框架初始化数据(登陆模块),开发环境已初始化
+INSERT INTO `validate_modules` (`MODEL_CODE`, `MODEL_NAME`, `CONTEXT`, `ACTION_CODE`, `VERSION`, `ACCESS_URL`, `POST_URL`) VALUES ('login', '登录', 'HM', 'hm_login', '1', '/WEB-INF/views/login.jsp', '/login');
+INSERT INTO `validate_forms` (`ACTION_CODE`, `VERSION`, `TYPE`, `RULE_ID`, `RULES`) VALUES ('hm_login', '1', 'username', '1', '{\"required\":\"true\",\"requiredmsg\":\"用户名不能为空\",\"expressionmsg\":\"用户名格式不正确\",\"functionmsg\":\"\",\"formulamsg\":\"\",\"number\":\"false\",\"numbermsg\":\"\",\"digits\":\"false\",\"digitsmsg\":\"\",\"minlength\":\"\",\"minlengthmsg\":\"\",\"maxlength\":\"\",\"maxlengthmsg\":\"\",\"min\":\"\",\"minmsg\":\"\",\"max\":\"\",\"maxmsg\":\"\",\"remote\":\"\",\"remotemsg\":\"用户名已存在\",\"equalTo\":\"\",\"equalTomsg\":\"\"}');
+INSERT INTO `validate_forms` (`ACTION_CODE`, `VERSION`, `TYPE`, `RULE_ID`, `RULES`) VALUES ('hm_login', '1', 'password', '1', '{\"required\":\"true\",\"requiredmsg\":\"登录密码不能为空\",\"expressionmsg\":\"登录密码格式不正确\",\"functionmsg\":\"\",\"formulamsg\":\"\",\"number\":\"false\",\"numbermsg\":\"\",\"digits\":\"false\",\"digitsmsg\":\"\",\"minlength\":\"\",\"minlengthmsg\":\"\",\"maxlength\":\"\",\"maxlengthmsg\":\"\",\"min\":\"\",\"minmsg\":\"\",\"max\":\"\",\"maxmsg\":\"\",\"remote\":\"\",\"remotemsg\":\"\",\"equalTo\":\"#passwordAgn\",\"equalTomsg\":\"请再次输入相同登录密码\"}{\"required\":\"true\",\"requiredmsg\":\"登录密码不能为空\",\"expressionmsg\":\"登录密码格式不正确\",\"functionmsg\":\"\",\"formulamsg\":\"\",\"number\":\"false\",\"numbermsg\":\"\",\"digits\":\"false\",\"digitsmsg\":\"\",\"minlength\":\"6\",\"minlengthmsg\":\"最少要输入 {0} 个字符\",\"maxlength\":\"20\",\"maxlengthmsg\":\"最多可以输入 {0} 个字符\",\"min\":\"\",\"minmsg\":\"\",\"max\":\"\",\"maxmsg\":\"\",\"remote\":\"\",\"remotemsg\":\"\",\"equalTo\":\"#passwordAgn\",\"equalTomsg\":\"请再次输入相同登录密码\"}');
+
+
+####################################################华丽的分割线####################################################

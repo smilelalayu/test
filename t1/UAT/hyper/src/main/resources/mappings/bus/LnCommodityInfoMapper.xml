@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.LnCommodityInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnCommodityInfo">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CARGO_TYPE" jdbcType="VARCHAR" property="cargoType" />
+    <result column="APP_ID" jdbcType="BIGINT" property="appId" />
+    <result column="COMMODITY_CLASS" jdbcType="VARCHAR" property="commodityClass" />
+    <result column="COMMODITY_NAME" jdbcType="VARCHAR" property="commodityName" />
+    <result column="COMMODITY_TYPE" jdbcType="VARCHAR" property="commodityType" />
+    <result column="COMMODITY_PRICE" jdbcType="DECIMAL" property="commodityPrice" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="MODIFIEDBY" jdbcType="VARCHAR" property="modifiedby" />
+    <result column="MODIFIEDON" jdbcType="TIMESTAMP" property="modifiedon" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CARGO_TYPE, APP_ID, COMMODITY_CLASS, COMMODITY_NAME, COMMODITY_TYPE, 
+    COMMODITY_PRICE, CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, VERSION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_commodity_info
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+  <select id="selectCommodityByRepaymentList" resultMap="BaseResultMap" >
+	select 
+	CI.ID ID, CI.CARGO_TYPE CARGO_TYPE, CI.APP_ID APP_ID, CI.COMMODITY_CLASS COMMODITY_CLASS, 
+	CI.COMMODITY_NAME COMMODITY_NAME, CI.COMMODITY_TYPE COMMODITY_TYPE,
+    CI.COMMODITY_PRICE COMMODITY_PRICE, CI.CREATEDBY CREATEDBY, 
+    CI.CREATEDON CREATEDON, CI.MODIFIEDBY MODIFIEDBY, CI.MODIFIEDON MODIFIEDON, CI.VERSION VERSION 
+	from ln_commodity_info CI LEFT JOIN ln_app APP ON CI.APP_ID = APP.ID 
+	where APP.app_state = '32'
+	or (app.APP_STATE = '50' and (app.IS_REPAYMENT_SUCCESS is null or app.IS_REPAYMENT_SUCCESS='' or app.IS_REPAYMENT_SUCCESS='failure'))
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ln_commodity_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.LnCommodityInfo">
+    insert into ln_commodity_info (ID, CARGO_TYPE, APP_ID, 
+      COMMODITY_CLASS, COMMODITY_NAME, COMMODITY_TYPE, 
+      COMMODITY_PRICE, 
+      CREATEDBY, CREATEDON, MODIFIEDBY, 
+      MODIFIEDON, VERSION)
+    values (#{id,jdbcType=BIGINT}, #{cargoType,jdbcType=VARCHAR}, #{appId,jdbcType=BIGINT}, 
+      #{commodityClass,jdbcType=VARCHAR}, #{commodityName,jdbcType=VARCHAR}, #{commodityType,jdbcType=VARCHAR}, 
+      #{commodityPrice,jdbcType=DECIMAL}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=VARCHAR}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.bus.module.LnCommodityInfo">
+    insert into ln_commodity_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="cargoType != null">
+        CARGO_TYPE,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="commodityClass != null">
+        COMMODITY_CLASS,
+      </if>
+      <if test="commodityName != null">
+        COMMODITY_NAME,
+      </if>
+      <if test="commodityType != null">
+        COMMODITY_TYPE,
+      </if>
+      <if test="commodityPrice != null">
+        COMMODITY_PRICE,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="modifiedby != null">
+        MODIFIEDBY,
+      </if>
+      <if test="modifiedon != null">
+        MODIFIEDON,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cargoType != null">
+        #{cargoType,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="commodityClass != null">
+        #{commodityClass,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityName != null">
+        #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityType != null">
+        #{commodityType,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null">
+        #{commodityPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null">
+        #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null">
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.LnCommodityInfo">
+    update ln_commodity_info
+    <set>
+      <if test="cargoType != null">
+        CARGO_TYPE = #{cargoType,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="commodityClass != null">
+        COMMODITY_CLASS = #{commodityClass,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityName != null">
+        COMMODITY_NAME = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityType != null">
+        COMMODITY_TYPE = #{commodityType,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null">
+        COMMODITY_PRICE = #{commodityPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null">
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null">
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.bus.module.LnCommodityInfo">
+    update ln_commodity_info
+    set CARGO_TYPE = #{cargoType,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=BIGINT},
+      COMMODITY_CLASS = #{commodityClass,jdbcType=VARCHAR},
+      COMMODITY_NAME = #{commodityName,jdbcType=VARCHAR},
+      COMMODITY_TYPE = #{commodityType,jdbcType=VARCHAR},
+      COMMODITY_PRICE = #{commodityPrice,jdbcType=DECIMAL},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.BusLnAppBatchMappingMapper">
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.BusLnAppBatchMapping">
+    <id column="batch_no" jdbcType="VARCHAR" property="batchNo" />
+    <id column="ln_app_id" jdbcType="BIGINT" property="lnAppId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    batch_no, ln_app_id, update_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.hm.bus.module.BusLnAppBatchMappingKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bus_lnapp_batch_mapping
+    where batch_no = #{batchNo,jdbcType=VARCHAR}
+      and ln_app_id = #{lnAppId,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByLnAppId" resultMap="BaseResultMap" resultType="string">
+    select
+    <include refid="Base_Column_List" />
+    from bus_lnapp_batch_mapping
+    where ln_app_id = #{lnAppId,jdbcType=VARCHAR}
+    ORDER BY update_time DESC
+  </select>
+
+  <select id="selectByBatchNo" parameterType="string" resultType="string">
+    select
+    CONCAT(ln_app_id,'@',batch_no)
+    from bus_lnapp_batch_mapping
+    where batch_no = #{batchNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.hm.bus.module.BusLnAppBatchMappingKey">
+    delete from bus_lnapp_batch_mapping
+    where batch_no = #{batchNo,jdbcType=VARCHAR}
+      and ln_app_id = #{lnAppId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.BusLnAppBatchMapping">
+    insert into bus_lnapp_batch_mapping (batch_no, ln_app_id, update_time, 
+      remark)
+    values (#{batchNo,jdbcType=VARCHAR}, #{lnAppId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  
+  <!-- 批量插入List -->
+  <insert id ="insertList" parameterType="java.util.List" >
+   insert into bus_lnapp_batch_mapping (batch_no, ln_app_id, update_time, 
+      remark)
+    values 
+    <foreach collection ="list" item="BusLnAppBatchMapping" index= "index" separator =",">
+      (#{BusLnAppBatchMapping.batchNo,jdbcType=VARCHAR}, #{BusLnAppBatchMapping.lnAppId,jdbcType=BIGINT}, 
+       #{BusLnAppBatchMapping.updateTime,jdbcType=TIMESTAMP}, #{BusLnAppBatchMapping.remark,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.hm.bus.module.BusLnAppBatchMapping">
+    insert into bus_lnapp_batch_mapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="batchNo != null">
+        batch_no,
+      </if>
+      <if test="lnAppId != null">
+        ln_app_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="batchNo != null">
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lnAppId != null">
+        #{lnAppId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.BusLnAppBatchMapping">
+    update bus_lnapp_batch_mapping
+    <set>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where batch_no = #{batchNo,jdbcType=VARCHAR}
+      and ln_app_id = #{lnAppId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.bus.module.BusLnAppBatchMapping">
+    update bus_lnapp_batch_mapping
+    set update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where batch_no = #{batchNo,jdbcType=VARCHAR}
+      and ln_app_id = #{lnAppId,jdbcType=BIGINT}
+  </update>
+</mapper>
