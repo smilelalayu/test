@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.contract.dao.QzContractFileHmMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.contract.model.QzContractFile" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="CONTRACT_TYPE" property="contractType" jdbcType="VARCHAR" />
+    <result column="CONTRACT_NAME" property="contractName" jdbcType="VARCHAR" />
+    <result column="CUST_SIGN_STATUS" property="custSignStatus" jdbcType="CHAR" />
+    <result column="FIRM_SIGN_STATUS" property="firmSignStatus" jdbcType="CHAR" />
+    <result column="OSS_ID" property="ossId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_CATEGORY" property="contractCategory" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDER" property="modifieder" jdbcType="VARCHAR" />
+    <result column="MODEIFIED_TIME" property="modeifiedTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, CONTRACT_TYPE, CONTRACT_NAME, CUST_SIGN_STATUS, FIRM_SIGN_STATUS, OSS_ID, 
+    CONTRACT_CATEGORY, URL, SOURCE, CREATER, CREATE_TIME, MODIFIEDER, MODEIFIED_TIME, 
+    STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qz_contract_file
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from qz_contract_file
+    where APP_ID = #{appId,jdbcType=BIGINT}
+  </delete>
+  
+</mapper>

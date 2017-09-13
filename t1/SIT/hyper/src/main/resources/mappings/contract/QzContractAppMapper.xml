@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.contract.dao.QzContractAppHmMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.contract.model.QzContractApp" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="SIGN_STATUS" property="signStatus" jdbcType="CHAR" />
+    <result column="CUST_SIGN_STATUS" property="custSignStatus" jdbcType="CHAR" />
+    <result column="FIRM_SIGN_STATUS" property="firmSignStatus" jdbcType="CHAR" />
+    <result column="CUST_SIGN_TIME" property="custSignTime" jdbcType="TIMESTAMP" />
+    <result column="FIRM_SIGN_TIME" property="firmSignTime" jdbcType="TIMESTAMP" />
+    <result column="SIGN_TIME" property="signTime" jdbcType="TIMESTAMP" />
+    <result column="NON_SIGN_NUMS" property="nonSignNums" jdbcType="INTEGER" />
+    <result column="LA_ATTACH_STATUS" property="laAttachStatus" jdbcType="CHAR" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDER" property="modifieder" jdbcType="VARCHAR" />
+    <result column="MODEIFIED_TIME" property="modeifiedTime" jdbcType="TIMESTAMP" />
+    <result column="CUST_SOURCE" property="custSource" jdbcType="VARCHAR" />
+    <result column="FIRM_SOURCE" property="firmSource" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, SIGN_STATUS, CUST_SIGN_STATUS, FIRM_SIGN_STATUS, CUST_SIGN_TIME, FIRM_SIGN_TIME, 
+    SIGN_TIME, NON_SIGN_NUMS, LA_ATTACH_STATUS, CREATER, CREATE_TIME, MODIFIEDER, MODEIFIED_TIME, 
+    CUST_SOURCE, FIRM_SOURCE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from qz_contract_app
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from qz_contract_app
+    where APP_ID = #{appId,jdbcType=BIGINT}
+  </delete>
+  
+</mapper>

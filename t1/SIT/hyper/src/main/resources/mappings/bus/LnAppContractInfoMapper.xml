@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.bus.dao.LnAppContractInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnAppContractInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="app_id" property="appId" jdbcType="BIGINT" />
+    <result column="mon_credit_rate" property="monCreditRate" jdbcType="DECIMAL" />
+    <result column="mon_consult_rate" property="monConsultRate" jdbcType="DECIMAL" />
+    <result column="mon_service_fee" property="monServiceFee" jdbcType="DECIMAL" />
+    <result column="mon_repay_amt" property="monRepayAmt" jdbcType="DECIMAL" />
+    <result column="mon_loan_rate" property="monLoanRate" jdbcType="DECIMAL" />
+    <result column="periods" property="periods" jdbcType="INTEGER" />
+    <result column="loan_money" property="loanMoney" jdbcType="DECIMAL" />
+    <result column="down_payment_amount" property="downPaymentAmount" jdbcType="DECIMAL" />
+    <result column="buy_Insurance" property="buyInsurance" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="first_day_date" property="firstDayDate" jdbcType="TIMESTAMP" />
+    <result column="repy_day" property="repyDay" jdbcType="VARCHAR" />
+    <result column="contract_amt" property="contractAmt" jdbcType="DECIMAL" />
+    <result column="total_fee" property="totalFee" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    id, app_id, mon_credit_rate, mon_consult_rate, mon_service_fee, mon_repay_amt, mon_loan_rate, 
+    periods, loan_money, down_payment_amount, buy_Insurance, amount, first_day_date, 
+    repy_day, contract_amt, total_fee
+  </sql>
+  
+  <select id="list" resultMap="BaseResultMap" parameterType="com.hm.bus.module.LnAppContractInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_calc_info 
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+    <if test="appId != null">
+		AND app_id = #{appId,jdbcType=BIGINT}
+	</if>
+	</trim>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from ln_app_calc_info where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.hm.bus.module.LnAppContractInfo" >
+    insert into ln_app_calc_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="monCreditRate != null" >
+        mon_credit_rate,
+      </if>
+      <if test="monConsultRate != null" >
+        mon_consult_rate,
+      </if>
+      <if test="monServiceFee != null" >
+        mon_service_fee,
+      </if>
+      <if test="monRepayAmt != null" >
+        mon_repay_amt,
+      </if>
+      <if test="monLoanRate != null" >
+        mon_loan_rate,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="loanMoney != null" >
+        loan_money,
+      </if>
+      <if test="downPaymentAmount != null" >
+        down_payment_amount,
+      </if>
+      <if test="buyInsurance != null" >
+        buy_Insurance,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="firstDayDate != null" >
+        first_day_date,
+      </if>
+      <if test="repyDay != null" >
+        repy_day,
+      </if>
+      <if test="contractAmt != null" >
+        contract_amt,
+      </if>
+      <if test="totalFee != null" >
+        total_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="monCreditRate != null" >
+        #{monCreditRate,jdbcType=DECIMAL},
+      </if>
+      <if test="monConsultRate != null" >
+        #{monConsultRate,jdbcType=DECIMAL},
+      </if>
+      <if test="monServiceFee != null" >
+        #{monServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="monRepayAmt != null" >
+        #{monRepayAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="monLoanRate != null" >
+        #{monLoanRate,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="loanMoney != null" >
+        #{loanMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="downPaymentAmount != null" >
+        #{downPaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="buyInsurance != null" >
+        #{buyInsurance,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstDayDate != null" >
+        #{firstDayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repyDay != null" >
+        #{repyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAmt != null" >
+        #{contractAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="totalFee != null" >
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  
+  
+ 
+  <update id="update" parameterType="com.hm.bus.module.LnAppContractInfo" >
+    update ln_app_calc_info
+    <set >
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="monCreditRate != null" >
+        mon_credit_rate = #{monCreditRate,jdbcType=DECIMAL},
+      </if>
+      <if test="monConsultRate != null" >
+        mon_consult_rate = #{monConsultRate,jdbcType=DECIMAL},
+      </if>
+      <if test="monServiceFee != null" >
+        mon_service_fee = #{monServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="monRepayAmt != null" >
+        mon_repay_amt = #{monRepayAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="monLoanRate != null" >
+        mon_loan_rate = #{monLoanRate,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="loanMoney != null" >
+        loan_money = #{loanMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="downPaymentAmount != null" >
+        down_payment_amount = #{downPaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="buyInsurance != null" >
+        buy_Insurance = #{buyInsurance,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstDayDate != null" >
+        first_day_date = #{firstDayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repyDay != null" >
+        repy_day = #{repyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAmt != null" >
+        contract_amt = #{contractAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="totalFee != null" >
+        total_fee = #{totalFee,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

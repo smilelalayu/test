@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.BusBatchInfoMapper">
+	<resultMap id="BaseResultMap" type="com.hm.bus.module.BusBatchInfo">
+		<id column="batch_no" jdbcType="VARCHAR" property="batchNO" />
+		<result column="file_key" jdbcType="VARCHAR" property="fileKey" />
+		<result column="file_name" jdbcType="VARCHAR" property="fileName" />
+		<result column="appay_date" jdbcType="TIMESTAMP" property="appayDate" />
+		<result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+		<result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+		<result column="total" jdbcType="BIGINT" property="total" />
+		<result column="total_success" jdbcType="BIGINT" property="totalSuccess" />
+		<result column="total_fail" jdbcType="BIGINT" property="totalFail" />
+		<result column="total_unsent" jdbcType="BIGINT" property="totalUnsent" />
+		<result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+		<result column="update_user_name" jdbcType="VARCHAR" property="updateUserName" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="sent_to_bus" jdbcType="TINYINT" property="sentToBus" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		batch_no, file_key, file_name, appay_date,begin_date, end_date, total,
+		total_success,
+		total_fail,total_unsent,sent_to_bus,
+		update_user,
+		update_user_name, update_time, remark
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from bus_batch_info
+		where batch_no = #{batchNO,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		bus_batch_info
+		where batch_no = #{batchNO,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hm.bus.module.BusBatchInfo">
+		insert into bus_batch_info (batch_no, file_key, file_name,appay_date,
+		begin_date, end_date, total,
+		total_success, total_fail, total_unsent, update_user,update_user_name,
+		update_time, remark,sent_to_bus)
+		values (#{batchNO,jdbcType=VARCHAR}, #{fileKey,jdbcType=VARCHAR},
+		#{fileName,jdbcType=VARCHAR},#{appayDate,jdbcType=TIMESTAMP},
+		#{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{total,jdbcType=BIGINT},
+		#{totalSuccess,jdbcType=BIGINT}, #{totalFail,jdbcType=BIGINT},
+		#{totalUnsent,jdbcType=BIGINT},
+		#{updateUser,jdbcType=VARCHAR},#{updateUserName,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR},0)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hm.bus.module.BusBatchInfo">
+		insert into bus_batch_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="batchNO != null">
+				batch_no,
+			</if>
+			<if test="fileKey != null">
+				file_key,
+			</if>
+			<if test="fileName != null">
+				file_name,
+			</if>
+			<if test="appayDate != null" >
+        		appay_date,
+      		</if>
+			<if test="beginDate != null">
+				begin_date,
+			</if>
+			<if test="endDate != null">
+				end_date,
+			</if>
+			<if test="total != null">
+				total,
+			</if>
+			<if test="totalSuccess != null">
+				total_success,
+			</if>
+			<if test="totalFail != null">
+				total_fail,
+			</if>
+			<if test="totalUnsent != null">
+				total_unsent,
+			</if>
+			<if test="updateUser != null">
+				update_user,
+			</if>
+			<if test="updateUserName != null">
+				update_user_Name,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="batchNO != null">
+				#{batchNO,jdbcType=VARCHAR},
+			</if>
+			<if test="fileKey != null">
+				#{fileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				#{fileName,jdbcType=VARCHAR},
+			</if>
+			<if test="appayDate != null" >
+       			 #{appayDate,jdbcType=TIMESTAMP},
+      		</if>
+			<if test="beginDate != null">
+				#{beginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				#{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="total != null">
+				#{total,jdbcType=BIGINT},
+			</if>
+			<if test="totalSuccess != null">
+				#{totalSuccess,jdbcType=BIGINT},
+			</if>
+			<if test="totalFail != null">
+				#{totalFail,jdbcType=BIGINT},
+			</if>
+			<if test="totalUnsent != null">
+				#{totalUnsent,jdbcType=BIGINT},
+			</if>
+			<if test="updateUser != null">
+				#{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUserName != null">
+				#{updateUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.BusBatchInfo">
+		update bus_batch_info
+		<set>
+			<if test="fileKey != null">
+				file_key = #{fileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				file_name = #{fileName,jdbcType=VARCHAR},
+			</if>
+			<if test="appayDate != null" >
+       			appay_date = #{appayDate,jdbcType=TIMESTAMP},
+      		</if>
+			<if test="beginDate != null">
+				begin_date = #{beginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="total != null">
+				total = #{total,jdbcType=BIGINT},
+			</if>
+			<if test="totalSuccess != null">
+				total_success = #{totalSuccess,jdbcType=BIGINT},
+			</if>
+			<if test="totalFail != null">
+				total_fail = #{totalFail,jdbcType=BIGINT},
+			</if>
+			<if test="totalUnsent != null">
+				total_unsent = #{totalUnsent,jdbcType=BIGINT},
+			</if>
+			<if test="updateUser != null">
+				update_user = #{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUserName != null">
+				update_user_name = #{updateUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where batch_no = #{batchNO,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hm.bus.module.BusBatchInfo">
+		update
+		bus_batch_info
+		set file_key = #{fileKey,jdbcType=VARCHAR},
+		file_name =
+		#{fileName,jdbcType=VARCHAR},
+		appay_date = #{appayDate,jdbcType=TIMESTAMP},
+		begin_date =
+		#{beginDate,jdbcType=TIMESTAMP},
+		end_date =
+		#{endDate,jdbcType=TIMESTAMP},
+		total = #{total,jdbcType=BIGINT},
+		total_success = #{totalSuccess,jdbcType=BIGINT},
+		total_fail =
+		#{totalFail,jdbcType=BIGINT},
+		total_unsent =
+		#{totalUnsent,jdbcType=BIGINT},
+		update_user =
+		#{updateUser,jdbcType=VARCHAR},
+		update_user_name =
+		#{updateUserName,jdbcType=VARCHAR},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+		where batch_no = #{batchNO,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 查询bus批次信息列表 -->
+	<select id="list" resultMap="BaseResultMap" parameterType="com.hm.bus.module.BusLnAppCustInfo">
+		<choose>
+			<when test="isNoParam == 'true'">
+				select
+				<include refid="Base_Column_List" />
+				from bus_batch_info order by update_time desc
+			</when>
+			<otherwise>
+				SELECT batch1.* from bus_batch_info batch1
+				INNER JOIN
+				(
+				select
+				batch_no
+				from bus_batch_info
+				<trim prefix="WHERE" prefixOverrides="AND|OR">
+					<if test="batchNO != null and batchNO != ''">
+						AND batch_no = #{batchNO}
+					</if>
+					<if test="beginDate!=null">
+						AND begin_date &gt;= #{beginDate}
+					</if>
+					<if test="endDate!=null">
+						AND end_date &lt;=#{endDate}
+					</if>
+
+				</trim>
+				) batch2 on batch2.batch_no = batch1.batch_no
+
+				order by batch1.update_time desc
+			</otherwise>
+		</choose>
+	</select>
+	<!--根据批次号查询所有的待推bus工单号 -->
+	<select id="selectAppIdsByBatchNO" resultType="string">
+		SELECT app.id
+		from
+		ln_app app join bus_lnapp_batch_mapping
+		batch on batch.ln_app_id =
+		app.id
+		WHERE batch.batch_no = #{batchNO}
+		and app.APP_STATE in
+		('35','36')
+		and not EXISTS (select 1 from bus_sent_log log where
+		log.batch_no=batch.batch_no and log.ln_app_id=app.id and
+		log.bus_type='1')
+	</select>
+
+	<update id="updateTotalSuccessByBatchNo" parameterType="string">
+		update
+		bus_batch_info set total_success = total_success + 1 WHERE batch_no =
+		#{batchNO}
+	</update>
+
+	<update id="updateTotalFailByBatchNo" parameterType="string">
+		update
+		bus_batch_info set total_fail = total_fail + 1 WHERE batch_no =
+		#{batchNO}
+	</update>
+
+	<select id="selectSentTotal" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select
+		count(1) total,
+		(select count(distinct ln_app_id) from bus_sent_log log where
+		log.batch_no = mapp.batch_no and log.bus_type='1' and log.state='1' )
+		total_success, <!--成功笔数 -->
+		(select count(distinct ln_app_id) from bus_sent_log log where
+		log.batch_no = mapp.batch_no and log.bus_type='1' and log.state='2'
+		and not EXISTS (select 1 from bus_sent_log log2 where
+		log2.batch_no=log.batch_no and log2.ln_app_id=log.ln_app_id and
+		log2.bus_type='1' and log2.state='1')) total_fail,<!--失败笔数 -->
+		(count(1)-(select count(distinct ln_app_id) from bus_sent_log log
+		where log.batch_no = mapp.batch_no and log.bus_type='1')) total_unsent <!-- 
+			未发送笔数 -->
+		from bus_lnapp_batch_mapping mapp
+		where batch_no = #{batchNO,jdbcType=VARCHAR}
+	</select>
+	<update id="updateBeginDateAndSentToBusByBatchNO" >
+		update bus_batch_info set begin_date = now(),sent_to_bus = '1' WHERE batch_no = #{batchNO} and begin_date is  null
+	</update>
+
+</mapper>

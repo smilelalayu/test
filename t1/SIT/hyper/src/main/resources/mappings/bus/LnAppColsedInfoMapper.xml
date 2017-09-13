@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.LnAppColsedInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.LnAppColsedInfo">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="APP_ID" jdbcType="BIGINT" property="appId" />
+    <result column="BUS_APPID" jdbcType="VARCHAR" property="busAppid" />
+    <result column="CAUSE_DESC" jdbcType="VARCHAR" property="causeDesc" />
+    <result column="OPERATORBY" jdbcType="VARCHAR" property="operatorby" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, APP_ID, BUS_APPID, CAUSE_DESC, OPERATORBY, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_colsed_info
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ln_app_colsed_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.LnAppColsedInfo">
+    insert into ln_app_colsed_info (ID, APP_ID, BUS_APPID, 
+      CAUSE_DESC, OPERATORBY, CREATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{busAppid,jdbcType=VARCHAR}, 
+      #{causeDesc,jdbcType=VARCHAR}, #{operatorby,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.bus.module.LnAppColsedInfo">
+    insert into ln_app_colsed_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="busAppid != null">
+        BUS_APPID,
+      </if>
+      <if test="causeDesc != null">
+        CAUSE_DESC,
+      </if>
+      <if test="operatorby != null">
+        OPERATORBY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="busAppid != null">
+        #{busAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="causeDesc != null">
+        #{causeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorby != null">
+        #{operatorby,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.LnAppColsedInfo">
+    update ln_app_colsed_info
+    <set>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="busAppid != null">
+        BUS_APPID = #{busAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="causeDesc != null">
+        CAUSE_DESC = #{causeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorby != null">
+        OPERATORBY = #{operatorby,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.bus.module.LnAppColsedInfo">
+    update ln_app_colsed_info
+    set APP_ID = #{appId,jdbcType=BIGINT},
+      BUS_APPID = #{busAppid,jdbcType=VARCHAR},
+      CAUSE_DESC = #{causeDesc,jdbcType=VARCHAR},
+      OPERATORBY = #{operatorby,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

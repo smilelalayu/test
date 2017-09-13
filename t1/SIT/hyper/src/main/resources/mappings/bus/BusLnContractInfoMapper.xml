@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hm.bus.dao.BusLnContractInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hm.bus.module.BusLnContractInfo">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="APP_ID" jdbcType="BIGINT" property="appId" />
+    <result column="CONTRACT_TYPE" jdbcType="VARCHAR" property="contractType" />
+    <result column="CONTRACT_NAME" jdbcType="VARCHAR" property="contractName" />
+    <result column="CONTRACT_PHONE" jdbcType="VARCHAR" property="contractPhone" />
+    <result column="CONTRACT_SEX" jdbcType="CHAR" property="contractSex" />
+    <result column="CONTRACT_ADDRESS" jdbcType="VARCHAR" property="contractAddress" />
+    <result column="IS_URGENCY" jdbcType="CHAR" property="isUrgency" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="MODIFIEDBY" jdbcType="VARCHAR" property="modifiedby" />
+    <result column="MODIFIEDON" jdbcType="TIMESTAMP" property="modifiedon" />
+    <result column="MOBILE_TYPE" jdbcType="CHAR" property="mobileType" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+    <result column="CONTRACT_PROPERTY" jdbcType="VARCHAR" property="contractProperty" />
+    <result column="CONTRACT_UNIT" jdbcType="VARCHAR" property="contractUnit" />
+    <result column="CONTACT_WEIXIN" jdbcType="VARCHAR" property="contactWeixin" />
+    <result column="CONTACT_QQ" jdbcType="VARCHAR" property="contactQq" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, APP_ID, CONTRACT_TYPE, CONTRACT_NAME, CONTRACT_PHONE, CONTRACT_SEX, CONTRACT_ADDRESS, 
+    IS_URGENCY, REMARK, CREATEDBY, CREATEDON, MODIFIEDBY, MODIFIEDON, MOBILE_TYPE, VERSION, 
+    CONTRACT_PROPERTY, CONTRACT_UNIT, CONTACT_WEIXIN, CONTACT_QQ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ln_app_contact_info
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByAppIds" parameterType="list" resultType="map">
+    select
+    APP_ID appId, CONTRACT_NAME contractName, CONTRACT_SEX contractSex,
+    Contract_Property contractProperty, Contract_Phone contractPhone
+    from ln_app_contact_info
+    where 1=1
+    <if test="appIds!=null and appIds.size() > 0">
+      AND APP_ID in
+      <foreach collection="appIds" item="appId" open="(" close=")" separator=",">
+        #{appId}
+      </foreach>
+    </if>
+
+  </select>
+
+  <select id="selectByAppId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ln_app_contact_info
+    where APP_ID = #{appId,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ln_app_contact_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.bus.module.BusLnContractInfo">
+    insert into ln_app_contact_info (ID, APP_ID, CONTRACT_TYPE, 
+      CONTRACT_NAME, CONTRACT_PHONE, CONTRACT_SEX, 
+      CONTRACT_ADDRESS, IS_URGENCY, REMARK, 
+      CREATEDBY, CREATEDON, MODIFIEDBY, 
+      MODIFIEDON, MOBILE_TYPE, VERSION, 
+      CONTRACT_PROPERTY, CONTRACT_UNIT, CONTACT_WEIXIN, 
+      CONTACT_QQ)
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{contractType,jdbcType=VARCHAR}, 
+      #{contractName,jdbcType=VARCHAR}, #{contractPhone,jdbcType=VARCHAR}, #{contractSex,jdbcType=CHAR}, 
+      #{contractAddress,jdbcType=VARCHAR}, #{isUrgency,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=VARCHAR}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{mobileType,jdbcType=CHAR}, #{version,jdbcType=INTEGER}, 
+      #{contractProperty,jdbcType=VARCHAR}, #{contractUnit,jdbcType=VARCHAR}, #{contactWeixin,jdbcType=VARCHAR}, 
+      #{contactQq,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.bus.module.BusLnContractInfo">
+    insert into ln_app_contact_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="contractType != null">
+        CONTRACT_TYPE,
+      </if>
+      <if test="contractName != null">
+        CONTRACT_NAME,
+      </if>
+      <if test="contractPhone != null">
+        CONTRACT_PHONE,
+      </if>
+      <if test="contractSex != null">
+        CONTRACT_SEX,
+      </if>
+      <if test="contractAddress != null">
+        CONTRACT_ADDRESS,
+      </if>
+      <if test="isUrgency != null">
+        IS_URGENCY,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="modifiedby != null">
+        MODIFIEDBY,
+      </if>
+      <if test="modifiedon != null">
+        MODIFIEDON,
+      </if>
+      <if test="mobileType != null">
+        MOBILE_TYPE,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+      <if test="contractProperty != null">
+        CONTRACT_PROPERTY,
+      </if>
+      <if test="contractUnit != null">
+        CONTRACT_UNIT,
+      </if>
+      <if test="contactWeixin != null">
+        CONTACT_WEIXIN,
+      </if>
+      <if test="contactQq != null">
+        CONTACT_QQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null">
+        #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null">
+        #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contractSex != null">
+        #{contractSex,jdbcType=CHAR},
+      </if>
+      <if test="contractAddress != null">
+        #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isUrgency != null">
+        #{isUrgency,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null">
+        #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null">
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobileType != null">
+        #{mobileType,jdbcType=CHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="contractProperty != null">
+        #{contractProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUnit != null">
+        #{contractUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWeixin != null">
+        #{contactWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null">
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.bus.module.BusLnContractInfo">
+    update ln_app_contact_info
+    <set>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="contractType != null">
+        CONTRACT_TYPE = #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null">
+        CONTRACT_NAME = #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null">
+        CONTRACT_PHONE = #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contractSex != null">
+        CONTRACT_SEX = #{contractSex,jdbcType=CHAR},
+      </if>
+      <if test="contractAddress != null">
+        CONTRACT_ADDRESS = #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isUrgency != null">
+        IS_URGENCY = #{isUrgency,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null">
+        MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedon != null">
+        MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobileType != null">
+        MOBILE_TYPE = #{mobileType,jdbcType=CHAR},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="contractProperty != null">
+        CONTRACT_PROPERTY = #{contractProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUnit != null">
+        CONTRACT_UNIT = #{contractUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWeixin != null">
+        CONTACT_WEIXIN = #{contactWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null">
+        CONTACT_QQ = #{contactQq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.bus.module.BusLnContractInfo">
+    update ln_app_contact_info
+    set APP_ID = #{appId,jdbcType=BIGINT},
+      CONTRACT_TYPE = #{contractType,jdbcType=VARCHAR},
+      CONTRACT_NAME = #{contractName,jdbcType=VARCHAR},
+      CONTRACT_PHONE = #{contractPhone,jdbcType=VARCHAR},
+      CONTRACT_SEX = #{contractSex,jdbcType=CHAR},
+      CONTRACT_ADDRESS = #{contractAddress,jdbcType=VARCHAR},
+      IS_URGENCY = #{isUrgency,jdbcType=CHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      MODIFIEDBY = #{modifiedby,jdbcType=VARCHAR},
+      MODIFIEDON = #{modifiedon,jdbcType=TIMESTAMP},
+      MOBILE_TYPE = #{mobileType,jdbcType=CHAR},
+      VERSION = #{version,jdbcType=INTEGER},
+      CONTRACT_PROPERTY = #{contractProperty,jdbcType=VARCHAR},
+      CONTRACT_UNIT = #{contractUnit,jdbcType=VARCHAR},
+      CONTACT_WEIXIN = #{contactWeixin,jdbcType=VARCHAR},
+      CONTACT_QQ = #{contactQq,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.appinfo.dao.LnCommodityCodeHmMapper" >
+  <parameterMap type="com.hm.appinfo.model.LnCommodityCode" id="lnCommodityCode"></parameterMap>
+  <resultMap id="BaseResultMap" type="com.hm.appinfo.model.LnCommodityCode" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+    <result column="CODE_TYPE" property="codeType" jdbcType="BIGINT" />
+    <result column="CODE_NAME" property="codeName" jdbcType="VARCHAR" />
+    <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_SEQ" property="operationSeq" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APP_ID, CODE_TYPE, CODE_NAME, CREATEDBY, CREATETIME, OPERATION_SEQ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ln_commodity_code
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="list" resultMap="BaseResultMap" parameterMap="lnCommodityCode" >
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM ln_commodity_code
+    WHERE APP_ID = #{appId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="attachDelete" parameterMap="lnCommodityCode">
+    DELETE FROM 
+    	ln_commodity_code
+    where ID = #{id,jdbcType=BIGINT}
+    AND APP_ID = #{appId,jdbcType=BIGINT}
+  </delete>
+  
+</mapper>

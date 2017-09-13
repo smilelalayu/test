@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.base.dao.JjCodeHmMapper" >
+	<!-- redis缓存 -->
+	<cache type="com.gep.core.cache.MybatisRedisCache" />
+	
+  	<parameterMap type="com.hm.base.model.JjCode" id="jjCode"></parameterMap>
+  	<resultMap id="BaseResultMap" type="com.hm.base.model.JjCode" >
+    	<id column="ID" property="id" jdbcType="BIGINT" />
+    	<result column="Code" property="code" jdbcType="VARCHAR" />
+    	<result column="Name" property="name" jdbcType="VARCHAR" />
+    	<result column="GroupID" property="groupid" jdbcType="BIGINT" />
+    	<result column="Version" property="version" jdbcType="INTEGER" />
+    	<result column="CreateBy" property="createby" jdbcType="VARCHAR" />
+    	<result column="ModifyBy" property="modifyby" jdbcType="VARCHAR" />
+    	<result column="ModifyOn" property="modifyon" jdbcType="TIMESTAMP" />
+    	<result column="CreateOn" property="createon" jdbcType="TIMESTAMP" />
+    	<result column="orderIndex" property="orderindex" jdbcType="INTEGER" />
+    	<result column="AppCode" property="appcode" jdbcType="VARCHAR" />
+  	</resultMap>
+  <sql id="Base_Column_List" >
+    ID, Code, Name, GroupID, Version, CreateBy, ModifyBy, ModifyOn, CreateOn, orderIndex, 
+    AppCode
+  </sql>
+  <sql id="left_jj_codegroup_Column_List" >
+    cd.ID, cd.Code, cd.Name, cd.GroupID, cd.Version, cd.CreateBy, cd.ModifyBy, cd.ModifyOn, cd.CreateOn, cd.orderIndex, 
+    cd.AppCode
+  </sql>
+  <select id="list" resultMap="BaseResultMap" parameterMap="jjCode" >
+		SELECT
+			<include refid="left_jj_codegroup_Column_List" />
+		FROM
+			jj_code cd
+		LEFT JOIN jj_codegroup gp ON cd.GroupID = gp.ID
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="groupCode != null">
+			AND gp.`Code` =  #{groupCode}
+		</if>
+		<if test="code != null">
+			AND cd.`Code` =  #{code}
+		</if>
+		</trim>
+  </select>
+  
+  <select id="listByGroupId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	 select 
+  	 	<include refid="Base_Column_List" /> 
+  	 from jj_code
+  	 where GroupID = #{groupid,jdbcType=BIGINT}
+  </select>
+  
+  <select id="listByCode" resultType="java.lang.Integer" parameterType="java.lang.String">
+  	 select 
+  	 	id
+  	 from jj_codegroup
+  	 where `Code` = #{groupCode,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

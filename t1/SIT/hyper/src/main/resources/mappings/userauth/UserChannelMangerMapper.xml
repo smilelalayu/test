@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.userauth.dao.UserChannelMangerMapper" >
+
+	<!-- redis缓存 -->
+	<!--  <cache type="com.gep.core.cache.MybatisRedisCache" /> -->
+	
+	<resultMap id="BaseResultMap" type="com.hm.userauth.model.UserChannel" >
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+		
+	</resultMap>
+   <sql id="Base_Column" >
+      ID, name, status,channel_code
+   </sql>
+ 
+	<sql id="Base_Condition_Select">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="name != null and name != ''" >
+	          AND name LIKE  concat(concat('%',#{name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="status != null and status > -1" >
+	          AND status = #{status,jdbcType=INTEGER}
+			</if>
+			<if test="id != null and id > 0" >
+	          AND id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="channelCode != null and channelCode != '' " >
+	          AND channel_code = #{channelCode,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+
+   <select id="list" resultMap="BaseResultMap" parameterType="com.hm.userauth.model.UserChannel" >
+    select 
+		<include refid="Base_Column" />
+    from  uum_user_channel
+		<include refid="Base_Condition_Select" />
+	</select>
+	
+	<insert id="insert" parameterType="com.hm.userauth.model.UserChannel" >
+	    insert into uum_user_channel
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="name != null" >
+	        name,
+	      </if>
+	      <if test="status != null" >
+	        status,
+	      </if>
+	      <if test="channelCode != null and channelCode != '' " >
+	         channel_code,
+		  </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="name != null" >
+	        #{name,jdbcType=VARCHAR},
+	      </if>
+	      <if test="status != null" >
+	        #{status,jdbcType=INTEGER},
+	      </if>
+	      <if test="channelCode != null and channelCode != '' " >
+	         #{channelCode,jdbcType=VARCHAR},
+		  </if>
+	    </trim>
+	  </insert>
+	  <update id="update" parameterType="com.hm.userauth.model.UserChannel" >
+	    update uum_user_channel
+	    <set >
+	      <if test="name != null" >
+	          name = #{name,jdbcType=VARCHAR},
+	      </if>
+	      <if test="status != null" >
+	          status = #{status,jdbcType=INTEGER},
+	      </if>
+	      <if test="channelCode != null and channelCode != '' " >
+	          channel_code = #{channelCode,jdbcType=VARCHAR},
+		  </if>
+	    </set>
+	    where id = #{id,jdbcType=BIGINT}
+	  </update>
+</mapper>

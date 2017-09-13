@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"  xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/task          
+	http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<context:annotation-config/>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+	<!-- 自动扫描包 ,将带有注解的类 纳入spring容器管理-->
+	<context:component-scan base-package="com.gep,com.hm"/>
+	
+		<!-- URL授权检查 -->
+	<bean id="urlPermissionAdvice" class="com.gep.sys.advice.PermissionAdvice">
+		<property name="whiteList">
+            <value>
+            	<!--测试-->
+<!--                 /test/* -->
+
+                <!--报错页面-->
+                /page/*
+                <!--登录页面-->
+                /initLogin
+                <!--首页主框-->
+                /index
+                <!--登录接口-->
+                /login
+                <!--登出接口-->
+                /logout/*
+                <!--获取ossid-->
+                /ossid/*
+            </value>
+        </property>
+	</bean>
+	<!-- validate aop 上传参数校验 -->
+	<bean id="validateAdvice" class="com.gep.validate.advice.ValidateAdvice"/>
+	<!-- submit token aop 表单提交token切面 -->
+	<bean id="submitTokenAdvice" class="com.gep.sys.advice.SubmitTokenAdvice">
+		<property name="mustList">
+            <value>
+            	<!-- 必校验测试 -->
+                
+            </value>
+        </property>
+	</bean>
+	<!-- userActive aop 用户行为-->
+	<bean id="userActiveAdvice" class="com.gep.sys.advice.UserActiveAdvice"/>
+	<bean id="userLoginAdvice" class="com.gep.sys.advice.UserLoginAdvice"/>
+	<aop:config>
+		<aop:pointcut id="controllerMethods" expression="execution(* com.*.*.controller..*(..))" />
+		<aop:pointcut id="loginControllerMethods" expression="execution(* com.*.*.controller.LoginController.login(..))" />
+		<aop:advisor advice-ref="urlPermissionAdvice" pointcut-ref="controllerMethods" />
+		<aop:advisor advice-ref="validateAdvice" pointcut-ref="controllerMethods" />
+		<aop:advisor advice-ref="submitTokenAdvice" pointcut-ref="controllerMethods" />
+		<aop:advisor advice-ref="userActiveAdvice" pointcut-ref="controllerMethods" />
+		<aop:advisor advice-ref="userLoginAdvice" pointcut-ref="loginControllerMethods" />			
+	</aop:config>
+	
+	<!-- 引入配置文件 -->
+	<!--  
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:application.properties</value>
+				<value>classpath*:jdbc.properties</value>
+				<value>classpath*:redis.properties</value>
+				<value>classpath*:mail.properties</value>
+			</list>
+		</property>
+	</bean>
+	-->
+
+	<!-- dataSource 配置 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${ds.initialSize}" />
+		<property name="minIdle" value="${ds.minIdle}" />
+		<property name="maxActive" value="${ds.maxActive}" />
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${ds.maxWait}" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${ds.timeBetweenEvictionRunsMillis}" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${ds.minEvictableIdleTimeMillis}" />
+
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="20" />
+
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat" />
+<!-- 		<property name="filters" value="config" /> -->
+<!-- 		<property name="connectionProperties" value="config.decrypt=true" /> -->
+	</bean>
+
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource" p:configLocation="classpath:mybatis-config.xml"
+		p:mapperLocations="classpath*:/mappings/**/*.xml" />
+
+	<!-- spring与mybatis整合配置，扫描所有dao -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:basePackage="com.gep.*.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:basePackage="com.hm.*.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:basePackage="com.hm.*.*.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+
+	<!-- 对dataSource 数据源进行事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" >
+		<property name="globalRollbackOnParticipationFailure" value="false" />
+	</bean>
+
+	<!-- 事务管理 通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 对insert,update,delete 开头的方法进行事务管理,只要有异常就回滚 -->
+			<tx:method name="insert*" propagation="REQUIRED"
+				rollback-for="java.lang.Throwable" />
+			<tx:method name="update*" propagation="REQUIRED"
+				rollback-for="java.lang.Throwable" />
+			<tx:method name="delete*" propagation="REQUIRED"
+				rollback-for="java.lang.Throwable" />
+			<!-- select,count开头的方法,开启只读,提高数据库访问性能 -->
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<!-- 对其他方法 使用默认的事务管理 -->
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 事务 aop 配置 -->
+	<aop:config>
+		<aop:pointcut id="serviceMethods" expression="execution(* com.gep.*.service..*(..))" />
+		<aop:pointcut id="webServiceMethods" expression="execution(* com.hm.*.service..*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="webServiceMethods" />
+	</aop:config>
+	
+	<!-- 启用对事务注解的支持 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+	<!-- Cache配置 -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+	<bean id="ehCacheManagerFactory"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:configLocation="classpath:ehcache.xml" />
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cacheManager-ref="ehCacheManagerFactory" />
+    
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.pool.maxTotal}" />
+        <property name="maxIdle" value="${redis.pool.maxIdle}" />
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+        <property name="minEvictableIdleTimeMillis" value ="${redis.pool.minEvictableIdleTimeMillis}" />
+        <property name="timeBetweenEvictionRunsMillis" value = "${redis.pool.timeBetweenEvictionRunsMillis}" />
+    </bean>
+    
+    <!-- Redis Setting -->
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">  
+    	<property name="hostName" value="${redis.host}" />  
+    	<property name="port" value="${redis.port}" />
+    	<property name="timeout" value="${redis.timeout}" />
+    	<property name="database" value="${redis.database}" />
+    	<property name="password" value="${redis.password}" />
+    	<property name="poolConfig" ref="jedisPoolConfig" />
+    </bean>  
+    
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connection-factory-ref="jedisConnectionFactory" />
+
+	<!-- 模版配置组件 -->
+	<bean id="templateConfigurer" class="com.gep.template.TemplateConfigurer">
+		<property name="defaultEncoding" value="${freemarker.encoding:UTF-8}" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">5</prop>
+				<prop key="url_escaping_charset">${freemarker.encoding}</prop>
+				<prop key="default_encoding">${freemarker.encoding}</prop>
+				<prop key="output_encoding">${freemarker.encoding}</prop>
+				<prop key="locale">${freemarker.locale}</prop>
+				<prop key="datetime_format">${freemarker.datetime}</prop>
+				<prop key="date_format">${freemarker.date}</prop>
+				<prop key="time_format">${freemarker.time}</prop>
+				<prop key="number_format">${freemarker.number}</prop>
+				<prop key="boolean_format">${freemarker.boolean}</prop>
+				<prop key="classic_compatible">${freemarker.classic_compatible}</prop>
+				<prop key="whitespace_stripping">${freemarker.whitespace_stripping}</prop>
+			</props>
+		</property>
+		<property name="templateLoaderPath">
+		    <value>${freemarker.base_path}</value>
+		</property>
+	</bean>
+	<!-- 邮件发送组件 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		<property name="defaultEncoding" value="${mail.defaultEncoding}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+				<prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
+				<prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+				<prop key="mail.debug">${mail.debug}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!--线程池-->
+	<task:executor id="threadPoolTaskExecutor" pool-size="10-100" queue-capacity="10" keep-alive="5" rejection-policy="CALLER_RUNS"/>
+	<!-- bus线程池,最大并发3个 -->
+	<task:executor id="busThreadPoolTaskExecutor" pool-size="1-3" queue-capacity="10" keep-alive="5" rejection-policy="CALLER_RUNS"/>
+	<!-- bus线程池,最大并发3个 36 to 32 -->
+	<task:executor id="busThreadPoolTaskExecutor36To32" pool-size="1-3" queue-capacity="10" keep-alive="5" rejection-policy="CALLER_RUNS"/>
+	
+	<!-- 指定一个缺省的executor给@Async使用 -->
+	<task:annotation-driven executor="threadPoolTaskExecutor" />
+    
+    <!-- 基于redis的分布式并发锁 -->
+	<bean id="redisDisLockPool" class="com.gep.core.lock.RedisDisLockPool">
+		<property name="host" value="${redis.host}" />
+		<property name="port" value="${redis.port}" />
+		<property name="password" value="${redis.password}" />
+		<property name="dataBase" value="${redis.database}" />
+		<property name="timeout" value="${redis.timeout}" />
+		<property name="maxTotal" value="${redis.pool.maxTotal}" />
+		<property name="idelTimeout" value="${redis.pool.maxIdle}" />
+    </bean>
+    
+	<!-- disconf -->
+	<bean id="disconfMgrBean" class="com.baidu.disconf.client.DisconfMgrBean" destroy-method="destroy">
+        <!--并没有这个包，但是不配置又报空指针，配着做摆设吧-->
+        <property name="scanPackage" value="com.gep.config"/>
+	</bean>
+	
+	<bean id="disconfMgrBean2" class="com.baidu.disconf.client.DisconfMgrBeanSecond" init-method="init" destroy-method="destroy">
+	</bean>
+	
+	<!-- 使用托管方式的disconf配置(无代码侵入, 配置更改会自动reload)-->
+	<bean id="configproperties_disconf" class="com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBean">
+        <property name="locations">
+                <list>
+                    <value>classpath:*.properties</value>
+				</list>
+       </property>
+	</bean>
+	
+	<!-- 引入配置文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+       <property name="ignoreResourceNotFound" value="true" />
+       <property name="ignoreUnresolvablePlaceholders" value="true" />
+       <property name="propertiesArray">
+              <list>
+                     <ref bean="configproperties_disconf"/>
+              </list>
+       </property>
+	</bean>
+	
+	<!-- 日志归集  -->
+	<bean id="logControllerAroundAdvice" class="com.gep.core.logs.advice.LogControllerAroundAdvice"/>
+	<aop:config>
+	    <aop:pointcut id="controllerMethods" expression="execution(* com.*.*.controller..*(..))" />
+	    <aop:advisor advice-ref="logControllerAroundAdvice" pointcut-ref="controllerMethods" />          
+	</aop:config>
+
+</beans>

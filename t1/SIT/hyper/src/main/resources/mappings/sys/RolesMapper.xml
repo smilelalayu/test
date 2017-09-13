@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gep.sys.dao.RolesMapper" >
+  <!-- redis缓存 -->
+  <!-- <cache type="com.gep.core.cache.MybatisRedisCache" /> -->
+  
+  <parameterMap type="com.gep.sys.model.Roles" id="roles"></parameterMap>
+  <parameterMap type="com.gep.sys.model.UserInfo" id="userInfo"></parameterMap>
+  <resultMap id="BaseResultMap" type="com.gep.sys.model.Roles" >
+    <id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="PERMISSIONS" property="permissions" jdbcType="VARCHAR" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="RESERVER1" property="reserver1" jdbcType="VARCHAR" />
+    <result column="RESERVER2" property="reserver2" jdbcType="VARCHAR" />
+    <result column="ApplicationID" property="applicationid" jdbcType="BIGINT" />
+    <result column="RoleCode" property="rolecode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ROLE_ID, ROLE_NAME, PERMISSIONS, MODIFY_TIME, CREATE_TIME, RESERVER1, RESERVER2, 
+    ApplicationID, RoleCode
+  </sql>
+  <sql id="Relation_Column_List" >
+    r.ROLE_ID, r.ROLE_NAME, r.PERMISSIONS, r.MODIFY_TIME, r.CREATE_TIME, r.RESERVER1, r.RESERVER2, 
+    r.ApplicationID, r.RoleCode
+  </sql>
+  
+  <!--查询用户权限-->
+  <select id="listUserRoles" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Relation_Column_List" />
+    from user_info ui,user_role ur,roles r 
+	where ui.USER_ID = ur.USER_ID and r.ROLE_ID = ur.ROLE_ID and ui.USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from roles
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="listByUser" resultMap="BaseResultMap" parameterMap="userInfo">
+	SELECT
+		r.RoleCode
+	FROM
+		roles r
+	LEFT JOIN user_role ur ON ur.ROLE_ID = r.ROLE_ID
+	LEFT JOIN user_info u ON u.USER_ID = ur.USER_ID
+	WHERE
+		u.USER_ID = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer" >
+    delete from roles
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gep.sys.model.Roles" >
+    insert into roles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="roleName != null" >
+        ROLE_NAME,
+      </if>
+      <if test="permissions != null" >
+        PERMISSIONS,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="reserver1 != null" >
+        RESERVER1,
+      </if>
+      <if test="reserver2 != null" >
+        RESERVER2,
+      </if>
+      <if test="applicationid != null" >
+        ApplicationID,
+      </if>
+      <if test="rolecode != null" >
+        RoleCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissions != null" >
+        #{permissions,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserver1 != null" >
+        #{reserver1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserver2 != null" >
+        #{reserver2,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationid != null" >
+        #{applicationid,jdbcType=BIGINT},
+      </if>
+      <if test="rolecode != null" >
+        #{rolecode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.gep.sys.model.Roles" >
+    update roles
+    <set >
+      <if test="roleName != null" >
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissions != null" >
+        PERMISSIONS = #{permissions,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserver1 != null" >
+        RESERVER1 = #{reserver1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserver2 != null" >
+        RESERVER2 = #{reserver2,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationid != null" >
+        ApplicationID = #{applicationid,jdbcType=BIGINT},
+      </if>
+      <if test="rolecode != null" >
+        RoleCode = #{rolecode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </update>
+</mapper>
