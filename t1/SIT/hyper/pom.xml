@@ -1,8 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+<<<<<<< .mine
+<<<<<<< .working
+||||||| .merge-left.r32
 	0000000000000000000jjjjjjjjjjjjjjjjjjjjjjj
 	bnbnmbmm.. 
+=======
+	yyyyyyyyyyyyyyyyyyyyyyyyyy
+	bnbnmbmm.. 
+>>>>>>> .merge-right.r34
+||||||| .r25
+=======
+	0000000000000000000jjjjjjjjjjjjjjjjjjjjjjj
+	bnbnmbmm.. 
+>>>>>>> .r34
 	<groupId>com.hm</groupId>
 	<artifactId>web</artifactId>
 	<packaging>war</packaging>
@@ -17,6 +29,7 @@
 		<groupId>com.gep</groupId>
 		<artifactId>pom</artifactId>
 		<version>0.1.2</version>
+		7777777777777777777777777777777777
 	</parent>
 	<properties>
 		<gep.version.auth>2.1.1</gep.version.auth>
