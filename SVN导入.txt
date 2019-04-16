@@ -1,0 +1,3 @@
+time svnadmin load /opt/CN_Test</opt/SVN_BAK/weekly_fully_backup.20171111
+
+2017.7.3  14:40 µ¼Èë  
