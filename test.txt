@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 good morniming
 luck
 ßÈ²¸ßÈ²¸
@@ -5,3 +6,6 @@ luck
 222
 
 444
+=======
+good lunck!!
+>>>>>>> add good..
