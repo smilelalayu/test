@@ -1,7 +1,1 @@
-tag ..
-hi  hello
-
-testing
-DEV2
-Dev1
-
+merge  type
